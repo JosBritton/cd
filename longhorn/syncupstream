@@ -1,0 +1,6 @@
+#!/bin/bash
+helm dependency update upstream
+helm template \
+    --namespace longhorn-system \
+    longhorn \
+    ./upstream > resources/upstream.yaml
