@@ -1,0 +1,10 @@
+apiVersion: "projectcontour.io/v1"
+kind: "TLSCertificateDelegation"
+metadata:
+  name: "vault-swifthomelab-net"
+  namespace: "cert-manager"
+spec:
+  delegations:
+    - secretName: "vault-swifthomelab-net"
+      targetNamespaces:
+        - "vaultwarden"
