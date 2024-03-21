@@ -1,0 +1,41 @@
+apiVersion: "projectcontour.io/v1"
+kind: "HTTPProxy"
+metadata:
+  name: "dashboard-ingress"
+  namespace: "kubernetes-dashboard"
+spec:
+  virtualhost:
+    fqdn: "dashboard.swifthomelab.net"
+    tls:
+      secretName: "cert-manager/dashboard-swifthomelab-net"
+  routes:
+    - conditions:
+        - prefix: "/api/v1/login"
+      services:
+        - name: "kubernetes-dashboard-auth"
+          port: 8000
+    - conditions:
+        - prefix: "/api/v1/csrftoken/login"
+      services:
+        - name: "kubernetes-dashboard-auth"
+          port: 8000
+    - conditions:
+        - prefix: "/api/v1/me"
+      services:
+        - name: "kubernetes-dashboard-auth"
+          port: 8000
+    - conditions:
+        - prefix: "/api"
+      services:
+        - name: "kubernetes-dashboard-api"
+          port: 8000
+    - conditions:
+        - prefix: "/metrics"
+      services:
+        - name: "kubernetes-dashboard-api"
+          port: 8000
+    - conditions:
+        - prefix: "/"
+      services:
+        - name: "kubernetes-dashboard-web"
+          port: 8000
