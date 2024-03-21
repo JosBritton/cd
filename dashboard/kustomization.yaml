@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./resources/upstream.yaml
+  - ./resources/cert.yaml
+  - ./resources/httpproxy.yaml
+  - ./resources/delegation.yaml
+  - ./resources/auth.yaml
+patches:
+  # removes plaintext secret to commit the helm manifest
+  # manually, patch the following secret manifest
+  # 
+  # apiVersion: v1
+  # kind: Secret
+  # metadata:
+  #   labels:
+  #     app.kubernetes.io/instance: kubernetes-dashboard
+  #     app.kubernetes.io/managed-by: Helm
+  #     app.kubernetes.io/part-of: kubernetes-dashboard
+  #   name: kubernetes-dashboard-csrf
+  # data:
+  #   private.key: "<CSRF-token>"
+  # 
+  - path: ./overlays/kubernetes-dashboard-csrf.yaml
+    target:
+      kind: Secret
+      name: kubernetes-dashboard-csrf
+      namespace: kubernetes-dashboard
+      version: v1
