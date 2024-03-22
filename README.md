@@ -26,3 +26,8 @@ argocd app create "apps" --repo "https://github.com/JosBritton/cd.git" --path "a
 Note: `https://kubernetes.default.svc` is the default address for the local cluster that ArgoCD is installed in. If ArgoCD should manage an external cluster, this address must be changed.
 
 This repository follows the *app of apps* pattern described [here](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern). Manual pinning of cluster version and strict access control is necesarry due to the inherent danger of auto-bootstrapping clusters.
+
+## Get Kubernetes dashboard token
+```bash
+kubectl get secret admin -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
+```
