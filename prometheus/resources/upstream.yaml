@@ -46581,34 +46581,6 @@ spec:
     component: kube-controller-manager
   type: ClusterIP
 ---
-# Source: prometheus-operator/charts/kube-prometheus-stack/templates/exporters/kube-etcd/service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: prometheus-operator-kube-p-kube-etcd
-  labels:
-    app: kube-prometheus-stack-kube-etcd
-    jobLabel: kube-etcd
-    
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "57.0.3"
-    app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-57.0.3
-    release: "prometheus-operator"
-    heritage: "Helm"
-  namespace: kube-system
-spec:
-  clusterIP: None
-  ports:
-    - name: http-metrics
-      port: 2381
-      protocol: TCP
-      targetPort: 2381
-  selector:
-    component: etcd
-  type: ClusterIP
----
 # Source: prometheus-operator/charts/kube-prometheus-stack/templates/exporters/kube-proxy/service.yaml
 apiVersion: v1
 kind: Service
