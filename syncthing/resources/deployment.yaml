@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: syncthing
+  name: syncthing
+  namespace: syncthing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: syncthing
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: syncthing
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: etc/UTC
+            - name: STGUIADDRESS
+              value: 127.0.0.1:8384  # only listen for GUI on loopback
+          image: syncthing/syncthing:1.23.1
+          name: syncthing
+          ports:
+            - containerPort: 8384
+              protocol: TCP
+            - containerPort: 22000
+              protocol: TCP
+            - containerPort: 22000
+              protocol: UDP
+          volumeMounts:
+            - mountPath: /var/syncthing
+              name: config
+            - mountPath: /data
+              name: data
+      restartPolicy: Always
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: config
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
