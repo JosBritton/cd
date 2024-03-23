@@ -9,14 +9,14 @@ resources:
   - ./resources/cert.yaml
   - ./resources/httpproxy.yaml
   - ./resources/delegation.yaml
-# generatorOptions:
-#   disableNameSuffixHash: true
-#   labels:
-#     grafana_dashboard: argocd
-# configMapGenerator:
-#   - files:
-#     - dashboard.json
-#     name: argocd-dashboard-cm
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: argocd
+configMapGenerator:
+  - files:
+    - dashboard.json
+    name: argocd-dashboard-cm
 patches:
   - path: overlays/prometheus-operator-grafana-secret.yaml
     target:
@@ -30,4 +30,4 @@ patches:
       kind: CustomResourceDefinition
       name: .*
       version: v1
-  # - path: overlays/prometheus-operator-grafana-cm.yaml
+  - path: overlays/prometheus-operator-grafana-cm.yaml

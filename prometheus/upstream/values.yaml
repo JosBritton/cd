@@ -23,9 +23,32 @@ kube-prometheus-stack:
         enabled: true
         scrapeTimeout: 10s
   prometheus:
+    enabled: true
     prometheusSpec:
+      enableAdminAPI: false
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: longhorn
+            accessModes: 
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 50Gi
+  grafana:
+    enabled: true
+    defaultDashboardsEnabled: false
+    persistence:
+      enabled: true
+      type: sts
+      storageClassName: "longhorn"
+      accessModes:
+        - ReadWriteOnce
+      size: 20Gi
+      finalizers:
+        - kubernetes.io/pvc-protection
   cleanPrometheusOperatorObjectNames: true
