@@ -1,0 +1,18 @@
+apiVersion: "v2"
+name: "descheduler"
+description: "Descheduler for Kubernetes is used to rebalance clusters by evicting pods that can potentially be scheduled on better nodes. In the current implementation, descheduler does not schedule replacement of evicted pods but relies on the default scheduler for that."
+type: "application"
+
+# this version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# is expected to follow semantic versioning!
+version: "1.0.0"
+
+# this is the version number of the application being deployed
+# should be incremented each time you make changes to the application
+appVersion: "1.0"
+
+dependencies:
+- name: "descheduler"
+  version: "0.29.0"
+  repository: "https://kubernetes-sigs.github.io/descheduler"
