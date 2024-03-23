@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: prometheus-operator
   namespace: argocd
   finalizers:
     - "resources-finalizer.argocd.argoproj.io"
@@ -14,21 +14,21 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: prometheus-operator
-  ignoreDifferences:
-    - group: apiextensions.k8s.io
-      jsonPointers:
-        - /metadata/annotations
-        - /metadata/labels
-        - /spec/validation
-      kind: CustomResourceDefinition
-    - group: admissionregistration.k8s.io
-      kind: MutatingWebhookConfiguration
-      jsonPointers:
-        - /webhooks
-    - group: admissionregistration.k8s.io
-      kind: ValidatingWebhookConfiguration
-      jsonPointers:
-        - /webhooks
+  # ignoreDifferences:
+    # - group: apiextensions.k8s.io
+    #   jsonPointers:
+    #     - /metadata/annotations
+    #     - /metadata/labels
+    #     - /spec/validation
+    #   kind: CustomResourceDefinition
+    # - group: admissionregistration.k8s.io
+    #   kind: MutatingWebhookConfiguration
+    #   jsonPointers:
+    #     - /webhooks
+    # - group: admissionregistration.k8s.io
+    #   kind: ValidatingWebhookConfiguration
+    #   jsonPointers:
+    #     - /webhooks
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

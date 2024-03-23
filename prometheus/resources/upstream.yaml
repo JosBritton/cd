@@ -45238,7 +45238,7 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: alertmanager-prometheus-operator-kube-p-alertmanager
+  name: alertmanager-prometheus-operator-kube-p
   namespace: prometheus-operator
   labels:
     app: kube-prometheus-stack-alertmanager
@@ -46522,7 +46522,7 @@ spec:
     targetPort: reloader-web
   selector:
     app.kubernetes.io/name: alertmanager
-    alertmanager: prometheus-operator-kube-p-alertmanager
+    alertmanager: prometheus-operator-kube-p
   sessionAffinity: None
   type: "ClusterIP"
 ---
@@ -46694,7 +46694,7 @@ spec:
   publishNotReadyAddresses: false
   selector:
     app.kubernetes.io/name: prometheus
-    operator.prometheus.io/name: prometheus-operator-kube-p-prometheus
+    operator.prometheus.io/name: prometheus-operator-kube-p
   sessionAffinity: None
   type: "ClusterIP"
 ---
@@ -47201,7 +47201,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: Alertmanager
 metadata:
-  name: prometheus-operator-kube-p-alertmanager
+  name: prometheus-operator-kube-p
   namespace: prometheus-operator
   labels:
     app: kube-prometheus-stack-alertmanager
@@ -47280,7 +47280,7 @@ webhooks:
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
-  name: prometheus-operator-kube-p-prometheus
+  name: prometheus-operator-kube-p
   namespace: prometheus-operator
   labels:
     app: kube-prometheus-stack-prometheus
@@ -47316,20 +47316,11 @@ spec:
   walCompression: true
   routePrefix: "/"
   serviceAccountName: prometheus-operator-kube-p-prometheus
-  serviceMonitorSelector:
-    matchLabels:
-      release: "prometheus-operator"
-
+  serviceMonitorSelector: {}
   serviceMonitorNamespaceSelector: {}
-  podMonitorSelector:
-    matchLabels:
-      release: "prometheus-operator"
-
+  podMonitorSelector: {}
   podMonitorNamespaceSelector: {}
-  probeSelector:
-    matchLabels:
-      release: "prometheus-operator"
-
+  probeSelector: {}
   probeNamespaceSelector: {}
   securityContext:
     fsGroup: 2000
@@ -47339,10 +47330,7 @@ spec:
     seccompProfile:
       type: RuntimeDefault
   ruleNamespaceSelector: {}
-  ruleSelector:
-    matchLabels:
-      release: "prometheus-operator"
-
+  ruleSelector: {}
   scrapeConfigSelector:
     matchLabels:
       release: "prometheus-operator"
@@ -50630,6 +50618,7 @@ spec:
   endpoints:
     - port: http-metrics
       scheme: http
+      scrapeTimeout: 10s
 ---
 # Source: prometheus-operator/charts/kube-prometheus-stack/templates/alertmanager/servicemonitor.yaml
 apiVersion: monitoring.coreos.com/v1
