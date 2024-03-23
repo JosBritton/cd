@@ -1,0 +1,6 @@
+#!/bin/bash
+helm dependency update upstream
+helm template \
+    --namespace kube-system \
+    descheduler \
+    ./upstream > resources/upstream.yaml
