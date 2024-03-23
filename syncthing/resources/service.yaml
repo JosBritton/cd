@@ -1,0 +1,23 @@
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  labels:
+    app: "syncthing"
+  name: "syncthing"
+  namespace: "syncthing"
+spec:
+  type: NodePort
+  ports:
+    - name: sync-traffic
+      port: 22000
+      targetPort: 22000
+      nodePort: 30200
+      protocol: TCP
+
+    - name: sync-traffic-quic
+      port: 22000
+      targetPort: 22000
+      nodePort: 30200
+      protocol: UDP
+  selector:
+    app: "syncthing"
