@@ -1,0 +1,6 @@
+#!/bin/bash
+helm dependency update upstream
+helm template \
+    --namespace NAMESPACE \
+    CHART \
+    ./upstream > resources/upstream.yaml
