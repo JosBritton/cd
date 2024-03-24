@@ -5,3 +5,10 @@ contour:
       nodePorts:
         http: 30080
         https: 30443
+    resourcesPreset: medium
+    shutdownManager:
+      resourcesPreset: medium
+  contour:
+    resourcesPreset: medium
+  defaultBackend:
+    resourcesPreset: medium
