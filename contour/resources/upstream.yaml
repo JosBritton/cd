@@ -9071,13 +9071,13 @@ spec:
           name: shutdown-manager
           resources:
             limits:
-              cpu: 150m
+              cpu: 750m
               ephemeral-storage: 1024Mi
-              memory: 192Mi
+              memory: 1536Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               ephemeral-storage: 50Mi
-              memory: 128Mi
+              memory: 1024Mi
           livenessProbe:
             exec:
               command:
@@ -9167,13 +9167,13 @@ spec:
             failureThreshold: 6
           resources:
             limits:
-              cpu: 150m
+              cpu: 750m
               ephemeral-storage: 1024Mi
-              memory: 192Mi
+              memory: 1536Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               ephemeral-storage: 50Mi
-              memory: 128Mi
+              memory: 1024Mi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
@@ -9207,13 +9207,13 @@ spec:
           name: envoy-initconfig
           resources:
             limits:
-              cpu: 150m
+              cpu: 750m
               ephemeral-storage: 1024Mi
-              memory: 192Mi
+              memory: 1536Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               ephemeral-storage: 50Mi
-              memory: 128Mi
+              memory: 1024Mi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
@@ -9350,13 +9350,13 @@ spec:
             failureThreshold: 3
           resources:
             limits:
-              cpu: 150m
+              cpu: 750m
               ephemeral-storage: 1024Mi
-              memory: 192Mi
+              memory: 1536Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               ephemeral-storage: 50Mi
-              memory: 128Mi
+              memory: 1024Mi
           volumeMounts:
             - name: contourcert
               mountPath: /certs
@@ -9566,13 +9566,13 @@ spec:
               type: RuntimeDefault
           resources:
             limits:
-              cpu: 150m
+              cpu: 750m
               ephemeral-storage: 1024Mi
-              memory: 192Mi
+              memory: 1536Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               ephemeral-storage: 50Mi
-              memory: 128Mi
+              memory: 1024Mi
           livenessProbe:
             exec:
               command:
