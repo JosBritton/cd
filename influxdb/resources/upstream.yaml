@@ -30,7 +30,7 @@ spec:
   resources:
     requests:
       storage: "50Gi"
-  storageClassName: "longhorn"
+  storageClassName: "nfs-client"
 ---
 # Source: influxdb2/charts/influxdb2/templates/service.yaml
 apiVersion: v1
