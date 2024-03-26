@@ -1,7 +1,0 @@
-resources:
-  - "./resources/cert.yaml"
-  - "./resources/deployment.yaml"
-  - "./resources/pvc.yaml"
-  - "./resources/delegation.yaml"
-  - "./resources/httpproxy.yaml"
-  - "./resources/service.yaml"
