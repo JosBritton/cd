@@ -1,6 +1,6 @@
 #!/bin/bash
 helm dependency update upstream
 helm template \
-    --namespace longhorn-system \
-    longhorn \
+    --namespace nfs-provisioner \
+    nfs-subdir-external-provisioner \
     ./upstream > resources/upstream.yaml
