@@ -33,7 +33,7 @@ kube-prometheus-stack:
       storageSpec:
         volumeClaimTemplate:
           spec:
-            storageClassName: longhorn
+            storageClassName: nfs-client
             accessModes: 
               - ReadWriteOnce
             resources:
@@ -45,7 +45,7 @@ kube-prometheus-stack:
     persistence:
       enabled: true
       type: sts
-      storageClassName: "longhorn"
+      storageClassName: "nfs-client"
       accessModes:
         - ReadWriteOnce
       size: 20Gi

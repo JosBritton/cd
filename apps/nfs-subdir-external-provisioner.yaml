@@ -1,17 +1,17 @@
 apiVersion: "argoproj.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "longhorn"
+  name: "nfs-subdir-external-provisioner"
   namespace: "argocd"
   finalizers:
     - "resources-finalizer.argocd.argoproj.io"
 spec:
   destination:
-    namespace: "longhorn-system"
+    namespace: "nfs-provisioner"
     server: "https://kubernetes.default.svc"
   project: "default"
   source:
-    path: "longhorn"
+    path: "nfs-subdir-external-provisioner"
     repoURL: "https://github.com/JosBritton/cd.git"
     targetRevision: "HEAD"
   syncPolicy:
