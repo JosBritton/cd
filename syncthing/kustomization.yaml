@@ -1,4 +1,0 @@
-resources:
-  - "./resources/pvc.yaml"
-  - "./resources/service.yaml"
-  - "./resources/deployment.yaml"
