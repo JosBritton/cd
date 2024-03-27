@@ -152,9 +152,9 @@ spec:
             - name: NFS_SERVER
               value: truenas.private.swifthomelab.net
             - name: NFS_PATH
-              value: /mnt/artemis/nfs-storage
+              value: /mnt/nfs-storage
       volumes:
         - name: nfs-subdir-external-provisioner-root
           nfs:
             server: truenas.private.swifthomelab.net
-            path: /mnt/artemis/nfs-storage
+            path: /mnt/nfs-storage
