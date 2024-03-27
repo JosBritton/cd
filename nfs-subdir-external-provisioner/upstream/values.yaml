@@ -8,7 +8,7 @@ nfs-subdir-external-provisioner:
   imagePullSecrets: []
   nfs:
     server: truenas.private.swifthomelab.net
-    path: /mnt/artemis/nfs-storage
+    path: /mnt/nfs-storage
     mountOptions:
     volumeName: nfs-subdir-external-provisioner-root
     # Reclaim policy for the main nfs volume

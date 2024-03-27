@@ -11,6 +11,6 @@ spec:
     server: "https://kubernetes.default.svc"
   project: "default"
   source:
-    path: "argocd"
+    path: "argocd-ingress"
     repoURL: "https://github.com/JosBritton/cd.git"
     targetRevision: "HEAD"
