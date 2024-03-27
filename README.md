@@ -1,33 +1,97 @@
 # cd
+
 ## Prerequisites
-1. ArgoCD CLI tool
-2. Working Kubernetes cluster
-3. Working `kubectl` config
+1. Working Kubernetes cluster
+2. Working `kubectl` config
+```bash
+kubectl get nodes
+```
+```
+NAME                            STATUS   ROLES           AGE     VERSION
+k8s1.private.swifthomelab.net   Ready    control-plane   3m54s   v1.28.6
+k8s2.private.swifthomelab.net   Ready    control-plane   3m36s   v1.28.6
+k8s3.private.swifthomelab.net   Ready    <none>          3m3s    v1.28.6
+k8s4.private.swifthomelab.net   Ready    <none>          3m3s    v1.28.6
+k8s5.private.swifthomelab.net   Ready    <none>          3m4s    v1.28.6
+```
 
 ## Initial installation on bare cluster
-1. [Bootstrap ArgoCD](https://argo-cd.readthedocs.io/en/stable/getting_started/)
-2. Access ArgoCD dashboard
+
+(ArgoCD-cli installation not necessary)
+
+1. Install ArgoCD
 ```bash
-kubectl port-forward svc/argocd-server -n argocd 8080:443
+kubectl create namespace argocd
+kubectl apply -k argocd/ && kubectl -n argocd rollout status deployment argocd-server
 ```
-2. Get first-time password
+
+2. Update ArgoCD user password
+    1. Generate password hash using bcrypt ([Python implementation](https://pypi.org/project/bcrypt/))
+    ```bash
+    python3 -I
+    ```
+    ```python
+    >>> import bcrypt
+    >>> print(bcrypt.hashpw(b'YOUR-PASSWORD-HERE', bcrypt.gensalt()).decode())
+    >>> exit()
+    ```
+
+    2. Replace ArgoCD admin password with new hash
+    ```bash
+    kubectl -n argocd edit secret argocd-secret
+    ```
+    ```yaml
+    apiVersion: v1
+    stringData:
+      admin.password: YOUR-PASSWORD-HASH
+    kind: Secret
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-secret
+        app.kubernetes.io/part-of: argocd
+      name: argocd-secret
+      namespace: argocd
+    type: Opaque
+    ```
+
+    3. Update password mtime
+    ```bash
+    kubectl -n argocd patch secret argocd-secret \
+        -p '{"stringData": {"admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
+    ```
+
+    > You could also install the ArgoCD CLI and update passwords via
+    ```bash
+    argocd account update-password
+    ```
+
+2. Forward ArgoCD server on loopback port 8443/HTTPS
 ```bash
-argocd admin initial-password -n argocd
+kubectl port-forward svc/argocd-server -n argocd 8443:443
 ```
-3. Login to ArgoCD
+
+3. Sign-in to ArgoCD via web UI using new password
+
+4. Manually sync all applications
+
+5. Patch ArgoCD to listen to HTTP and reject HTTPS
 ```bash
-argocd login localhost:8080
+kubectl -n argocd patch cm argocd-cmd-params-cm \
+    -p '{"data": {"server.insecure": "true"}}'
 ```
-4. Add `cd` repo as an app within ArgoCD
+
+6. Restart admin server to apply patch
 ```bash
-argocd app create "apps" --repo "https://github.com/JosBritton/cd.git" --path "apps" --dest-server "https://kubernetes.default.svc" --dest-namespace "argocd" --project "default" --revision "HEAD"
+kubectl -n argocd rollout restart deployment argocd-server && kubectl -n argocd rollout status deployment argocd-server
 ```
 
 Note: `https://kubernetes.default.svc` is the default address for the local cluster that ArgoCD is installed in. If ArgoCD should manage an external cluster, this address must be changed.
 
 This repository follows the *app of apps* pattern described [here](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern). Manual pinning of cluster version and strict access control is necesarry due to the inherent danger of auto-bootstrapping clusters.
 
-## Get Kubernetes dashboard token
+## Signing-in to Kubernetes dashboard
+
 ```bash
-kubectl get secret admin -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
+kubectl -n kubernetes-dashboard create token admin
+kubectl -n kubernetes-dashboard get secret admin  -o jsonpath={".data.token"} | base64 -d
 ```
