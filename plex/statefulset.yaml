@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: plex-media-server
+  labels:
+    name: plex-media-server
+    app: plex-media-server
+    app.kubernetes.io/name: plex-media-server
+    app.kubernetes.io/instance: plex-media-server
+  namespace: plex-media-server
+spec:
+  serviceName: plex-media-server
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: plex-media-server
+      app.kubernetes.io/instance: plex-media-server
+  template:
+    metadata:
+      labels:
+        app: plex-media-server
+        app.kubernetes.io/name: plex-media-server
+        app.kubernetes.io/instance: plex-media-server
+    spec:
+      serviceAccountName: plex-media-server
+      volumes:
+      - name: pms-transcode
+        emptyDir: {}
+      - name: media
+        nfs:
+          path: /mnt/artemis/data/media
+          readOnly: true
+          server: truenas.private.swifthomelab.net
+      terminationGracePeriodSeconds: 120
+      initContainers:
+      containers:
+      - name: plex-media-server-pms
+        image: index.docker.io/plexinc/pms-docker:1.40.1.8227-c0dd5a73e@sha256:324d3c66305259ffbeb129d689bb846f549a46f147238510a71d456845f97368
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 32400
+          name: pms
+        env:
+        - name: ALLOWED_NETWORKS
+          value: "10.0.12.0/24"
+        - name: HOSTNAME
+          value: "PlexServer"
+        - name: PLEX_GID
+          value: "1000"
+        - name: PLEX_UID
+          value: "1000"
+        - name: TZ
+          value: "Etc/UTC"
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "1.5"
+            memory: 3072Mi
+          # requests:
+          #   cpu: "1.0"
+          #   memory: 2048Mi
+          # limits:
+          #   cpu: "1.5"
+          #   memory: 3072Mi
+        volumeMounts:
+        - name: pms-config
+          mountPath: /config
+        - name: pms-transcode
+          mountPath: /transcode
+        - mountPath: /media
+          name: media
+  volumeClaimTemplates:
+  - metadata:
+      name: pms-config
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: nfs-client
+      resources:
+        requests:
+          storage: 2Gi
