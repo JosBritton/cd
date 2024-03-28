@@ -28,6 +28,55 @@ reclaimPolicy: Delete
 volumeBindingMode: Immediate
 parameters:
   archiveOnDelete: "true"
+mountOptions:
+  - nfsvers=3
+---
+# Source: nfs-subdir-external-provisioner/charts/nfs-subdir-external-provisioner/templates/persistentvolume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs-subdir-external-provisioner
+  labels:
+    chart: nfs-subdir-external-provisioner-4.0.18
+    heritage: Helm
+    app: nfs-subdir-external-provisioner
+    release: nfs-subdir-external-provisioner
+    nfs-subdir-external-provisioner: nfs-subdir-external-provisioner
+spec:
+  capacity:
+    storage: 10Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  mountOptions:
+    - nfsvers=3
+  nfs:
+    server: truenas.private.swifthomelab.net
+    path: /mnt/nfs-storage
+---
+# Source: nfs-subdir-external-provisioner/charts/nfs-subdir-external-provisioner/templates/persistentvolumeclaim.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-nfs-subdir-external-provisioner
+  labels:
+    chart: nfs-subdir-external-provisioner-4.0.18
+    heritage: Helm
+    app: nfs-subdir-external-provisioner
+    release: nfs-subdir-external-provisioner
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  storageClassName: ""
+  selector:
+    matchLabels:
+      nfs-subdir-external-provisioner: nfs-subdir-external-provisioner
+  resources:
+    requests:
+      storage: 10Mi
 ---
 # Source: nfs-subdir-external-provisioner/charts/nfs-subdir-external-provisioner/templates/clusterrole.yaml
 kind: ClusterRole
@@ -155,6 +204,5 @@ spec:
               value: /mnt/nfs-storage
       volumes:
         - name: nfs-subdir-external-provisioner-root
-          nfs:
-            server: truenas.private.swifthomelab.net
-            path: /mnt/nfs-storage
+          persistentVolumeClaim:
+            claimName: pvc-nfs-subdir-external-provisioner

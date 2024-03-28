@@ -10,6 +10,7 @@ nfs-subdir-external-provisioner:
     server: truenas.private.swifthomelab.net
     path: /mnt/nfs-storage
     mountOptions:
+      - "nfsvers=3"
     volumeName: nfs-subdir-external-provisioner-root
     # Reclaim policy for the main nfs volume
     reclaimPolicy: Retain
