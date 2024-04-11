@@ -28,7 +28,7 @@ spec:
       - name: media
         nfs:
           path: /mnt/artemis/data/media
-          readOnly: true
+          readOnly: false
           server: truenas.private.swifthomelab.net
       terminationGracePeriodSeconds: 120
       initContainers:
