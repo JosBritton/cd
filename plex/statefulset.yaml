@@ -21,6 +21,11 @@ spec:
         app.kubernetes.io/name: plex-media-server
         app.kubernetes.io/instance: plex-media-server
     spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
       serviceAccountName: plex-media-server
       volumes:
       - name: pms-transcode
@@ -34,7 +39,7 @@ spec:
       initContainers:
       containers:
       - name: plex-media-server-pms
-        image: index.docker.io/plexinc/pms-docker:1.40.1.8227-c0dd5a73e@sha256:324d3c66305259ffbeb129d689bb846f549a46f147238510a71d456845f97368
+        image: ghcr.io/onedr0p/plex:1.40.1.8227-c0dd5a73e@sha256:a60bc6352543b4453b117a8f2b89549e458f3ed8960206d2f3501756b6beb519
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 32400
