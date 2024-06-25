@@ -35,6 +35,14 @@ spec:
           path: /mnt/artemis/data/media
           readOnly: false
           server: truenas.private.swifthomelab.net
+      - name: movies
+        nfs:
+          server: truenas.private.swifthomelab.net
+          path: /mnt/artemis/data/bt1/completed/movies
+      - name: tv
+        nfs:
+          server: truenas.private.swifthomelab.net
+          path: /mnt/artemis/data/bt1/completed/tv
       terminationGracePeriodSeconds: 120
       initContainers:
       containers:
@@ -68,6 +76,10 @@ spec:
           mountPath: /transcode
         - mountPath: /media
           name: media
+        - mountPath: /movies
+          name: movies
+        - mountPath: /tv
+          name: tv
   volumeClaimTemplates:
   - metadata:
       name: pms-config
