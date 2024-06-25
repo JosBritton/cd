@@ -27,6 +27,19 @@ spec:
         runAsGroup: 65534
         fsGroup: 65534
         fsGroupChangePolicy: OnRootMismatch
+      volumes:
+      - name: media
+        nfs:
+          path: /mnt/artemis/data/media
+          server: truenas.private.swifthomelab.net
+      - name: movies
+        nfs:
+          server: truenas.private.swifthomelab.net
+          path: /mnt/artemis/data/bt1/completed/movies
+      - name: tv
+        nfs:
+          server: truenas.private.swifthomelab.net
+          path: /mnt/artemis/data/bt1/completed/tv
       containers:
         - name: sonarr
           image: ghcr.io/onedr0p/sonarr:4.0.5.1710@sha256:5d97c1e4d7d386e3d9a887d87d65da2b0115c73cd002d7d633df21baa5a4122c
@@ -37,6 +50,12 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: sonarr
+            - mountPath: /media
+              name: media
+            - mountPath: /movies
+              name: movies
+            - mountPath: /tv
+              name: tv
           livenessProbe:
             httpGet:
               port: 8989
