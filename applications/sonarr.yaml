@@ -1,0 +1,19 @@
+apiVersion: "argoproj.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "sonarr"
+  namespace: "argocd"
+  finalizers:
+    - "resources-finalizer.argocd.argoproj.io"
+spec:
+  destination:
+    namespace: "sonarr"
+    server: "https://kubernetes.default.svc"
+  project: "default"
+  source:
+    path: "sonarr"
+    repoURL: "https://github.com/JosBritton/cd.git"
+    targetRevision: "HEAD"
+  syncPolicy:
+    syncOptions:
+      - "CreateNamespace=true"
