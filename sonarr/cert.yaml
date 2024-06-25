@@ -1,0 +1,13 @@
+apiVersion: "cert-manager.io/v1"
+kind: "Certificate"
+metadata:
+  name: "sonarr-swifthomelab-net"
+  namespace: "cert-manager"
+spec:
+  secretName: "sonarr-swifthomelab-net"
+  issuerRef:
+    name: "swifthomelab-net-issuer"
+    kind: "ClusterIssuer"
+  commonName: "sonarr.swifthomelab.net"
+  dnsNames:
+    - "sonarr.swifthomelab.net"
