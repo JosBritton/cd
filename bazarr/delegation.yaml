@@ -1,0 +1,10 @@
+apiVersion: "projectcontour.io/v1"
+kind: "TLSCertificateDelegation"
+metadata:
+  name: "bazarr-swifthomelab-net"
+  namespace: "cert-manager"
+spec:
+  delegations:
+    - secretName: "bazarr-swifthomelab-net"
+      targetNamespaces:
+        - "bazarr"
