@@ -27,6 +27,19 @@ spec:
         runAsGroup: 65534
         fsGroup: 65534
         fsGroupChangePolicy: OnRootMismatch
+      volumes:
+      - name: media
+        nfs:
+          path: /mnt/artemis/data/media
+          server: truenas.private.swifthomelab.net
+      - name: movies
+        nfs:
+          server: truenas.private.swifthomelab.net
+          path: /mnt/artemis/data/bt1/completed/movies
+      - name: tv
+        nfs:
+          server: truenas.private.swifthomelab.net
+          path: /mnt/artemis/data/bt1/completed/tv
       containers:
         - name: radarr
           image: ghcr.io/onedr0p/radarr:5.7.0@sha256:67cf7fa3b10fbb9771ef11c62a215d50956a238c1a27b4195f19bdc92b796cc7
@@ -37,6 +50,12 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: radarr
+            - mountPath: /media
+              name: media
+            - mountPath: /movies
+              name: movies
+            - mountPath: /tv
+              name: tv
           livenessProbe:
             httpGet:
               port: 7878
