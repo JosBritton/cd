@@ -101,12 +101,15 @@ Label nodes
 ```bash
 kubectl label node k8s1.private.swifthomelab.net topology.kubernetes.io/region=cluster1
 kubectl label node k8s1.private.swifthomelab.net topology.kubernetes.io/zone=pve2
+kubectl patch node k8s1.private.swifthomelab.net -p $'spec:\n providerID: proxmox://cluster1/501'
 
 kubectl label node k8s2.private.swifthomelab.net topology.kubernetes.io/region=cluster1
 kubectl label node k8s2.private.swifthomelab.net topology.kubernetes.io/zone=pve1
+kubectl patch node k8s2.private.swifthomelab.net -p $'spec:\n providerID: proxmox://cluster1/502'
 
 kubectl label node k8s3.private.swifthomelab.net topology.kubernetes.io/region=cluster1
 kubectl label node k8s3.private.swifthomelab.net topology.kubernetes.io/zone=pve3
+kubectl patch node k8s3.private.swifthomelab.net -p $'spec:\n providerID: proxmox://cluster1/503'
 ```
 Install secret
 ```yaml
