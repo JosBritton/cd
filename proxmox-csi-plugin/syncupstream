@@ -1,6 +1,6 @@
 #!/bin/bash
 helm dependency update upstream
 helm template \
-    --namespace nfs-provisioner \
-    nfs-subdir-external-provisioner \
+    --namespace csi-proxmox \
+    proxmox-csi-plugin \
     ./upstream > resources/upstream.yaml

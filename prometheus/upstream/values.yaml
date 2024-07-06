@@ -33,8 +33,8 @@ kube-prometheus-stack:
       storageSpec:
         volumeClaimTemplate:
           spec:
-            storageClassName: nfs-client
-            accessModes: 
+            storageClassName: proxmox-csi
+            accessModes:
               - ReadWriteOnce
             resources:
               requests:
@@ -45,7 +45,7 @@ kube-prometheus-stack:
     persistence:
       enabled: true
       type: sts
-      storageClassName: "nfs-client"
+      storageClassName: "proxmox-csi"
       accessModes:
         - ReadWriteOnce
       size: 20Gi

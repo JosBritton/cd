@@ -46620,7 +46620,7 @@ spec:
       name: storage
     spec:
       accessModes: [ReadWriteOnce]
-      storageClassName: nfs-client
+      storageClassName: proxmox-csi
       resources:
         requests:
           storage: 20Gi
@@ -46772,7 +46772,7 @@ spec:
         resources:
           requests:
             storage: 50Gi
-        storageClassName: nfs-client
+        storageClassName: proxmox-csi
   portName: http-web
   hostNetwork: false
 ---

@@ -95,3 +95,29 @@ This repository follows the *app of apps* pattern described [here](https://argo-
 kubectl -n kubernetes-dashboard create token admin
 kubectl -n kubernetes-dashboard get secret admin  -o jsonpath={".data.token"} | base64 -d
 ```
+
+## Setup Proxmox-CSI
+Label nodes
+```bash
+kubectl label node k8s1.private.swifthomelab.net topology.kubernetes.io/region=cluster1
+kubectl label node k8s1.private.swifthomelab.net topology.kubernetes.io/zone=pve2
+
+kubectl label node k8s2.private.swifthomelab.net topology.kubernetes.io/region=cluster1
+kubectl label node k8s2.private.swifthomelab.net topology.kubernetes.io/zone=pve1
+
+kubectl label node k8s3.private.swifthomelab.net topology.kubernetes.io/region=cluster1
+kubectl label node k8s3.private.swifthomelab.net topology.kubernetes.io/zone=pve3
+```
+Install secret
+```yaml
+# config.yaml
+clusters:
+  - url: https://pve1.private.swifthomelab.net:8006/api2/json
+    insecure: false
+    token_id: "kubernetes-csi@pve!csi"
+    token_secret: "secret-api-token"
+    region: cluster1
+```
+```bash
+kubectl -n csi-proxmox create secret generic proxmox-csi-plugin --from-file=config.yaml
+```
