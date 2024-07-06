@@ -1,19 +1,22 @@
 apiVersion: "argoproj.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "nfs-subdir-external-provisioner"
+  name: "proxmox-csi-plugin"
   namespace: "argocd"
   finalizers:
     - "resources-finalizer.argocd.argoproj.io"
 spec:
   destination:
-    namespace: "nfs-provisioner"
+    namespace: "csi-proxmox"
     server: "https://kubernetes.default.svc"
   project: "default"
   source:
-    path: "nfs-subdir-external-provisioner"
+    path: "proxmox-csi-plugin"
     repoURL: "https://github.com/JosBritton/cd.git"
     targetRevision: "HEAD"
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
     syncOptions:
       - "CreateNamespace=true"

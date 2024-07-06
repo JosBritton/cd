@@ -85,7 +85,7 @@ spec:
       name: pms-config
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: local-storage
+      storageClassName: proxmox-csi
       resources:
         requests:
           storage: 8Gi
