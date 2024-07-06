@@ -8,7 +8,7 @@ metadata:
 spec:
   accessModes:
     - "ReadWriteOnce"
-  storageClassName: "nfs-client"
+  storageClassName: "proxmox-csi"
   resources:
     requests:
       storage: "2Gi"
