@@ -30,6 +30,8 @@ spec:
       volumes:
       - name: pms-transcode
         emptyDir: {}
+      - name: pms-logs
+        emptyDir: {}
       - name: media
         nfs:
           path: /mnt/artemis/data/media
@@ -80,6 +82,10 @@ spec:
           name: movies
         - mountPath: /tv
           name: tv
+        - mountPath: /config/Library/Application Support/Plex Media Server/Logs
+          name: pms-logs
+        - mountPath: /config/Library/Application Support/Plex Media Server/Cache
+          name: pms-cache
   volumeClaimTemplates:
   - metadata:
       name: pms-config
@@ -88,4 +94,12 @@ spec:
       storageClassName: proxmox-csi
       resources:
         requests:
-          storage: 8Gi
+          storage: 50Gi
+  - metadata:
+      name: pms-cache
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: proxmox-csi
+      resources:
+        requests:
+          storage: 25Gi
