@@ -85,7 +85,7 @@ spec:
       serviceAccountName: influxdb2
       containers:
         - name: influxdb2
-          image: "influxdb:2.7.4-alpine"
+          image: "influxdb:2.7.6-alpine@sha256:8190c63f7892b7377e8f9ecf6057a766f242614ef8603d4b6a84ba2844f4b35e"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
