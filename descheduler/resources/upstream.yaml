@@ -7,9 +7,9 @@ metadata:
   namespace: kube-system
   labels:
     app.kubernetes.io/name: descheduler
-    helm.sh/chart: descheduler-0.29.0
+    helm.sh/chart: descheduler-0.30.1
     app.kubernetes.io/instance: descheduler
-    app.kubernetes.io/version: "0.29.0"
+    app.kubernetes.io/version: "0.30.1"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: descheduler/charts/descheduler/templates/configmap.yaml
@@ -20,48 +20,55 @@ metadata:
   namespace: kube-system
   labels:
     app.kubernetes.io/name: descheduler
-    helm.sh/chart: descheduler-0.29.0
+    helm.sh/chart: descheduler-0.30.1
     app.kubernetes.io/instance: descheduler
-    app.kubernetes.io/version: "0.29.0"
+    app.kubernetes.io/version: "0.30.1"
     app.kubernetes.io/managed-by: Helm
 data:
   policy.yaml: |
-    apiVersion: "descheduler/v1alpha1"
+    apiVersion: "descheduler/v1alpha2"
     kind: "DeschedulerPolicy"
-    strategies:
-      LowNodeUtilization:
-        enabled: true
-        params:
-          nodeResourceUtilizationThresholds:
-            targetThresholds:
-              cpu: 50
-              memory: 50
-              pods: 50
-            thresholds:
-              cpu: 20
-              memory: 20
-              pods: 20
-      RemoveDuplicates:
-        enabled: true
-      RemovePodsHavingTooManyRestarts:
-        enabled: true
-        params:
-          podsHavingTooManyRestarts:
-            includingInitContainers: true
-            podRestartThreshold: 100
-      RemovePodsViolatingInterPodAntiAffinity:
-        enabled: true
-      RemovePodsViolatingNodeAffinity:
-        enabled: true
-        params:
+    profiles:
+    - name: default
+      pluginConfig:
+      - args:
+          evictLocalStoragePods: true
+          ignorePvcPods: true
+        name: DefaultEvictor
+      - name: RemoveDuplicates
+      - args:
+          includingInitContainers: true
+          podRestartThreshold: 100
+        name: RemovePodsHavingTooManyRestarts
+      - args:
           nodeAffinityType:
           - requiredDuringSchedulingIgnoredDuringExecution
-      RemovePodsViolatingNodeTaints:
-        enabled: true
-      RemovePodsViolatingTopologySpreadConstraint:
-        enabled: true
-        params:
-          includeSoftConstraints: false
+        name: RemovePodsViolatingNodeAffinity
+      - name: RemovePodsViolatingNodeTaints
+      - name: RemovePodsViolatingInterPodAntiAffinity
+      - name: RemovePodsViolatingTopologySpreadConstraint
+      - args:
+          targetThresholds:
+            cpu: 50
+            memory: 50
+            pods: 50
+          thresholds:
+            cpu: 20
+            memory: 20
+            pods: 20
+        name: LowNodeUtilization
+      plugins:
+        balance:
+          enabled:
+          - RemoveDuplicates
+          - RemovePodsViolatingTopologySpreadConstraint
+          - LowNodeUtilization
+        deschedule:
+          enabled:
+          - RemovePodsHavingTooManyRestarts
+          - RemovePodsViolatingNodeTaints
+          - RemovePodsViolatingNodeAffinity
+          - RemovePodsViolatingInterPodAntiAffinity
 ---
 # Source: descheduler/charts/descheduler/templates/clusterrole.yaml
 kind: ClusterRole
@@ -70,9 +77,9 @@ metadata:
   name: descheduler
   labels:
     app.kubernetes.io/name: descheduler
-    helm.sh/chart: descheduler-0.29.0
+    helm.sh/chart: descheduler-0.30.1
     app.kubernetes.io/instance: descheduler
-    app.kubernetes.io/version: "0.29.0"
+    app.kubernetes.io/version: "0.30.1"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups: ["events.k8s.io"]
@@ -101,9 +108,9 @@ metadata:
   name: descheduler
   labels:
     app.kubernetes.io/name: descheduler
-    helm.sh/chart: descheduler-0.29.0
+    helm.sh/chart: descheduler-0.30.1
     app.kubernetes.io/instance: descheduler
-    app.kubernetes.io/version: "0.29.0"
+    app.kubernetes.io/version: "0.30.1"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -122,9 +129,9 @@ metadata:
   namespace: kube-system
   labels:
     app.kubernetes.io/name: descheduler
-    helm.sh/chart: descheduler-0.29.0
+    helm.sh/chart: descheduler-0.30.1
     app.kubernetes.io/instance: descheduler
-    app.kubernetes.io/version: "0.29.0"
+    app.kubernetes.io/version: "0.30.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   schedule: "*/2 * * * *"
@@ -135,7 +142,7 @@ spec:
         metadata:
           name: descheduler
           annotations:
-            checksum/config: 4fdfb4371450a276f4700a4d6b8c0b24d283c956ba5895af0b2950391cb9450e
+            checksum/config: a4e64193b25d0c0d41f6ec64018dc381988263456faffc8660696311a067c00b
           labels:
             app.kubernetes.io/name: descheduler
             app.kubernetes.io/instance: descheduler
@@ -145,7 +152,7 @@ spec:
           restartPolicy: "Never"
           containers:
             - name: descheduler
-              image: "registry.k8s.io/descheduler/descheduler:v0.29.0"
+              image: "registry.k8s.io/descheduler/descheduler:v0.30.1"
               imagePullPolicy: IfNotPresent
               command:
                 - /bin/descheduler
