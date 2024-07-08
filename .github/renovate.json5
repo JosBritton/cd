@@ -1,19 +1,16 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:recommended",
+        "config:best-practices",
         "docker:enableMajor",
         ":disableRateLimiting",
-        ":dependencyDashboard",
         ":semanticCommits",
-        "docker:pinDigests",
         "replacements:k8s-registry-move",
         "schedule:daily"
     ],
     "dependencyDashboard": true,
     "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
     "rebaseWhen": "conflicted",
-    "ignorePaths": ["**/upstream.yaml", "**/upstream.yml"],
     "kustomize": {
         "fileMatch": ["(^|/)kustomization\\.ya?ml(?:\\.j2)?$"]
     },
@@ -24,11 +21,17 @@
     "commitMessageExtra": "to {{newVersion}}",
     "commitMessageSuffix": "",
     "packageRules": [
-        // skip SHA pinning for helm values
         {
             "matchDatasources": ["docker"],
             "matchManagers": ["helm-values"],
             "pinDigests": false
+        },
+        // disable helm-generated resource updates
+        {
+            "matchManagers": ["kubernetes"],
+            // "matchUpdateTypes": ["major", "minor", "patch"],
+            "matchFileNames": ["**/upstream.yaml", "**/upstream.yml"],
+            "enabled": false,
         },
         // commit message topics
         {
