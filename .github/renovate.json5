@@ -21,9 +21,15 @@
     "commitMessageExtra": "to {{newVersion}}",
     "commitMessageSuffix": "",
     "packageRules": [
+        // disable helm value file pinning
         {
             "matchDatasources": ["docker"],
             "matchManagers": ["helm-values"],
+            "pinDigests": false
+        },
+        // disable helm chart pinning
+        {
+            "matchManagers": ["helmv3"],
             "pinDigests": false
         },
         // disable helm-generated resource updates
