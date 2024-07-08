@@ -18,7 +18,7 @@
         "fileMatch": ["(^|/)kustomization\\.ya?ml(?:\\.j2)?$"]
     },
     "kubernetes": {
-        "fileMatch": ["(^|/)resources/.+\\.ya?ml(?:\\.j2)?$"]
+        "fileMatch": ["(^|/).+\\.ya?ml(?:\\.j2)?$"]
     },
     "commitMessageTopic": "{{depName}}",
     "commitMessageExtra": "to {{newVersion}}",
@@ -142,7 +142,7 @@
         {
             "customType": "regex",
             "description": ["Process custom dependencies"],
-            "fileMatch": ["(^|/)resources/.+\\.ya?ml(?:\\.j2)?$"],
+            "fileMatch": ["(^|/).+\\.ya?ml(?:\\.j2)?$"],
             "matchStrings": [
                 // # renovate: datasource=helm depName=cilium repository=https://helm.cilium.io
                 // version: 1.15.1
