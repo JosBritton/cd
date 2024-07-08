@@ -24,6 +24,12 @@
     "commitMessageExtra": "to {{newVersion}}",
     "commitMessageSuffix": "",
     "packageRules": [
+        // skip SHA pinning for helm values
+        {
+            "matchDatasources": ["docker"],
+            "matchManagers": ["helm-values"],
+            "pinDigests": false
+        },
         // commit message topics
         {
             "matchDatasources": ["helm"],
