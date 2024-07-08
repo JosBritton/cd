@@ -122,7 +122,7 @@ kubernetes-dashboard:
     role: auth
     image:
       repository: docker.io/kubernetesui/dashboard-auth
-      tag: 1.1.3@sha256:07135c09e9ff6faf1370e0b105fa22d38f79e2bc671f248814066630fbf026a1
+      tag: 1.1.3
     scaling:
       replicas: 1
       revisionHistoryLimit: 10
@@ -158,7 +158,7 @@ kubernetes-dashboard:
     role: api
     image:
       repository: docker.io/kubernetesui/dashboard-api
-      tag: 1.7.0@sha256:60595892c2cf21b7fbd09324120e339e0e44874cd96267bc4712cb86694835f1
+      tag: 1.7.0
     scaling:
       replicas: 3
       revisionHistoryLimit: 10
@@ -212,7 +212,7 @@ kubernetes-dashboard:
     role: web
     image:
       repository: docker.io/kubernetesui/dashboard-web
-      tag: 1.4.0@sha256:4445b31a2c25c875e2df8ca103a8e3f3275778d10065c7c011f6ca42cd4bec5f
+      tag: 1.4.0
     scaling:
       replicas: 1
       revisionHistoryLimit: 10
