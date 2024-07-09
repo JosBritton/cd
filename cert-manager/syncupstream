@@ -1,7 +1,0 @@
-#!/bin/bash
-helm dependency update upstream
-helm template \
-    --include-crds \
-    --namespace cert-manager \
-    cert-manager \
-    ./upstream > resources/upstream.yaml

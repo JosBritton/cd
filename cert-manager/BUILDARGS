@@ -1,0 +1,2 @@
+NAMESPACE=cert-manager
+CHART=cert-manager

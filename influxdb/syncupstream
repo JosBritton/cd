@@ -1,6 +1,0 @@
-#!/bin/bash
-helm dependency update upstream
-helm template \
-    --namespace influxdb \
-    influxdb2 \
-    ./upstream > resources/upstream.yaml

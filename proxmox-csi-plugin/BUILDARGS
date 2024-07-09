@@ -1,0 +1,2 @@
+NAMESPACE=csi-proxmox
+CHART=proxmox-csi-plugin

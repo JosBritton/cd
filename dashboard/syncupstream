@@ -1,6 +1,0 @@
-#!/bin/bash
-helm dependency update upstream
-helm template \
-    --namespace kubernetes-dashboard \
-    kubernetes-dashboard \
-    ./upstream > resources/upstream.yaml

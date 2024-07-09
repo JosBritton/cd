@@ -14,8 +14,3 @@ Add the `admin-password` key to the secret with a base64 encoded value
 ```
 kubectl edit secret prometheus-operator-grafana
 ```
-
-### Update chart
-
-Update the version in the `upstream/Chart.yaml` and run `./syncupstream` locally to download the manifest,
-then commit or apply manually with kustomize.
