@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: tdarr
+  namespace: tdarr
+spec:
+  selector:
+    app: tdarr
+  ports:
+  - protocol: TCP
+    name: ui
+    port: 8265
+  - protocol: TCP
+    name: server
+    port: 8266

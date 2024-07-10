@@ -1,0 +1,19 @@
+apiVersion: "argoproj.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "tdarr"
+  namespace: "argocd"
+  finalizers:
+    - "resources-finalizer.argocd.argoproj.io"
+spec:
+  destination:
+    namespace: "tdarr"
+    server: "https://kubernetes.default.svc"
+  project: "default"
+  source:
+    path: "tdarr"
+    repoURL: "https://github.com/JosBritton/cd.git"
+    targetRevision: "HEAD"
+  syncPolicy:
+    syncOptions:
+      - "CreateNamespace=true"
