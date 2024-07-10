@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaresolverr
+  labels:
+    name: flaresolverr
+    app: flaresolverr
+    app.kubernetes.io/name: flaresolverr
+    app.kubernetes.io/instance: flaresolverr
+  namespace: flaresolverr
+spec:
+  template:
+    metadata:
+      labels:
+        app: flaresolverr
+        app.kubernetes.io/name: flaresolverr
+        app.kubernetes.io/instance: flaresolverr
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: flaresolverr
+          image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
+          imagePullPolicy: IfNotPresent
+          env:
+            TZ: UTC
+            LOG_LEVEL: info
+            PORT: 80
+            PROMETHEUS_ENABLED: true
+            PROMETHEUS_PORT: 8080
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 80
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 80
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          resources:
+            requests:
+              cpu: 10m
+            limits:
+              memory: 1Gi
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
