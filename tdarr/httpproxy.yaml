@@ -1,0 +1,14 @@
+apiVersion: "projectcontour.io/v1"
+kind: "HTTPProxy"
+metadata:
+  name: "tdarr-ingress"
+  namespace: "tdarr"
+spec:
+  virtualhost:
+    fqdn: tdarr.swifthomelab.net
+    tls:
+      secretName: cert-manager/tdarr-swifthomelab-net
+  routes:
+    - services:
+        - name: tdarr
+          port: 8265
