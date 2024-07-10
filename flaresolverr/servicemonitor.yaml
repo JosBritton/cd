@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: flaresolverr-metrics
+  labels:
+    app: flaresolverr
+  namespace: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: flaresolverr
+  endpoints:
+    - port: metrics
+      scheme: http
+      path: /metrics
+      interval: 1m
+      scrapeTimeout: 10s
+  namespaceSelector:
+    any: true
