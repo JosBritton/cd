@@ -1,17 +1,19 @@
 apiVersion: "argoproj.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "cert-manager"
+  name: "dashboard"
   namespace: "argocd"
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
     - "resources-finalizer.argocd.argoproj.io"
 spec:
   destination:
-    namespace: "cert-manager"
+    namespace: "kubernetes-dashboard"
     server: "https://kubernetes.default.svc"
   project: "default"
   source:
-    path: "cert-manager"
+    path: "dashboard"
     repoURL: "https://github.com/JosBritton/cd.git"
     targetRevision: "HEAD"
   syncPolicy:

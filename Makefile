@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := build
 
-CHARTS := $(shell find . -mindepth 3 -maxdepth 3 -regex ".*/upstream/Chart.ya?ml")
+CHARTS := $(shell find . -mindepth 4 -maxdepth 4 -regex "./apps/*/upstream/Chart.ya?ml")
 
 %/upstream/values.yml:
 	@:
@@ -33,4 +33,4 @@ build: $(RENDERS)
 
 .PHONY: clean
 clean:
-	find . -mindepth 3 -maxdepth 3 -regex ".*/resources/upstream.ya?ml" -exec rm {} \;
+	find . -mindepth 4 -maxdepth 4 -regex "./apps/*/resources/upstream.ya?ml" -exec rm {} \;
