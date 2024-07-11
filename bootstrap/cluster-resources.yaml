@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  labels:
+    app.kubernetes.io/name: cluster-resources
+  creationTimestamp: null
+  name: cluster-resources
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: argoproj.io
+    jsonPointers:
+    - /status
+    kind: Application
+  project: default
+  source:
+    path: bootstrap/cluster-resources/in-cluster
+    repoURL: https://github.com/JosBritton/cd.git
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+status:
+  health: {}
+  summary: {}
+  sync:
+    comparedTo:
+      destination: {}
+      source:
+        repoURL: ""
+    status: ""

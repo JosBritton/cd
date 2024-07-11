@@ -1,17 +1,20 @@
 apiVersion: "argoproj.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "sonarr"
+  name: "contour"
   namespace: "argocd"
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "0"
   finalizers:
     - "resources-finalizer.argocd.argoproj.io"
 spec:
   destination:
-    namespace: "sonarr"
+    namespace: "projectcontour"
     server: "https://kubernetes.default.svc"
   project: "default"
   source:
-    path: "sonarr"
+    path: "contour"
     repoURL: "https://github.com/JosBritton/cd.git"
     targetRevision: "HEAD"
   syncPolicy:

@@ -1,19 +1,24 @@
 apiVersion: "argoproj.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "influxdb2"
+  name: "proxmox-csi-plugin"
   namespace: "argocd"
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
   finalizers:
     - "resources-finalizer.argocd.argoproj.io"
 spec:
   destination:
-    namespace: "influxdb"
+    namespace: "csi-proxmox"
     server: "https://kubernetes.default.svc"
   project: "default"
   source:
-    path: "influxdb"
+    path: "proxmox-csi-plugin"
     repoURL: "https://github.com/JosBritton/cd.git"
     targetRevision: "HEAD"
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
     syncOptions:
       - "CreateNamespace=true"
