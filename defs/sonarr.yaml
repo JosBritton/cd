@@ -1,22 +1,21 @@
 apiVersion: "argoproj.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "proxmox-csi-plugin"
+  name: "sonarr"
   namespace: "argocd"
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
     - "resources-finalizer.argocd.argoproj.io"
 spec:
   destination:
-    namespace: "csi-proxmox"
+    namespace: "sonarr"
     server: "https://kubernetes.default.svc"
   project: "default"
   source:
-    path: "proxmox-csi-plugin"
+    path: "sonarr"
     repoURL: "https://github.com/JosBritton/cd.git"
     targetRevision: "HEAD"
   syncPolicy:
-    managedNamespaceMetadata:
-      labels:
-        pod-security.kubernetes.io/enforce: privileged
     syncOptions:
       - "CreateNamespace=true"
