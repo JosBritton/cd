@@ -7,8 +7,8 @@ image:
   tag: ""
   pullPolicy: IfNotPresent
 
-imagePullSecrets:
-#   - name: container-registry-secret
+imagePullSecrets: {}
+# - name: container-registry-secret
 
 resources:
   requests:
@@ -22,7 +22,7 @@ securityContext:
   allowPrivilegeEscalation: false
   capabilities:
     drop:
-      - ALL
+    - ALL
   privileged: false
   readOnlyRootFilesystem: true
   runAsNonRoot: true
@@ -38,7 +38,7 @@ fullnameOverride: ""
 # labels that'll be applied to all resources
 commonLabels: {}
 
-cronJobApiVersion: "batch/v1"
+cronJobApiVersion: batch/v1
 schedule: "*/2 * * * *"
 suspend: false
 # startingDeadlineSeconds: 200
@@ -69,13 +69,13 @@ leaderElection: {}
 #  resourceNamescape: "kube-system"
 
 command:
-- "/bin/descheduler"
+- /bin/descheduler
 
 cmdOptions:
   v: 3
 
 # Recommended to use the latest Policy API version supported by the Descheduler app version
-deschedulerPolicyAPIVersion: "descheduler/v1alpha1"
+deschedulerPolicyAPIVersion: descheduler/v1alpha1
 
 deschedulerPolicy:
   # nodeSelector: "key1=value1,key2=value2"
@@ -171,7 +171,7 @@ serviceAccount:
   create: true
   # The name of the ServiceAccount to use.
   # If not set and create is true, a name is generated using the fullname template
-  name:
+  name: null
   # Specifies custom annotations for the serviceAccount
   annotations: {}
 

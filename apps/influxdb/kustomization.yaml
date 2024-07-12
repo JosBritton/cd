@@ -1,5 +1,5 @@
 resources:
-  - "./resources/upstream.yaml"  # pulled using `upstream.sh`
-  - "./resources/cert.yaml"
-  - "./resources/httpproxy.yaml"
-  - "./resources/delegation.yaml"
+- ./resources/upstream.yaml
+- ./resources/cert.yaml
+- ./resources/httpproxy.yaml
+- ./resources/delegation.yaml

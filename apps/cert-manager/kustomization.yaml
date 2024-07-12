@@ -1,4 +1,3 @@
 resources:
-  - "./resources/upstream.yaml"  # pulled using `upstream.sh`
-  # - "./resources/cert.yaml"
-  - "./resources/issuer.yaml"
+- ./resources/upstream.yaml
+- ./resources/issuer.yaml

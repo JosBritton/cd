@@ -35,7 +35,7 @@ kube-prometheus-stack:
           spec:
             storageClassName: proxmox-csi
             accessModes:
-              - ReadWriteOnce
+            - ReadWriteOnce
             resources:
               requests:
                 storage: 50Gi
@@ -45,10 +45,10 @@ kube-prometheus-stack:
     persistence:
       enabled: true
       type: sts
-      storageClassName: "proxmox-csi"
+      storageClassName: proxmox-csi
       accessModes:
-        - ReadWriteOnce
+      - ReadWriteOnce
       size: 20Gi
       finalizers:
-        - kubernetes.io/pvc-protection
+      - kubernetes.io/pvc-protection
   cleanPrometheusOperatorObjectNames: true

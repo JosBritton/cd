@@ -4,15 +4,15 @@ metadata:
   name: prowlarr
   namespace: prowlarr
   labels:
-    app: "prowlarr"
-    app.kubernetes.io/name: "prowlarr"
+    app: prowlarr
+    app.kubernetes.io/name: prowlarr
 spec:
   type: ClusterIP
   publishNotReadyAddresses: false
   ports:
-    - name: http
-      port: 9696
-      protocol: TCP
-      targetPort: 9696
+  - name: http
+    port: 9696
+    protocol: TCP
+    targetPort: 9696
   selector:
     app.kubernetes.io/name: prowlarr

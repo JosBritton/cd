@@ -4,15 +4,15 @@ metadata:
   name: bazarr
   namespace: bazarr
   labels:
-    app: "bazarr"
-    app.kubernetes.io/name: "bazarr"
+    app: bazarr
+    app.kubernetes.io/name: bazarr
 spec:
   type: ClusterIP
   publishNotReadyAddresses: false
   ports:
-    - name: http
-      port: 6767
-      protocol: TCP
-      targetPort: 6767
+  - name: http
+    port: 6767
+    protocol: TCP
+    targetPort: 6767
   selector:
     app.kubernetes.io/name: bazarr

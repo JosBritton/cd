@@ -14,11 +14,11 @@ configMapGenerator:
       usernameSecret:
         key: git_username
         name: autopilot-secret
-  - "timeout.reconciliation=15s"
+  - timeout.reconciliation=15s
 - name: argocd-cmd-params-cm
   behavior: merge
   literals:
-    - "server.insecure=true"
+  - server.insecure=true
 namespace: argocd
 patches:
 - target:

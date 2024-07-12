@@ -3,6 +3,6 @@ name: cert-manager
 version: 0.1.0
 
 dependencies:
-  - name: "cert-manager"
-    version: "v1.15.1"
-    repository: "https://charts.jetstack.io"
+- name: cert-manager
+  version: v1.15.1
+  repository: https://charts.jetstack.io

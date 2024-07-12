@@ -1,21 +1,21 @@
-apiVersion: "argoproj.io/v1alpha1"
-kind: "Application"
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: "radarr"
-  namespace: "argocd"
+  name: radarr
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
-    - "resources-finalizer.argocd.argoproj.io"
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: "radarr"
-    server: "https://kubernetes.default.svc"
-  project: "default"
+    namespace: radarr
+    server: https://kubernetes.default.svc
+  project: default
   source:
-    path: "radarr"
-    repoURL: "https://github.com/JosBritton/cd.git"
-    targetRevision: "HEAD"
+    path: radarr
+    repoURL: https://github.com/JosBritton/cd.git
+    targetRevision: HEAD
   syncPolicy:
     syncOptions:
-      - "CreateNamespace=true"
+    - CreateNamespace=true

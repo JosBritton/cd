@@ -1,11 +1,11 @@
 apiVersion: apps/v1
-kind: "StatefulSet"
+kind: StatefulSet
 metadata:
   name: prowlarr
   namespace: prowlarr
   labels:
-    app: "prowlarr"
-    app.kubernetes.io/name: "prowlarr"
+    app: prowlarr
+    app.kubernetes.io/name: prowlarr
 spec:
   replicas: 1
   selector:
@@ -17,8 +17,8 @@ spec:
   template:
     metadata:
       labels:
-        app: "prowlarr"
-        app.kubernetes.io/name: "prowlarr"
+        app: prowlarr
+        app.kubernetes.io/name: prowlarr
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 60
@@ -28,66 +28,66 @@ spec:
         fsGroup: 65534
         fsGroupChangePolicy: OnRootMismatch
       containers:
-        - name: prowlarr
-          image: ghcr.io/onedr0p/prowlarr:1.20.1.4603@sha256:8d081847a6cd85290471f5493fe708fc9c7f7c9273d549cfa212f401b8ccd02e
-          ports:
-            - name: http
-              containerPort: 9696
-              protocol: TCP
-          volumeMounts:
-            - mountPath: /config
-              name: prowlarr
-          livenessProbe:
-            httpGet:
-              port: 9696
-              path: /
-              scheme: HTTP
-            initialDelaySeconds: 60
-            failureThreshold: 5
-            successThreshold: 1
-            timeoutSeconds: 10
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              port: 9696
-              path: /
-              scheme: HTTP
-            initialDelaySeconds: 10
-            failureThreshold: 5
-            successThreshold: 2
-            timeoutSeconds: 5
-            periodSeconds: 10
-          startupProbe:
-            tcpSocket:
-              port: 9696
-            initialDelaySeconds: 10
-            failureThreshold: 60
-            successThreshold: 1
-            timeoutSeconds: 2
-            periodSeconds: 5
-          resources:
-            requests:
-              cpu: 10m
-              memory: 50Mi
-            limits:
-              cpu: 1500m
-              memory: 2Gi
-          env:
-            - name: "UMASK"
-              value: "0022"
-            - name: "TZ"
-              value: "Etc/UTC"
-            - name: "PROWLARR__PORT"
-              value: "9696"
-  volumeClaimTemplates:
-    - metadata:
-        name: prowlarr
-        labels:
-          app.kubernetes.io/part-of: "prowlarr"
-        namespace: prowlarr
-      spec:
-        storageClassName: proxmox-csi
-        accessModes: [ "ReadWriteOncePod" ]
+      - name: prowlarr
+        image: ghcr.io/onedr0p/prowlarr:1.20.1.4603@sha256:8d081847a6cd85290471f5493fe708fc9c7f7c9273d549cfa212f401b8ccd02e
+        ports:
+        - name: http
+          containerPort: 9696
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: prowlarr
+        livenessProbe:
+          httpGet:
+            port: 9696
+            path: /
+            scheme: HTTP
+          initialDelaySeconds: 60
+          failureThreshold: 5
+          successThreshold: 1
+          timeoutSeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            port: 9696
+            path: /
+            scheme: HTTP
+          initialDelaySeconds: 10
+          failureThreshold: 5
+          successThreshold: 2
+          timeoutSeconds: 5
+          periodSeconds: 10
+        startupProbe:
+          tcpSocket:
+            port: 9696
+          initialDelaySeconds: 10
+          failureThreshold: 60
+          successThreshold: 1
+          timeoutSeconds: 2
+          periodSeconds: 5
         resources:
           requests:
-            storage: 8Gi
+            cpu: 10m
+            memory: 50Mi
+          limits:
+            cpu: 1500m
+            memory: 2Gi
+        env:
+        - name: UMASK
+          value: "0022"
+        - name: TZ
+          value: Etc/UTC
+        - name: PROWLARR__PORT
+          value: "9696"
+  volumeClaimTemplates:
+  - metadata:
+      name: prowlarr
+      labels:
+        app.kubernetes.io/part-of: prowlarr
+      namespace: prowlarr
+    spec:
+      storageClassName: proxmox-csi
+      accessModes: [ReadWriteOncePod]
+      resources:
+        requests:
+          storage: 8Gi

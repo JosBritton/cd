@@ -1,21 +1,21 @@
-apiVersion: "argoproj.io/v1alpha1"
-kind: "Application"
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: "prowlarr"
-  namespace: "argocd"
+  name: prowlarr
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
-    - "resources-finalizer.argocd.argoproj.io"
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: "prowlarr"
-    server: "https://kubernetes.default.svc"
-  project: "default"
+    namespace: prowlarr
+    server: https://kubernetes.default.svc
+  project: default
   source:
-    path: "prowlarr"
-    repoURL: "https://github.com/JosBritton/cd.git"
-    targetRevision: "HEAD"
+    path: prowlarr
+    repoURL: https://github.com/JosBritton/cd.git
+    targetRevision: HEAD
   syncPolicy:
     syncOptions:
-      - "CreateNamespace=true"
+    - CreateNamespace=true

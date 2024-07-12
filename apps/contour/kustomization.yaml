@@ -1,2 +1,2 @@
 resources:
-  - "./resources/upstream.yaml"  # pulled using `upstream.sh`
+- ./resources/upstream.yaml

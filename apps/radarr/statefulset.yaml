@@ -1,11 +1,11 @@
 apiVersion: apps/v1
-kind: "StatefulSet"
+kind: StatefulSet
 metadata:
   name: radarr
   namespace: radarr
   labels:
-    app: "radarr"
-    app.kubernetes.io/name: "radarr"
+    app: radarr
+    app.kubernetes.io/name: radarr
 spec:
   replicas: 1
   selector:
@@ -17,8 +17,8 @@ spec:
   template:
     metadata:
       labels:
-        app: "radarr"
-        app.kubernetes.io/name: "radarr"
+        app: radarr
+        app.kubernetes.io/name: radarr
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 60
@@ -41,72 +41,72 @@ spec:
           server: truenas.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/tv
       containers:
-        - name: radarr
-          image: ghcr.io/onedr0p/radarr:5.7.0@sha256:67cf7fa3b10fbb9771ef11c62a215d50956a238c1a27b4195f19bdc92b796cc7
-          ports:
-            - name: http
-              containerPort: 7878
-              protocol: TCP
-          volumeMounts:
-            - mountPath: /config
-              name: radarr
-            - mountPath: /media
-              name: media
-            - mountPath: /movies
-              name: movies
-            - mountPath: /tv
-              name: tv
-          livenessProbe:
-            httpGet:
-              port: 7878
-              path: /
-              scheme: HTTP
-            initialDelaySeconds: 60
-            failureThreshold: 5
-            successThreshold: 1
-            timeoutSeconds: 10
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              port: 7878
-              path: /
-              scheme: HTTP
-            initialDelaySeconds: 10
-            failureThreshold: 5
-            successThreshold: 2
-            timeoutSeconds: 5
-            periodSeconds: 10
-          startupProbe:
-            tcpSocket:
-              port: 7878
-            initialDelaySeconds: 10
-            failureThreshold: 60
-            successThreshold: 1
-            timeoutSeconds: 2
-            periodSeconds: 5
-          resources:
-            requests:
-              cpu: 10m
-              memory: 50Mi
-            limits:
-              cpu: 1500m
-              memory: 2Gi
-          env:
-            - name: "UMASK"
-              value: "0022"
-            - name: "TZ"
-              value: "Etc/UTC"
-            - name: "RADARR__PORT"
-              value: "7878"
-  volumeClaimTemplates:
-    - metadata:
-        name: radarr
-        labels:
-          app.kubernetes.io/part-of: "radarr"
-        namespace: radarr
-      spec:
-        storageClassName: proxmox-csi
-        accessModes: [ "ReadWriteOncePod" ]
+      - name: radarr
+        image: ghcr.io/onedr0p/radarr:5.7.0@sha256:67cf7fa3b10fbb9771ef11c62a215d50956a238c1a27b4195f19bdc92b796cc7
+        ports:
+        - name: http
+          containerPort: 7878
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: radarr
+        - mountPath: /media
+          name: media
+        - mountPath: /movies
+          name: movies
+        - mountPath: /tv
+          name: tv
+        livenessProbe:
+          httpGet:
+            port: 7878
+            path: /
+            scheme: HTTP
+          initialDelaySeconds: 60
+          failureThreshold: 5
+          successThreshold: 1
+          timeoutSeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            port: 7878
+            path: /
+            scheme: HTTP
+          initialDelaySeconds: 10
+          failureThreshold: 5
+          successThreshold: 2
+          timeoutSeconds: 5
+          periodSeconds: 10
+        startupProbe:
+          tcpSocket:
+            port: 7878
+          initialDelaySeconds: 10
+          failureThreshold: 60
+          successThreshold: 1
+          timeoutSeconds: 2
+          periodSeconds: 5
         resources:
           requests:
-            storage: 8Gi
+            cpu: 10m
+            memory: 50Mi
+          limits:
+            cpu: 1500m
+            memory: 2Gi
+        env:
+        - name: UMASK
+          value: "0022"
+        - name: TZ
+          value: Etc/UTC
+        - name: RADARR__PORT
+          value: "7878"
+  volumeClaimTemplates:
+  - metadata:
+      name: radarr
+      labels:
+        app.kubernetes.io/part-of: radarr
+      namespace: radarr
+    spec:
+      storageClassName: proxmox-csi
+      accessModes: [ReadWriteOncePod]
+      resources:
+        requests:
+          storage: 8Gi

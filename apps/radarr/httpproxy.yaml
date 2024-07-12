@@ -1,14 +1,14 @@
-apiVersion: "projectcontour.io/v1"
-kind: "HTTPProxy"
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
 metadata:
-  name: "radarr-ingress"
-  namespace: "radarr"
+  name: radarr-ingress
+  namespace: radarr
 spec:
   virtualhost:
-    fqdn: "radarr.swifthomelab.net"
+    fqdn: radarr.swifthomelab.net
     tls:
-      secretName: "cert-manager/radarr-swifthomelab-net"
+      secretName: cert-manager/radarr-swifthomelab-net
   routes:
-    - services:
-        - name: "radarr"
-          port: 7878
+  - services:
+    - name: radarr
+      port: 7878
