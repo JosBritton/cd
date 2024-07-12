@@ -46,7 +46,7 @@ spec:
           server: truenas.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/tv
       terminationGracePeriodSeconds: 120
-      initContainers:
+      initContainers: null
       containers:
       - name: plex-media-server-pms
         image: ghcr.io/onedr0p/plex:rolling@sha256:6caeca24f3b08206a94a6a9c102e2c0c14d46d5a9163241716559e8c83f53ff8
@@ -56,21 +56,21 @@ spec:
           name: pms
         env:
         - name: ALLOWED_NETWORKS
-          value: "10.0.12.0/24"
+          value: 10.0.12.0/24
         - name: HOSTNAME
-          value: "PlexServer"
+          value: PlexServer
         - name: PLEX_GID
           value: "1000"
         - name: PLEX_UID
           value: "1000"
         - name: TZ
-          value: "Etc/UTC"
+          value: Etc/UTC
         resources:
           requests:
             cpu: "1.0"
-            memory: "3Gi"
+            memory: 3Gi
           limits:
-            memory: "4Gi"
+            memory: 4Gi
         volumeMounts:
         - name: pms-config
           mountPath: /config
@@ -90,7 +90,7 @@ spec:
   - metadata:
       name: pms-config
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes: [ReadWriteOnce]
       storageClassName: proxmox-csi
       resources:
         requests:
@@ -98,7 +98,7 @@ spec:
   - metadata:
       name: pms-cache
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes: [ReadWriteOnce]
       storageClassName: proxmox-csi
       resources:
         requests:

@@ -1,22 +1,21 @@
-apiVersion: "cert-manager.io/v1"
-kind: "ClusterIssuer"
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
 metadata:
-  name: "swifthomelab-net-issuer"
-  namespace: "cert-manager"
+  name: swifthomelab-net-issuer
+  namespace: cert-manager
 spec:
   acme:
-    server: "https://acme-v02.api.letsencrypt.org/directory"
-    # server: "https://acme-staging-v02.api.letsencrypt.org/directory"
-    email: "85815005+JosBritton@users.noreply.github.com"
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: 85815005+JosBritton@users.noreply.github.com
     privateKeySecretRef:
-      name: "swifthomelab-net-issuer"
+      name: swifthomelab-net-issuer
     solvers:
-      - dns01:
-          cloudflare:
-            email: "85815005+JosBritton@users.noreply.github.com"
-            apiTokenSecretRef:
-              name: "cloudflare-token-secret"
-              key: "cloudflare-token"
-        selector:
-          dnsZones:
-            - "swifthomelab.net"
+    - dns01:
+        cloudflare:
+          email: 85815005+JosBritton@users.noreply.github.com
+          apiTokenSecretRef:
+            name: cloudflare-token-secret
+            key: cloudflare-token
+      selector:
+        dnsZones:
+        - swifthomelab.net

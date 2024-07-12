@@ -1,0 +1,39 @@
+extends: default
+yaml-files:
+- "*.yaml"
+- "*.yml"
+- .yamllint
+ignore: |
+  .venv/
+  secrets/
+  **/upstream.yaml
+rules:
+  document-start: disable
+  indentation:
+    spaces: 2
+    indent-sequences: false
+    check-multi-line-strings: false
+  line-length: disable
+  truthy:
+    ignore: .github/workflows/
+  braces:
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+  brackets:
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+  octal-values: enable
+  comments: enable
+  comments-indentation: enable
+  empty-values: enable
+  float-values: enable
+  quoted-strings:
+    quote-type: double
+    required: only-when-needed
+    allow-quoted-quotes: true

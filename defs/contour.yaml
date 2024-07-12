@@ -1,22 +1,22 @@
-apiVersion: "argoproj.io/v1alpha1"
-kind: "Application"
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: "contour"
-  namespace: "argocd"
+  name: contour
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "0"
   finalizers:
-    - "resources-finalizer.argocd.argoproj.io"
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: "projectcontour"
-    server: "https://kubernetes.default.svc"
-  project: "default"
+    namespace: projectcontour
+    server: https://kubernetes.default.svc
+  project: default
   source:
-    path: "contour"
-    repoURL: "https://github.com/JosBritton/cd.git"
-    targetRevision: "HEAD"
+    path: contour
+    repoURL: https://github.com/JosBritton/cd.git
+    targetRevision: HEAD
   syncPolicy:
     syncOptions:
-      - "CreateNamespace=true"
+    - CreateNamespace=true

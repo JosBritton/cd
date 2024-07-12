@@ -18,7 +18,7 @@ kubernetes-dashboard:
     # Mode determines if chart should deploy a full Dashboard with all containers or just the API.
     # - dashboard - deploys all the containers
     # - api - deploys just the API
-    mode: 'dashboard'
+    mode: dashboard
     image:
       pullPolicy: IfNotPresent
       pullSecrets: []
@@ -43,7 +43,7 @@ kubernetes-dashboard:
         runAsUser: 1001
         runAsGroup: 2001
         capabilities:
-          drop: ["ALL"]
+          drop: [ALL]
       # Pod Disruption Budget configuration
       # Ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
       podDisruptionBudget:
@@ -58,7 +58,7 @@ kubernetes-dashboard:
     annotations: {}
     settings:
       ## Global dashboard settings
-      global:
+      global: {}
       #  # Cluster name that appears in the browser window title if it is set
       #  clusterName: ""
       #  # Max number of items that can be displayed on each list page
@@ -81,9 +81,9 @@ kubernetes-dashboard:
     ingress:
       enabled: false
       hosts:
-        # Keep 'localhost' host only if you want to access Dashboard using 'kubectl port-forward ...' on:
-        # https://localhost:8443
-        - localhost
+      # Keep 'localhost' host only if you want to access Dashboard using 'kubectl port-forward ...' on:
+      # https://localhost:8443
+      - localhost
       # - kubernetes.dashboard.domain.com
       ingressClassName: internal-nginx
       # Use only if your ingress controllers support default ingress classes.
@@ -128,14 +128,14 @@ kubernetes-dashboard:
       revisionHistoryLimit: 10
     containers:
       ports:
-        - name: auth
-          containerPort: 8000
-          protocol: TCP
+      - name: auth
+        containerPort: 8000
+        protocol: TCP
       args: []
       env: []
       volumeMounts:
-        - mountPath: /tmp
-          name: tmp-volume
+      - mountPath: /tmp
+        name: tmp-volume
       # TODO: Validate configuration
       resources:
         requests:
@@ -145,9 +145,9 @@ kubernetes-dashboard:
           cpu: 250m
           memory: 400Mi
     volumes:
-      # Create on-disk volume to store exec logs (required)
-      - name: tmp-volume
-        emptyDir: {}
+    # Create on-disk volume to store exec logs (required)
+    - name: tmp-volume
+      emptyDir: {}
     nodeSelector: {}
     # Labels & annotations shared between API related resources
     labels: {}
@@ -164,9 +164,9 @@ kubernetes-dashboard:
       revisionHistoryLimit: 10
     containers:
       ports:
-        - name: api
-          containerPort: 8000
-          protocol: TCP
+      - name: api
+        containerPort: 8000
+        protocol: TCP
       # Additional container arguments
       # Full list of arguments: https://github.com/kubernetes/dashboard/blob/master/docs/common/arguments.md
       # args:
@@ -182,9 +182,9 @@ kubernetes-dashboard:
       #   name: dashboard-kubeconfig
       #   readOnly: true
       volumeMounts:
-        # Create volume mount to store exec logs (required)
-        - mountPath: /tmp
-          name: tmp-volume
+      # Create volume mount to store exec logs (required)
+      - mountPath: /tmp
+        name: tmp-volume
       # TODO: Validate configuration
       resources:
         requests:
@@ -199,9 +199,9 @@ kubernetes-dashboard:
     #     defaultMode: 420
     #     secretName: dashboard-kubeconfig
     volumes:
-      # Create on-disk volume to store exec logs (required)
-      - name: tmp-volume
-        emptyDir: {}
+    # Create on-disk volume to store exec logs (required)
+    - name: tmp-volume
+      emptyDir: {}
     nodeSelector: {}
     # Labels & annotations shared between API related resources
     labels: {}
@@ -218,9 +218,9 @@ kubernetes-dashboard:
       revisionHistoryLimit: 10
     containers:
       ports:
-        - name: web
-          containerPort: 8000
-          protocol: TCP
+      - name: web
+        containerPort: 8000
+        protocol: TCP
       # Additional container arguments
       # Full list of arguments: https://github.com/kubernetes/dashboard/blob/master/docs/common/arguments.md
       # args:
@@ -236,9 +236,9 @@ kubernetes-dashboard:
       #   name: dashboard-kubeconfig
       #   readOnly: true
       volumeMounts:
-        # Create volume mount to store logs (required)
-        - mountPath: /tmp
-          name: tmp-volume
+      # Create volume mount to store logs (required)
+      - mountPath: /tmp
+        name: tmp-volume
       # TODO: Validate configuration
       resources:
         requests:
@@ -253,9 +253,9 @@ kubernetes-dashboard:
     #     defaultMode: 420
     #     secretName: dashboard-kubeconfig
     volumes:
-      # Create on-disk volume to store exec logs (required)
-      - name: tmp-volume
-        emptyDir: {}
+    # Create on-disk volume to store exec logs (required)
+    - name: tmp-volume
+      emptyDir: {}
     nodeSelector: {}
     # Labels & annotations shared between WEB UI related resources
     labels: {}
@@ -275,8 +275,8 @@ kubernetes-dashboard:
       revisionHistoryLimit: 10
     containers:
       ports:
-        - containerPort: 8000
-          protocol: TCP
+      - containerPort: 8000
+        protocol: TCP
       args: []
       # Additional container environment variables
       # env:
@@ -288,9 +288,9 @@ kubernetes-dashboard:
       #   name: dashboard-kubeconfig
       #   readOnly: true
       volumeMounts:
-        # Create volume mount to store logs (required)
-        - mountPath: /tmp
-          name: tmp-volume
+      # Create volume mount to store logs (required)
+      - mountPath: /tmp
+        name: tmp-volume
       # TODO: Validate configuration
       resources:
         requests:
@@ -312,9 +312,9 @@ kubernetes-dashboard:
     #     defaultMode: 420
     #     secretName: dashboard-kubeconfig
     volumes:
-      # Create on-disk volume to store exec logs (required)
-      - name: tmp-volume
-        emptyDir: {}
+    # Create on-disk volume to store exec logs (required)
+    - name: tmp-volume
+      emptyDir: {}
     nodeSelector: {}
     # Labels & annotations shared between WEB UI related resources
     labels: {}
@@ -329,8 +329,8 @@ kubernetes-dashboard:
   metrics-server:
     enabled: false
     args:
-      - --kubelet-preferred-address-types=InternalIP
-      - --kubelet-insecure-tls
+    - --kubelet-preferred-address-types=InternalIP
+    - --kubelet-insecure-tls
 
   ## Required Kong sub-chart with DBless configuration to act as a gateway
   ## for our all containers.

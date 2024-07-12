@@ -7,10 +7,10 @@ parameters:
   csi.storage.k8s.io/fstype: ext4
   cache: none
   ssd: "true"
-  storage: "tank"
+  storage: tank
 provisioner: csi.proxmox.sinextra.dev
 allowVolumeExpansion: true
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
 mountOptions:
-  - noatime
+- noatime

@@ -1,6 +1,7 @@
+.SILENT:
 .DEFAULT_GOAL := build
 
-CHARTS := $(shell find . -mindepth 4 -maxdepth 4 -regex "./apps/*/upstream/Chart.ya?ml")
+CHARTS := $(shell find apps/ -regex ".*/upstream/Chart.ya?ml")
 
 %/upstream/values.yml:
 	@:
@@ -32,5 +33,89 @@ all: build
 build: $(RENDERS)
 
 .PHONY: clean
-clean:
-	find . -mindepth 4 -maxdepth 4 -regex "./apps/*/resources/upstream.ya?ml" -exec rm {} \;
+clean: mostlyclean
+	find apps/ -regex ".*/resources/upstream.ya?ml" -delete
+
+.PHONY: mostlyclean
+mostlyclean:
+	rm -rf .venv/
+
+.PHONY: lint
+lint: .venv/lock | .gitignore
+	. ./.venv/bin/activate && \
+	python3 -m yamllint .
+
+.PHONY: validate-ci
+validate-ci:
+# kustomize validation
+	command -v kustomize &> /dev/null || \
+		(echo "Error: Kustomize not installed"; exit 1)
+
+	kustomize build bootstrap/argo-cd
+
+	set -e; \
+	for k in $$(find apps/ -name kustomization.yaml); do \
+	kustomize build "$$(dirname $$k)"; done
+
+# helm validation
+	command -v helm &> /dev/null || \
+		(echo "Error: Helm not installed"; exit 1)
+
+	for c in $(CHARTS); do \
+		set -- $$(dirname $$c)/charts/*.tgz; \
+		[ -f "$$1" ] || helm dependency update "$$(dirname $$c)"; done
+
+	set -e; \
+	for c in $(CHARTS); do \
+	. "$$(dirname $$(dirname $$c))/BUILDARGS" && \
+	helm template \
+		--include-crds \
+		--namespace $$NAMESPACE \
+		$$CHART \
+		$$(dirname $$c); done
+
+.PHONY: validate
+validate: validate-ci
+# kubeconform validation
+	command -v kubeconform &> /dev/null || (echo "Error: Kubeconform not installed"; exit 1)
+
+	kubeconform \
+		-skip Kustomization,CustomResourceDefinition \
+		-ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
+		-ignore-filename-pattern "apps/.*/overlays/.*\.ya?ml" \
+		-ignore-filename-pattern "/.*\.json" \
+		-schema-location default \
+		-schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
+		-summary \
+		-strict \
+		-- apps/
+
+.PHONY: install
+install: .git/hooks/pre-commit .git/hooks/pre-push | .gitignore
+
+.PHONY: precommit
+precommit: lint
+
+.PHONY: prepush
+prepush: lint validate
+
+.venv/lock: requirements.txt
+	python3 -m venv .venv/
+
+	. .venv/bin/activate && \
+	python3 -m pip install -U -r requirements.txt
+
+	touch .venv/lock
+
+.git/hooks/pre-commit: .pre-commit-config.yaml .venv/lock
+	. .venv/bin/activate && \
+	pre-commit install --hook-type pre-commit && \
+	touch .git/hooks/pre-commit
+
+.git/hooks/pre-push: .pre-commit-config.yaml .venv/lock
+	. .venv/bin/activate && \
+	pre-commit install --hook-type pre-push && \
+	touch .git/hooks/pre-push
+
+.gitignore:
+	touch .gitignore

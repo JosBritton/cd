@@ -1,0 +1,16 @@
+default_stages: [commit, push]
+repos:
+- repo: local
+  hooks:
+  - id: precommit
+    name: pre-commit actions
+    language: system
+    entry: make precommit
+    verbose: true
+    stages: [commit]
+  - id: prepush
+    name: pre-push actions
+    language: system
+    entry: make prepush
+    verbose: true
+    stages: [push]

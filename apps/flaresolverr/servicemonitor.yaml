@@ -10,10 +10,10 @@ spec:
     matchLabels:
       app: flaresolverr
   endpoints:
-    - port: metrics
-      scheme: http
-      path: /metrics
-      interval: 1m
-      scrapeTimeout: 10s
+  - port: metrics
+    scheme: http
+    path: /metrics
+    interval: 1m
+    scrapeTimeout: 10s
   namespaceSelector:
     any: true

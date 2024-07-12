@@ -1,8 +1,8 @@
-apiVersion: "v2"
-name: "contour"
-version: "0.1.0"
+apiVersion: v2
+name: contour
+version: 0.1.0
 
 dependencies:
-  - name: "contour"
-    version: "18.2.9"
-    repository: "https://charts.bitnami.com/bitnami"
+- name: contour
+  version: 18.2.9
+  repository: https://charts.bitnami.com/bitnami
