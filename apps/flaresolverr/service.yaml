@@ -10,13 +10,13 @@ metadata:
   namespace: flaresolverr
 spec:
   ports:
-    - name: http
-      targetPort: 8080
-      protocol: TCP
-      port: 8080
-    - name: metrics
-      targetPort: 8181
-      protocol: TCP
-      port: 8181
+  - name: http
+    targetPort: 8080
+    protocol: TCP
+    port: 8080
+  - name: metrics
+    targetPort: 8181
+    protocol: TCP
+    port: 8181
   selector:
     app: flaresolverr

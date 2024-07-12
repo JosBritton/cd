@@ -1,14 +1,14 @@
-apiVersion: "projectcontour.io/v1"
-kind: "HTTPProxy"
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
 metadata:
-  name: "prowlarr-ingress"
-  namespace: "prowlarr"
+  name: prowlarr-ingress
+  namespace: prowlarr
 spec:
   virtualhost:
-    fqdn: "prowlarr.swifthomelab.net"
+    fqdn: prowlarr.swifthomelab.net
     tls:
-      secretName: "cert-manager/prowlarr-swifthomelab-net"
+      secretName: cert-manager/prowlarr-swifthomelab-net
   routes:
-    - services:
-        - name: "prowlarr"
-          port: 9696
+  - services:
+    - name: prowlarr
+      port: 9696

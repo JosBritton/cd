@@ -4,15 +4,15 @@ influxdb2:
     tag: 2.7.6-alpine@sha256:8190c63f7892b7377e8f9ecf6057a766f242614ef8603d4b6a84ba2844f4b35e
     pullPolicy: IfNotPresent
   livenessProbe:
-    path: "/health"
-    scheme: "HTTP"
+    path: /health
+    scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 10
     timeoutSeconds: 1
     failureThreshold: 3
   readinessProbe:
-    path: "/health"
-    scheme: "HTTP"
+    path: /health
+    scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 10
     timeoutSeconds: 1
@@ -20,17 +20,17 @@ influxdb2:
     failureThreshold: 3
   startupProbe:
     enabled: true
-    path: "/health"
-    scheme: "HTTP"
+    path: /health
+    scheme: HTTP
     initialDelaySeconds: 30
     periodSeconds: 5
     timeoutSeconds: 1
     failureThreshold: 6
   adminUser:
-    organization: "influxdata"
-    bucket: "default"
-    user: "admin"
-    retention_policy: "0s"
+    organization: influxdata
+    bucket: default
+    user: admin
+    retention_policy: 0s
     ## Leave empty to generate a random password and token.
     ## Or fill any of these values to use fixed values.
     password: ""
@@ -41,7 +41,7 @@ influxdb2:
     existingSecret: influxdb-auth
   persistence:
     enabled: true
-    storageClass: "proxmox-csi"
+    storageClass: proxmox-csi
     accessMode: ReadWriteOnce
     size: 50Gi
     mountPath: /var/lib/influxdb2

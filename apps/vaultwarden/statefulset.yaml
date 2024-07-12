@@ -23,32 +23,32 @@ spec:
     spec:
       terminationGracePeriodSeconds: 120
       containers:
-        - name: "vaultwarden"
-          image: "vaultwarden/server:1.31.0-alpine@sha256:f87cade4696ba7e5b82ae129856032a4098af5326d683695757968cec30cc60c"
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: "WEBSOCKET_ENABLED"
-              value: "true"
-          ports:
-            - containerPort: 80
-              name: http
-          livenessProbe:
-            httpGet:
-              path: "/alive"
-              port: 80
-          readinessProbe:
-            httpGet:
-              path: "/alive"
-              port: 80
-          volumeMounts:
-            - mountPath: "/data"
-              name: "vaultwarden"
+      - name: vaultwarden
+        image: vaultwarden/server:1.31.0-alpine@sha256:f87cade4696ba7e5b82ae129856032a4098af5326d683695757968cec30cc60c
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: WEBSOCKET_ENABLED
+          value: "true"
+        ports:
+        - containerPort: 80
+          name: http
+        livenessProbe:
+          httpGet:
+            path: /alive
+            port: 80
+        readinessProbe:
+          httpGet:
+            path: /alive
+            port: 80
+        volumeMounts:
+        - mountPath: /data
+          name: vaultwarden
   volumeClaimTemplates:
-    - metadata:
-        name: vaultwarden
-      spec:
-        accessModes: [ ReadWriteOnce ]
-        storageClassName: proxmox-csi
-        resources:
-          requests:
-            storage: 4Gi
+  - metadata:
+      name: vaultwarden
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: proxmox-csi
+      resources:
+        requests:
+          storage: 4Gi

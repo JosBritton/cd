@@ -1,13 +1,13 @@
-apiVersion: "cert-manager.io/v1"
-kind: "Certificate"
+apiVersion: cert-manager.io/v1
+kind: Certificate
 metadata:
-  name: "tdarr-swifthomelab-net"
-  namespace: "cert-manager"
+  name: tdarr-swifthomelab-net
+  namespace: cert-manager
 spec:
-  secretName: "tdarr-swifthomelab-net"
+  secretName: tdarr-swifthomelab-net
   issuerRef:
-    name: "swifthomelab-net-issuer"
-    kind: "ClusterIssuer"
-  commonName: "tdarr.swifthomelab.net"
+    name: swifthomelab-net-issuer
+    kind: ClusterIssuer
+  commonName: tdarr.swifthomelab.net
   dnsNames:
-    - "tdarr.swifthomelab.net"
+  - tdarr.swifthomelab.net

@@ -1,18 +1,18 @@
-apiVersion: "v2"
-name: "proxmox-csi-plugin"
-description: "Proxmox CSI Plugin"
-type: "application"
+apiVersion: v2
+name: proxmox-csi-plugin
+description: Proxmox CSI Plugin
+type: application
 
 # this version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # is expected to follow semantic versioning!
-version: "1.0.0"
+version: 1.0.0
 
 # this is the version number of the application being deployed
 # should be incremented each time you make changes to the application
 appVersion: "1.0"
 
 dependencies:
-- name: "proxmox-csi-plugin"
-  version: "0.2.5"
+- name: proxmox-csi-plugin
+  version: 0.2.5
   repository: oci://ghcr.io/sergelogvinov/charts

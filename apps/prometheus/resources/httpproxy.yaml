@@ -1,14 +1,14 @@
-apiVersion: "projectcontour.io/v1"
-kind: "HTTPProxy"
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
 metadata:
-  name: "grafana-ingress"
-  namespace: "prometheus-operator"
+  name: grafana-ingress
+  namespace: prometheus-operator
 spec:
   virtualhost:
-    fqdn: "grafana.swifthomelab.net"
+    fqdn: grafana.swifthomelab.net
     tls:
-      secretName: "cert-manager/grafana-swifthomelab-net"
+      secretName: cert-manager/grafana-swifthomelab-net
   routes:
-    - services:
-        - name: "prometheus-operator-grafana"
-          port: 80
+  - services:
+    - name: prometheus-operator-grafana
+      port: 80

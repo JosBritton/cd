@@ -1,7 +1,7 @@
-apiVersion: "projectcontour.io/v1"
-kind: "HTTPProxy"
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
 metadata:
-  name: "plex-media-server-ingress"
+  name: plex-media-server-ingress
   labels:
     app: plex-media-server
     app.kubernetes.io/name: plex-media-server
@@ -9,10 +9,10 @@ metadata:
   namespace: plex-media-server
 spec:
   virtualhost:
-    fqdn: "plex.swifthomelab.net"
+    fqdn: plex.swifthomelab.net
     tls:
-      secretName: "cert-manager/plex-swifthomelab-net"
+      secretName: cert-manager/plex-swifthomelab-net
   routes:
-    - services:
-        - name: "plex-media-server"
-          port: 32400
+  - services:
+    - name: plex-media-server
+      port: 32400

@@ -1,14 +1,14 @@
-apiVersion: "projectcontour.io/v1"
-kind: "HTTPProxy"
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
 metadata:
-  name: "vaultwarden-ingress"
-  namespace: "vaultwarden"
+  name: vaultwarden-ingress
+  namespace: vaultwarden
 spec:
   virtualhost:
-    fqdn: "vault.swifthomelab.net"
+    fqdn: vault.swifthomelab.net
     tls:
-      secretName: "cert-manager/vault-swifthomelab-net"
+      secretName: cert-manager/vault-swifthomelab-net
   routes:
-    - services:
-        - name: "vaultwarden"
-          port: 80
+  - services:
+    - name: vaultwarden
+      port: 80

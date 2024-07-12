@@ -26,5 +26,5 @@ metadata:
   # namespace: kube-system
   namespace: kubernetes-dashboard
   annotations:
-    kubernetes.io/service-account.name: "admin"   
+    kubernetes.io/service-account.name: admin
 type: kubernetes.io/service-account-token

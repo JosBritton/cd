@@ -4,15 +4,15 @@ metadata:
   name: radarr
   namespace: radarr
   labels:
-    app: "radarr"
-    app.kubernetes.io/name: "radarr"
+    app: radarr
+    app.kubernetes.io/name: radarr
 spec:
   type: ClusterIP
   publishNotReadyAddresses: false
   ports:
-    - name: http
-      port: 7878
-      protocol: TCP
-      targetPort: 7878
+  - name: http
+    port: 7878
+    protocol: TCP
+    targetPort: 7878
   selector:
     app.kubernetes.io/name: radarr

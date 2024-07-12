@@ -1,10 +1,10 @@
-apiVersion: "projectcontour.io/v1"
-kind: "TLSCertificateDelegation"
+apiVersion: projectcontour.io/v1
+kind: TLSCertificateDelegation
 metadata:
-  name: "prowlarr-swifthomelab-net"
-  namespace: "cert-manager"
+  name: prowlarr-swifthomelab-net
+  namespace: cert-manager
 spec:
   delegations:
-    - secretName: "prowlarr-swifthomelab-net"
-      targetNamespaces:
-        - "prowlarr"
+  - secretName: prowlarr-swifthomelab-net
+    targetNamespaces:
+    - prowlarr

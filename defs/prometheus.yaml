@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "60"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
-    - "resources-finalizer.argocd.argoproj.io"
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -15,23 +15,8 @@ spec:
     repoURL: https://github.com/JosBritton/cd.git
     targetRevision: HEAD
   destination:
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
     namespace: prometheus-operator
-  # ignoreDifferences:
-    # - group: apiextensions.k8s.io
-    #   jsonPointers:
-    #     - /metadata/annotations
-    #     - /metadata/labels
-    #     - /spec/validation
-    #   kind: CustomResourceDefinition
-    # - group: admissionregistration.k8s.io
-    #   kind: MutatingWebhookConfiguration
-    #   jsonPointers:
-    #     - /webhooks
-    # - group: admissionregistration.k8s.io
-    #   kind: ValidatingWebhookConfiguration
-    #   jsonPointers:
-    #     - /webhooks
   syncPolicy:
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

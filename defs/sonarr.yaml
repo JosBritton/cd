@@ -1,21 +1,21 @@
-apiVersion: "argoproj.io/v1alpha1"
-kind: "Application"
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: "sonarr"
-  namespace: "argocd"
+  name: sonarr
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
-    - "resources-finalizer.argocd.argoproj.io"
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: "sonarr"
-    server: "https://kubernetes.default.svc"
-  project: "default"
+    namespace: sonarr
+    server: https://kubernetes.default.svc
+  project: default
   source:
-    path: "sonarr"
-    repoURL: "https://github.com/JosBritton/cd.git"
-    targetRevision: "HEAD"
+    path: sonarr
+    repoURL: https://github.com/JosBritton/cd.git
+    targetRevision: HEAD
   syncPolicy:
     syncOptions:
-      - "CreateNamespace=true"
+    - CreateNamespace=true
