@@ -91,7 +91,7 @@ validate: validate-ci
 		-- apps/
 
 .PHONY: install
-install: .git/hooks/pre-commit | .gitignore
+install: .git/hooks/pre-commit .git/hooks/pre-push | .gitignore
 
 .PHONY: precommit
 precommit: lint
@@ -109,8 +109,13 @@ prepush: lint validate
 
 .git/hooks/pre-commit: .pre-commit-config.yaml .venv/lock
 	. .venv/bin/activate && \
-	pre-commit install && \
+	pre-commit install --hook-type pre-commit && \
 	touch .git/hooks/pre-commit
+
+.git/hooks/pre-push: .pre-commit-config.yaml .venv/lock
+	. .venv/bin/activate && \
+	pre-commit install --hook-type pre-push && \
+	touch .git/hooks/pre-push
 
 .gitignore:
 	touch .gitignore
