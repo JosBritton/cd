@@ -16,7 +16,7 @@ jobs:
       uses: ibiqlik/action-yamllint@v3
       with:
         format: github
-  lint-kustomize:
+  validate-templates:
     runs-on: ubuntu-latest
     steps:
     - name: Code Checkout
