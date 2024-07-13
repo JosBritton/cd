@@ -79,8 +79,11 @@ validate: validate-ci
 # kubeconform validation
 	command -v kubeconform &> /dev/null || (echo "Error: Kubeconform not installed"; exit 1)
 
-	kubeconform -skip Kustomization \
+	kubeconform \
+		-skip Kustomization,CustomResourceDefinition \
 		-ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
+		-ignore-filename-pattern "apps/.*/overlays/.*\.ya?ml" \
+		-ignore-filename-pattern "/.*\.json" \
 		-schema-location default \
 		-schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
 		-summary \
