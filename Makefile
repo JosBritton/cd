@@ -61,8 +61,8 @@ validate-ci:
 	command -v helm &> /dev/null || \
 		(echo "Error: Helm not installed"; exit 1)
 
-	for c in ./apps/*/upstream/charts; do \
-		set -- $$c/*.tgz; \
+	for c in $(CHARTS); do \
+		set -- $$(dirname $$c)/charts/*.tgz; \
 		[ -f "$$1" ] || helm dependency update "$$(dirname $$c)"; done
 
 	set -e; \
