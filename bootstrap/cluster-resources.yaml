@@ -20,8 +20,6 @@ spec:
   source:
     path: bootstrap/cluster-resources/in-cluster
     repoURL: https://github.com/JosBritton/cd.git
-  syncPolicy:
-    preserveResourcesOnDeletion: true
 status:
   health: {}
   summary: {}

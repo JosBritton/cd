@@ -10,9 +10,7 @@ kubectl get nodes
 NAME                            STATUS   ROLES           AGE     VERSION
 k8s1.private.swifthomelab.net   Ready    control-plane   3m54s   v1.28.6
 k8s2.private.swifthomelab.net   Ready    control-plane   3m36s   v1.28.6
-k8s3.private.swifthomelab.net   Ready    <none>          3m3s    v1.28.6
-k8s4.private.swifthomelab.net   Ready    <none>          3m3s    v1.28.6
-k8s5.private.swifthomelab.net   Ready    <none>          3m4s    v1.28.6
+k8s3.private.swifthomelab.net   Ready    control-plane   3m3s    v1.28.6
 ```
 
 ## Initial installation on bare cluster
@@ -21,9 +19,23 @@ k8s5.private.swifthomelab.net   Ready    <none>          3m4s    v1.28.6
 
 1. Install ArgoCD
 ```bash
+kubectl apply -k bootstrap/install && kubectl rollout status deployment argocd-server
+
 kubectl create namespace argocd
-kubectl apply -k argocd/ && kubectl -n argocd rollout status deployment argocd-server
+kubectl apply -f bootstrap/
+
+kubectl patch -n argocd app cluster-resources -p '{"operation":{"sync":{"syncStrategy":{"hook":{}}},"initiatedBy":{"username": "admin"}}}' --type merge
+kubectl patch -n argocd app argo-cd -p '{"operation":{"sync":{"syncStrategy":{"hook":{}}},"initiatedBy":{"username": "admin"}}}' --type merge
+kubectl patch -n argocd app root -p '{"operation":{"sync":{"syncStrategy":{"hook":{}}},"initiatedBy":{"username": "admin"}}}' --type merge
 ```
+2. Install base applications (argo-cd, root, cluster-resources)
+```bash
+kubectl apply -f bootstrap/
+```
+Base application definition
+- `argo-cd` manages argo-cd installtion itself, reconciles ownership of resources after initial installation with step 1.
+- `root` manages applications in 'app-of-apps' pattern on `default` project
+- `cluster-resources` owns global cluster resources that should be preserved on application deletion (like the `argocd` namespace)
 
 2. Update ArgoCD user password
     1. Generate password hash using bcrypt ([Python implementation](https://pypi.org/project/bcrypt/))

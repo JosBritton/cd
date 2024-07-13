@@ -1,17 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/ha/install.yaml
+- ../install  # argo-cd will own itself
+- ./resources/cert.yaml
+- ./resources/httpproxy.yaml
+- ./resources/delegation.yaml
 configMapGenerator:
-- name: argocd-cm
-  behavior: merge
-  literals:
-  - timeout.reconciliation=15s
 - name: argocd-cmd-params-cm
   behavior: merge
   literals:
-  - server.insecure=true
-namespace: argocd
+  - server.insecure=true  # proxy HTTP through HTTPs ingress
+namespace: argocd  # will reconcile install to argocd namespace
 patches:
 - target:
     kind: secret
@@ -24,12 +23,3 @@ patches:
     metadata:
       name: argocd-initial-admin-secret
       namespace: argocd
-# reset the crbs to `subject.namespace: default`, so that argo-cd will later change them to the actual ns
-- target:
-    group: rbac.authorization.k8s.io
-    version: v1
-    kind: ClusterRoleBinding
-  patch: |-
-    - op: replace
-      path: /subjects/0/namespace
-      value: default
