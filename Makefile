@@ -45,9 +45,12 @@ lint: .venv/lock | .gitignore
 	. ./.venv/bin/activate && \
 	python3 -m yamllint .
 
-.PHONY: validate
-validate:
+.PHONY: validate-ci
+validate-ci:
 # kustomize validation
+	command -v kustomize &> /dev/null || \
+		(echo "Error: Kustomize not installed"; exit 1)
+
 	kustomize build bootstrap/argo-cd
 
 	set -e; \
@@ -55,15 +58,34 @@ validate:
 	kustomize build "$$(dirname $$k)"; done
 
 # helm validation
+	command -v helm &> /dev/null || \
+		(echo "Error: Helm not installed"; exit 1)
+
+	for c in ./apps/*/upstream/charts; do \
+		set -- $$c/*.tgz; \
+		[ -f "$$1" ] || helm dependency update "$$(dirname $$c)"; done
+
 	set -e; \
-	for c in $$(find apps/ -regex ".*/upstream/Chart.ya?ml" -exec dirname {} \;); do \
-	. "$$(dirname $$c)/BUILDARGS" && \
-	helm dependency update "$$c" && \
+	for c in $(CHARTS); do \
+	. "$$(dirname $$(dirname $$c))/BUILDARGS" && \
 	helm template \
 		--include-crds \
 		--namespace $$NAMESPACE \
 		$$CHART \
-		$$c; done
+		$$(dirname $$c); done
+
+.PHONY: validate
+validate: validate-ci
+# kubeconform validation
+	command -v kubeconform &> /dev/null || (echo "Error: Kubeconform not installed"; exit 1)
+
+	kubeconform -skip Kustomization \
+		-ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
+		-schema-location default \
+		-schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
+		-summary \
+		-strict \
+		-- apps/
 
 .PHONY: install
 install: .git/hooks/pre-commit | .gitignore

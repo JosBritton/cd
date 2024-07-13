@@ -21,10 +21,6 @@ jobs:
     steps:
     - name: Code Checkout
       uses: actions/checkout@v3
-    - name: Verify Kustomize CLI Installation
-      run: |
-        which kustomize
-        kustomize version
     - name: Validate Manifests
       run: |
-        make validate
+        make validate-ci
