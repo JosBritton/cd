@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: sonarr
+    path: apps/sonarr
     repoURL: https://github.com/JosBritton/cd.git
     targetRevision: HEAD
   syncPolicy:

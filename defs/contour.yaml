@@ -14,7 +14,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: contour
+    path: apps/contour
     repoURL: https://github.com/JosBritton/cd.git
     targetRevision: HEAD
   syncPolicy:

@@ -13,6 +13,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: descheduler
+    path: apps/descheduler
     repoURL: https://github.com/JosBritton/cd.git
     targetRevision: HEAD

@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: cert-manager
+    path: apps/cert-manager
     repoURL: https://github.com/JosBritton/cd.git
     targetRevision: HEAD
   syncPolicy:

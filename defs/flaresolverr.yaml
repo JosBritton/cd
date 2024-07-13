@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: flaresolverr
+    path: apps/flaresolverr
     repoURL: https://github.com/JosBritton/cd.git
     targetRevision: HEAD
   syncPolicy:
