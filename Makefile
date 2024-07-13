@@ -1,7 +1,7 @@
 .SILENT:
 .DEFAULT_GOAL := build
 
-CHARTS := $(shell find . -mindepth 4 -maxdepth 4 -regex "./apps/*/upstream/Chart.ya?ml")
+CHARTS := $(shell find apps/ -regex ".*/upstream/Chart.ya?ml")
 
 %/upstream/values.yml:
 	@:
@@ -34,7 +34,7 @@ build: $(RENDERS)
 
 .PHONY: clean
 clean: mostlyclean
-	find . -mindepth 4 -maxdepth 4 -regex "./apps/*/resources/upstream.ya?ml" -exec rm {} \;
+	find apps/ -regex ".*/resources/upstream.ya?ml" -delete
 
 .PHONY: mostlyclean
 mostlyclean:
@@ -47,8 +47,23 @@ lint: .venv/lock | .gitignore
 
 .PHONY: validate
 validate:
-	bash -e -c 'for k in $(find apps/ -name kustomization.yaml); do kustomize build "$(dirname $k)"; done'
+# kustomize validation
 	kustomize build bootstrap/argo-cd
+
+	set -e; \
+	for k in $$(find apps/ -name kustomization.yaml); do \
+	kustomize build "$$(dirname $$k)"; done
+
+# helm validation
+	set -e; \
+	for c in $$(find apps/ -regex ".*/upstream/Chart.ya?ml" -exec dirname {} \;); do \
+	. "$$(dirname $$c)/BUILDARGS" && \
+	helm dependency update "$$c" && \
+	helm template \
+		--include-crds \
+		--namespace $$NAMESPACE \
+		$$CHART \
+		$$c; done
 
 .PHONY: install
 install: .git/hooks/pre-commit | .gitignore
