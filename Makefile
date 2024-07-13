@@ -72,7 +72,7 @@ install: .git/hooks/pre-commit | .gitignore
 precommit: lint
 
 .PHONY: prepush
-prepush: lint
+prepush: lint validate
 
 .venv/lock: requirements.txt
 	python3 -m venv .venv/
