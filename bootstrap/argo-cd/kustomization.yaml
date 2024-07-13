@@ -6,14 +6,6 @@ configMapGenerator:
 - name: argocd-cm
   behavior: merge
   literals:
-  - |
-    repository.credentials=- passwordSecret:
-        key: git_token
-        name: autopilot-secret
-      url: https://github.com/
-      usernameSecret:
-        key: git_username
-        name: autopilot-secret
   - timeout.reconciliation=15s
 - name: argocd-cmd-params-cm
   behavior: merge
