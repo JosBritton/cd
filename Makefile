@@ -47,7 +47,7 @@ lint: .venv/lock | .gitignore
 
 .PHONY: validate
 validate:
-	kustomize build apps/*
+	bash -e -c 'for k in $(find apps/ -name kustomization.yaml); do kustomize build "$(dirname $k)"; done'
 	kustomize build bootstrap/argo-cd
 
 .PHONY: install
