@@ -1,9 +1,11 @@
 kube-prometheus-stack:
   kubeEtcd:
     enabled: true
+    endpoints:
+    - 10.0.12.21
+    - 10.0.12.22
+    - 10.0.12.23
     service:
-      # service managed by kubespray
-      # found on namespace `kube-system`
       enabled: false
       port: 2381
       targetPort: 2381
