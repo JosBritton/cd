@@ -58396,6 +58396,33 @@ spec:
       type: RuntimeDefault
   portName: http-web
 ---
+# Source: prometheus-operator/charts/kube-prometheus-stack/templates/exporters/kube-etcd/endpoints.yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: prometheus-operator-kube-p-kube-etcd
+  labels:
+    app: kube-prometheus-stack-kube-etcd
+    k8s-app: etcd-server
+    
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: prometheus-operator
+    app.kubernetes.io/version: "61.3.1"
+    app.kubernetes.io/part-of: kube-prometheus-stack
+    chart: kube-prometheus-stack-61.3.1
+    release: "prometheus-operator"
+    heritage: "Helm"
+  namespace: kube-system
+subsets:
+  - addresses:
+      - ip: 10.0.12.21
+      - ip: 10.0.12.22
+      - ip: 10.0.12.23
+    ports:
+      - name: http-metrics
+        port: 2381
+        protocol: TCP
+---
 # Source: prometheus-operator/charts/kube-prometheus-stack/templates/prometheus-operator/admission-webhooks/mutatingWebhookConfiguration.yaml
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
