@@ -32,12 +32,12 @@ all: build
 .PHONY: build
 build: $(RENDERS)
 
-.PHONY: clean
-clean: mostlyclean
+.PHONY: renderclean
+renderclean:
 	find apps/ -regex ".*/resources/upstream.ya?ml" -delete
 
-.PHONY: mostlyclean
-mostlyclean:
+.PHONY: clean
+clean:
 	rm -rf .venv/
 
 .PHONY: lint
