@@ -38,6 +38,7 @@ renderclean:
 
 .PHONY: clean
 clean:
+	(. .venv/bin/activate && pre-commit uninstall) || true
 	rm -rf .venv/
 
 .PHONY: lint
