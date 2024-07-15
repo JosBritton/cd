@@ -41,7 +41,7 @@ kube-prometheus-stack:
                 storage: 50Gi
   grafana:
     enabled: true
-    defaultDashboardsEnabled: false
+    defaultDashboardsEnabled: true
     persistence:
       enabled: true
       type: sts
