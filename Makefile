@@ -46,8 +46,8 @@ lint: .venv/lock | .gitignore
 	. ./.venv/bin/activate && \
 	python3 -m yamllint .
 
-.PHONY: validate-ci
-validate-ci:
+.PHONY: validate
+validate:
 # kustomize validation
 	command -v kustomize &> /dev/null || \
 		(echo "Error: Kustomize not installed"; exit 1)
@@ -75,8 +75,6 @@ validate-ci:
 		$$CHART \
 		$$(dirname $$c); done
 
-.PHONY: validate
-validate: validate-ci
 # kubeconform validation
 	command -v kubeconform &> /dev/null || (echo "Error: Kubeconform not installed"; exit 1)
 
