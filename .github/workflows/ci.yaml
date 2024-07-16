@@ -21,6 +21,13 @@ jobs:
     steps:
     - name: Code Checkout
       uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+    - name: Setup Go environment
+      uses: actions/setup-go@v5.0.2
+      with:
+        go-version: 1.22.5
+    - name: Install kubeconform
+      run: |
+        go install github.com/yannh/kubeconform/cmd/kubeconform@v0.6.6
     - name: Validate Manifests
       run: |
-        make validate-ci
+        make validate
