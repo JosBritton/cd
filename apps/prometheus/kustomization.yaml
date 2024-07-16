@@ -9,14 +9,16 @@ resources:
 - ./resources/cert.yaml
 - ./resources/httpproxy.yaml
 - ./resources/delegation.yaml
+- https://github.com/dotdc/grafana-dashboards-kubernetes?ref=4b06b004f4a3c5a86249516f088b7d6c029e13a2
 generatorOptions:
   disableNameSuffixHash: true
   labels:
-    grafana_dashboard: argocd
+    grafana_dashboard: "1"
 configMapGenerator:
-- files:
-  - dashboard.json
-  name: argocd-dashboard-cm
+- name: argocd-dashboard-cm
+  files: [files/argocd-dashboard.json]
+- name: proxmox-dashboard-cm
+  files: [files/proxmox-cluster-dashboard.json]
 patches:
 - path: overlays/prometheus-operator-grafana-secret.yaml
   target:
@@ -31,3 +33,34 @@ patches:
     name: .*
     version: v1
 - path: overlays/prometheus-operator-grafana-cm.yaml
+- target:
+    name: .*
+    version: v1
+    kind: ConfigMap
+    labelSelector: app.kubernetes.io/part-of=kube-prometheus-stack,grafana_dashboard=1
+  patch: |-
+    - op: add
+      path: /metadata/annotations/grafana_folder
+      value: Cluster
+- target:
+    name: dashboards\-k8s\-.*
+    version: v1
+    kind: ConfigMap
+    labelSelector: grafana_dashboard=1
+  patch: |-
+    - op: replace
+      path: /metadata/annotations/grafana_folder
+      value: Cluster
+- target:
+    name: argocd-dashboard-cm
+    version: v1
+    kind: ConfigMap
+    labelSelector: grafana_dashboard=1
+  patch: |-
+    - op: replace
+      path: /metadata/annotations/grafana_folder
+      value: Cluster
+  # delete trivy dashboard
+- path: overlays/dashboards-k8s-addons-trivy-operator-cm.yaml
+  # delete macos node exporter dashboard
+- path: overlays/prometheus-operator-kube-p-nodes-darwin-cm.yaml

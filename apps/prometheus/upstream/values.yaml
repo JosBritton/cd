@@ -53,6 +53,16 @@ kube-prometheus-stack:
       size: 20Gi
       finalizers:
       - kubernetes.io/pvc-protection
+    sidecar:
+      dashboards:
+        enabled: true
+        defaultFolderName: General
+        label: grafana_dashboard
+        labelValue: "1"
+        folderAnnotation: grafana_folder  # set dir name per cm
+        searchNamespace: ALL
+        provider:
+          foldersFromFilesStructure: true
   cleanPrometheusOperatorObjectNames: true
   alertmanager:
     alertmanagerSpec:
