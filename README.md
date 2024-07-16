@@ -103,7 +103,7 @@ This repository follows the *app of apps* pattern described [here](https://argo-
 
 ```bash
 kubectl -n kubernetes-dashboard create token admin
-kubectl -n kubernetes-dashboard get secret admin  -o jsonpath={".data.token"} | base64 -d
+kubectl -n kubernetes-dashboard get secret admin -o jsonpath={".data.token"} | base64 -d
 ```
 
 ## Setup Proxmox-CSI
