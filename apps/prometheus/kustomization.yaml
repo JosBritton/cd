@@ -21,11 +21,6 @@ configMapGenerator:
   files: [files/proxmox-cluster-dashboard.json]
 patches:
 - path: overlays/prometheus-operator-grafana-secret.yaml
-  target:
-    kind: Secret
-    name: prometheus-operator-grafana
-    namespace: prometheus-operator
-    version: v1
 - path: overlays/prometheus-crds-annotations.yaml
   target:
     group: apiextensions.k8s.io
