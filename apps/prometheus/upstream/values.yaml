@@ -54,3 +54,7 @@ kube-prometheus-stack:
       finalizers:
       - kubernetes.io/pvc-protection
   cleanPrometheusOperatorObjectNames: true
+  alertmanager:
+    alertmanagerSpec:
+      useExistingSecret: true
+      configSecret: alertmanager-prometheus-config
