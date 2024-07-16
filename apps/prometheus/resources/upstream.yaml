@@ -56358,15 +56358,13 @@ data:
     providers:
       - name: 'sidecarProvider'
         orgId: 1
-        folder: ''
-        folderUid: ''
         type: file
         disableDeletion: false
         allowUiUpdates: false
         updateIntervalSeconds: 30
         options:
-          foldersFromFilesStructure: false
-          path: /tmp/dashboards
+          foldersFromFilesStructure: true
+          path: /tmp/dashboards/General
 ---
 # Source: prometheus-operator/charts/kube-prometheus-stack/charts/grafana/templates/configmap.yaml
 apiVersion: v1
@@ -58160,7 +58158,7 @@ spec:
       annotations:
         checksum/config: 38cbc7fb509de35f9225f6a19babbc2d492c27365b2a1ed3f2b8b238c1292fae
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 3209419ae179750195588d93e294f65ae446f3dfeafdaeee3a93df424189046d
+        checksum/sc-dashboard-provider-config: eec5e84fd4eed42f51250dd8a0b73b67fbbe8b4573fa8bb1eab2b5ab8ad65daa
         checksum/secret: fbec0f5317f44a6ff165c6c4feab8b06a796cb2c88cd7984434fad70c76563be
         kubectl.kubernetes.io/default-container: grafana
     spec:
@@ -58205,11 +58203,13 @@ spec:
             - name: LABEL_VALUE
               value: "1"
             - name: FOLDER
-              value: "/tmp/dashboards"
+              value: "/tmp/dashboards/General"
             - name: RESOURCE
               value: "both"
             - name: NAMESPACE
               value: "ALL"
+            - name: FOLDER_ANNOTATION
+              value: "grafana_folder"
             - name: REQ_USERNAME
               valueFrom:
                 secretKeyRef:

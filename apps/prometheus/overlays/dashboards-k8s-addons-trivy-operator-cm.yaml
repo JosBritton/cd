@@ -1,0 +1,7 @@
+apiVersion: v1
+$patch: delete
+kind: ConfigMap
+metadata:
+  name: dashboards-k8s-addons-trivy-operator
+  labels:
+    grafana_dashboard: "1"
