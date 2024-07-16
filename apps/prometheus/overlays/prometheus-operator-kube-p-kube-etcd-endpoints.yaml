@@ -1,0 +1,26 @@
+# Source: prometheus-operator/charts/kube-prometheus-stack/templates/exporters/kube-etcd/endpoints.yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: prometheus-operator-kube-p-kube-etcd
+  labels:
+    app: kube-prometheus-stack-kube-etcd
+    k8s-app: etcd-server
+    app.kubernetes.io/instance: prometheus-operator
+    app.kubernetes.io/version: 61.3.1
+    app.kubernetes.io/part-of: kube-prometheus-stack
+    chart: kube-prometheus-stack-61.3.1
+    release: prometheus-operator
+  namespace: kube-system
+subsets:
+- addresses:
+  - ip: 10.0.12.21
+    hostname: etcd1.private.swifthomelab.net
+  - ip: 10.0.12.22
+    hostname: etcd2.private.swifthomelab.net
+  - ip: 10.0.12.23
+    hostname: etcd3.private.swifthomelab.net
+  ports:
+  - name: http-metrics
+    port: 2381
+    protocol: TCP

@@ -18,6 +18,7 @@ configMapGenerator:
   - dashboard.json
   name: argocd-dashboard-cm
 patches:
+- path: overlays/prometheus-operator-kube-p-kube-etcd-endpoints.yaml
 - path: overlays/prometheus-operator-grafana-secret.yaml
   target:
     kind: Secret
