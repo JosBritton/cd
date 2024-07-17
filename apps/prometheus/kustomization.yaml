@@ -9,9 +9,12 @@ resources:
 - ./resources/cert.yaml
 - ./resources/httpproxy.yaml
 - ./resources/delegation.yaml
-- ./resources/stork-agent-service.yaml
-- ./resources/stork-agent-endpoints.yaml
-- ./resources/stork-agent-servermonitor.yaml
+- ./resources/stork-agent-service-kea.yaml
+- ./resources/stork-agent-service-bind.yaml
+- ./resources/stork-agent-endpoints-kea.yaml
+- ./resources/stork-agent-endpoints-bind.yaml
+- ./resources/stork-agent-servicemonitor-kea.yaml
+- ./resources/stork-agent-servicemonitor-bind.yaml
 - https://github.com/dotdc/grafana-dashboards-kubernetes?ref=4b06b004f4a3c5a86249516f088b7d6c029e13a2
 generatorOptions:
   disableNameSuffixHash: true
