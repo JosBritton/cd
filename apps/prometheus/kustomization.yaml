@@ -25,6 +25,10 @@ configMapGenerator:
   files: [files/argocd-dashboard.json]
 - name: proxmox-dashboard-cm
   files: [files/proxmox-cluster-dashboard.json]
+- name: bind9-resolver-dashboard-cm
+  files: [files/bind9-resolver.json]
+- name: kea-dhcp4-dashboard-cm
+  files: [files/kea-dhcp4.json]
 patches:
 - path: overlays/prometheus-operator-grafana-secret.yaml
 - path: overlays/prometheus-crds-annotations.yaml
