@@ -42,11 +42,12 @@ Base application definition
     >>> exit()
     ```
 
-    2. Replace ArgoCD admin password with new hash
+    2. Create ArgoCD admin secret with new hash
     ```bash
-    kubectl -n argocd edit secret argocd-secret
+    kubectl apply -f ./secrets/argocd.yaml
     ```
     ```yaml
+    # ./secrets/argocd.yaml
     apiVersion: v1
     stringData:
       admin.password: YOUR-PASSWORD-HASH
