@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour-certgen
 spec:
   podSelector:
@@ -36,7 +36,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour
 spec:
   podSelector:
@@ -65,7 +65,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: envoy
 spec:
   podSelector:
@@ -95,7 +95,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour
   annotations:
     {}
@@ -111,8 +111,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.7
-    helm.sh/chart: contour-18.2.9
+    app.kubernetes.io/version: 1.30.2
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: envoy
 automountServiceAccountToken: false
 ---
@@ -127,7 +127,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour
 data:
   contour.yaml: |-
@@ -8768,7 +8768,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
 rules:
   - apiGroups:
       - ""
@@ -8935,7 +8935,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -8956,7 +8956,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
 rules:
   - apiGroups:
       - ""
@@ -8986,7 +8986,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -9007,7 +9007,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour
 spec:
   type: ClusterIP
@@ -9033,8 +9033,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.7
-    helm.sh/chart: contour-18.2.9
+    app.kubernetes.io/version: 1.30.2
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: envoy
   annotations:
     # This annotation puts the AWS ELB into "TCP" mode so that it does not
@@ -9075,8 +9075,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.7
-    helm.sh/chart: contour-18.2.9
+    app.kubernetes.io/version: 1.30.2
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: envoy
 spec:
   updateStrategy:
@@ -9092,8 +9092,8 @@ spec:
         app.kubernetes.io/instance: contour
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: contour
-        app.kubernetes.io/version: 1.29.7
-        helm.sh/chart: contour-18.2.9
+        app.kubernetes.io/version: 1.30.2
+        helm.sh/chart: contour-18.2.10
         app.kubernetes.io/component: envoy
     spec:
       
@@ -9146,7 +9146,7 @@ spec:
           resources:
             limits:
               cpu: 750m
-              ephemeral-storage: 1024Mi
+              ephemeral-storage: 2Gi
               memory: 1536Mi
             requests:
               cpu: 500m
@@ -9185,7 +9185,7 @@ spec:
             - --service-cluster $(CONTOUR_NAMESPACE)
             - --service-node $(ENVOY_POD_NAME)
             - --log-level info
-          image: docker.io/bitnami/envoy:1.29.7-debian-12-r0
+          image: docker.io/bitnami/envoy:1.30.2-debian-12-r1
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -9241,7 +9241,7 @@ spec:
           resources:
             limits:
               cpu: 750m
-              ephemeral-storage: 1024Mi
+              ephemeral-storage: 2Gi
               memory: 1536Mi
             requests:
               cpu: 500m
@@ -9281,7 +9281,7 @@ spec:
           resources:
             limits:
               cpu: 750m
-              ephemeral-storage: 1024Mi
+              ephemeral-storage: 2Gi
               memory: 1536Mi
             requests:
               cpu: 500m
@@ -9335,7 +9335,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour
 spec:
   replicas: 1
@@ -9347,13 +9347,13 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 6458c3a49c36909c65a26a1f5b5f0e1113d9174320c2325fa33d7c782a209ecf
+        checksum/config: 6e51f63834eb08ed06e9c9ce014b8a03da5ccdbb2ca21ada7d18b22153eaf0c3
       labels:
         app.kubernetes.io/instance: contour
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: contour
         app.kubernetes.io/version: 1.29.1
-        helm.sh/chart: contour-18.2.9
+        helm.sh/chart: contour-18.2.10
         app.kubernetes.io/component: contour
     spec:
       
@@ -9423,7 +9423,7 @@ spec:
           resources:
             limits:
               cpu: 750m
-              ephemeral-storage: 1024Mi
+              ephemeral-storage: 2Gi
               memory: 1536Mi
             requests:
               cpu: 500m
@@ -9493,7 +9493,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour
 spec:
   controller: projectcontour.io/projectcontour/contour-contour
@@ -9514,7 +9514,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour-certgen
   annotations:
     "helm.sh/hook": "pre-install,pre-upgrade"
@@ -9535,7 +9535,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour-certgen
 rules:
   - apiGroups:
@@ -9560,7 +9560,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour-certgen
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -9585,7 +9585,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
     app.kubernetes.io/version: 1.29.1
-    helm.sh/chart: contour-18.2.9
+    helm.sh/chart: contour-18.2.10
     app.kubernetes.io/component: contour-certgen
 spec:
   template:
@@ -9595,7 +9595,7 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: contour
         app.kubernetes.io/version: 1.29.1
-        helm.sh/chart: contour-18.2.9
+        helm.sh/chart: contour-18.2.10
         app.kubernetes.io/component: contour-certgen
     spec:
       
@@ -9639,7 +9639,7 @@ spec:
           resources:
             limits:
               cpu: 750m
-              ephemeral-storage: 1024Mi
+              ephemeral-storage: 2Gi
               memory: 1536Mi
             requests:
               cpu: 500m
