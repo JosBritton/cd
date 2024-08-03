@@ -4,5 +4,5 @@ version: 0.1.0
 
 dependencies:
 - name: contour
-  version: 18.2.10
+  version: 18.2.11
   repository: https://charts.bitnami.com/bitnami
