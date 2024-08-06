@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour-certgen
 spec:
   podSelector:
@@ -35,8 +35,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour
 spec:
   podSelector:
@@ -64,8 +64,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: envoy
 spec:
   podSelector:
@@ -94,8 +94,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour
   annotations:
     {}
@@ -111,8 +111,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.30.4
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.31.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: envoy
 automountServiceAccountToken: false
 ---
@@ -126,8 +126,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour
 data:
   contour.yaml: |-
@@ -256,6 +256,12 @@ spec:
                             description: The maximum number of parallel retries a
                               single Envoy instance allows to the Kubernetes Service;
                               defaults to 3.
+                            format: int32
+                            type: integer
+                          perHostMaxConnections:
+                            description: |-
+                              PerHostMaxConnections is the maximum number of connections
+                              that Envoy will allow to each individual host in a cluster.
                             format: int32
                             type: integer
                         type: object
@@ -1281,6 +1287,8 @@ spec:
                       Defines the XDSServer to use for `contour serve`.
                       Values: `envoy` (default), `contour (deprecated)`.
                       Other values will produce an error.
+                      Deprecated: this field will be removed in a future release when
+                      the `contour` xDS server implementation is removed.
                     type: string
                 type: object
             type: object
@@ -4033,6 +4041,12 @@ spec:
                                   Service; defaults to 3.
                                 format: int32
                                 type: integer
+                              perHostMaxConnections:
+                                description: |-
+                                  PerHostMaxConnections is the maximum number of connections
+                                  that Envoy will allow to each individual host in a cluster.
+                                format: int32
+                                type: integer
                             type: object
                           dnsLookupFamily:
                             description: |-
@@ -5058,6 +5072,8 @@ spec:
                           Defines the XDSServer to use for `contour serve`.
                           Values: `envoy` (default), `contour (deprecated)`.
                           Other values will produce an error.
+                          Deprecated: this field will be removed in a future release when
+                          the `contour` xDS server implementation is removed.
                         type: string
                     type: object
                 type: object
@@ -5197,6 +5213,39 @@ spec:
             description: ExtensionServiceSpec defines the desired state of an ExtensionService
               resource.
             properties:
+              circuitBreakerPolicy:
+                description: |-
+                  CircuitBreakerPolicy specifies the circuit breaker budget across the extension service.
+                  If defined this overrides the global circuit breaker budget.
+                properties:
+                  maxConnections:
+                    description: The maximum number of connections that a single Envoy
+                      instance allows to the Kubernetes Service; defaults to 1024.
+                    format: int32
+                    type: integer
+                  maxPendingRequests:
+                    description: The maximum number of pending requests that a single
+                      Envoy instance allows to the Kubernetes Service; defaults to
+                      1024.
+                    format: int32
+                    type: integer
+                  maxRequests:
+                    description: The maximum parallel requests a single Envoy instance
+                      allows to the Kubernetes Service; defaults to 1024
+                    format: int32
+                    type: integer
+                  maxRetries:
+                    description: The maximum number of parallel retries a single Envoy
+                      instance allows to the Kubernetes Service; defaults to 3.
+                    format: int32
+                    type: integer
+                  perHostMaxConnections:
+                    description: |-
+                      PerHostMaxConnections is the maximum number of connections
+                      that Envoy will allow to each individual host in a cluster.
+                    format: int32
+                    type: integer
+                type: object
               loadBalancerPolicy:
                 description: |-
                   The policy for load balancing GRPC service requests. Note that the
@@ -8767,8 +8816,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
 rules:
   - apiGroups:
       - ""
@@ -8934,8 +8983,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -8955,8 +9004,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
 rules:
   - apiGroups:
       - ""
@@ -8985,8 +9034,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -9006,8 +9055,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour
 spec:
   type: ClusterIP
@@ -9033,8 +9082,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.30.4
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.31.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: envoy
   annotations:
     # This annotation puts the AWS ELB into "TCP" mode so that it does not
@@ -9075,8 +9124,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.30.4
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.31.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: envoy
 spec:
   updateStrategy:
@@ -9092,8 +9141,8 @@ spec:
         app.kubernetes.io/instance: contour
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: contour
-        app.kubernetes.io/version: 1.30.4
-        helm.sh/chart: contour-18.2.11
+        app.kubernetes.io/version: 1.31.0
+        helm.sh/chart: contour-19.0.0
         app.kubernetes.io/component: envoy
     spec:
       
@@ -9120,7 +9169,7 @@ spec:
             - envoy
             - shutdown-manager
             - --serve-port=8090
-          image: docker.io/bitnami/contour:1.29.2-debian-12-r0
+          image: docker.io/bitnami/contour:1.30.0-debian-12-r0
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -9185,7 +9234,7 @@ spec:
             - --service-cluster $(CONTOUR_NAMESPACE)
             - --service-node $(ENVOY_POD_NAME)
             - --log-level info
-          image: docker.io/bitnami/envoy:1.30.4-debian-12-r5
+          image: docker.io/bitnami/envoy:1.31.0-debian-12-r0
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -9275,7 +9324,7 @@ spec:
             - --envoy-cafile=/certs/ca.crt
             - --envoy-cert-file=/certs/tls.crt
             - --envoy-key-file=/certs/tls.key
-          image: docker.io/bitnami/contour:1.29.2-debian-12-r0
+          image: docker.io/bitnami/contour:1.30.0-debian-12-r0
           imagePullPolicy: IfNotPresent
           name: envoy-initconfig
           resources:
@@ -9334,8 +9383,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour
 spec:
   replicas: 1
@@ -9347,13 +9396,13 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 1ddad6f5c52bf00a7d813b6651d9b418728a417c66c5d777c99fa9b9d9638042
+        checksum/config: 3bdfcea64663cd98697a7e117a81bf2fe440abd4d89029a2d56cb14fc2a6a5e4
       labels:
         app.kubernetes.io/instance: contour
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: contour
-        app.kubernetes.io/version: 1.29.2
-        helm.sh/chart: contour-18.2.11
+        app.kubernetes.io/version: 1.30.0
+        helm.sh/chart: contour-19.0.0
         app.kubernetes.io/component: contour
     spec:
       
@@ -9394,7 +9443,7 @@ spec:
             - --leader-election-resource-name=projectcontour-contour-contour
             - --log-format=text
             - --kubernetes-debug=0
-          image: docker.io/bitnami/contour:1.29.2-debian-12-r0
+          image: docker.io/bitnami/contour:1.30.0-debian-12-r0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8001
@@ -9492,15 +9541,15 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour
 spec:
   controller: projectcontour.io/projectcontour/contour-contour
 ---
 # Source: contour/charts/contour/templates/crds/contour-crds.yaml
 # Source: https://raw.githubusercontent.com/projectcontour/contour/v{version}/examples/contour/01-crds.yaml
-# Version: 1.29.2
+# Version: 1.30.0
 # Conditional: .Values.contour.manageCRDs
 ---
 # Source: contour/charts/contour/templates/certgen/serviceaccount.yaml
@@ -9513,8 +9562,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour-certgen
   annotations:
     "helm.sh/hook": "pre-install,pre-upgrade"
@@ -9534,8 +9583,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour-certgen
 rules:
   - apiGroups:
@@ -9559,8 +9608,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour-certgen
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -9584,8 +9633,8 @@ metadata:
     app.kubernetes.io/instance: contour
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: contour
-    app.kubernetes.io/version: 1.29.2
-    helm.sh/chart: contour-18.2.11
+    app.kubernetes.io/version: 1.30.0
+    helm.sh/chart: contour-19.0.0
     app.kubernetes.io/component: contour-certgen
 spec:
   template:
@@ -9594,8 +9643,8 @@ spec:
         app.kubernetes.io/instance: contour
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: contour
-        app.kubernetes.io/version: 1.29.2
-        helm.sh/chart: contour-18.2.11
+        app.kubernetes.io/version: 1.30.0
+        helm.sh/chart: contour-19.0.0
         app.kubernetes.io/component: contour-certgen
     spec:
       
@@ -9606,7 +9655,7 @@ spec:
         sysctls: []
       containers:
         - name: contour
-          image: docker.io/bitnami/contour:1.29.2-debian-12-r0
+          image: docker.io/bitnami/contour:1.30.0-debian-12-r0
           imagePullPolicy: IfNotPresent
           command:
             - contour
