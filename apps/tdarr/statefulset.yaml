@@ -85,8 +85,8 @@ spec:
           name: movies
         - mountPath: /tv
           name: tv
-        - mountPath: /run
-          name: run
+        - mountPath: /cache
+          name: cache
         - mountPath: /stash
           name: stash
         - mountPath: /emp
@@ -114,10 +114,6 @@ spec:
           path: /mnt/artemis/data/bt1/completed/emp
       - name: logs
         emptyDir: {}
-      - name: run
-        emptyDir:
-          medium: Memory
-          sizeLimit: 20Mi
   volumeClaimTemplates:
   - metadata:
       name: config
@@ -135,3 +131,11 @@ spec:
       resources:
         requests:
           storage: 10Gi
+  - metadata:
+      name: cache
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: proxmox-csi
+      resources:
+        requests:
+          storage: 22Gi
