@@ -10,7 +10,7 @@
     ],
     "dependencyDashboard": true,
     "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
-    "rebaseWhen": "conflicted",
+    "rebaseWhen": "behind-base-branch",
     "kustomize": {
         "fileMatch": ["(^|/)kustomization\\.ya?ml(?:\\.j2)?$"]
     },
