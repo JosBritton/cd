@@ -56250,7 +56250,7 @@ metadata:
   name: prometheus-operator-prometheus-node-exporter
   namespace: prometheus-operator
   labels:
-    helm.sh/chart: prometheus-node-exporter-4.37.1
+    helm.sh/chart: prometheus-node-exporter-4.37.3
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: prometheus-node-exporter
@@ -56274,9 +56274,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 automountServiceAccountToken: true
@@ -56291,9 +56291,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app: kube-prometheus-stack-operator
@@ -56314,9 +56314,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 automountServiceAccountToken: true
@@ -56407,9 +56407,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56448,9 +56448,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56471,9 +56471,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56494,9 +56494,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56517,9 +56517,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56540,9 +56540,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56563,9 +56563,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56586,9 +56586,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56609,9 +56609,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56632,9 +56632,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56655,9 +56655,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56678,9 +56678,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56701,9 +56701,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56724,9 +56724,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56747,9 +56747,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56770,9 +56770,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56793,9 +56793,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56816,9 +56816,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56839,9 +56839,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56862,9 +56862,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56885,9 +56885,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56908,9 +56908,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56931,9 +56931,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56954,9 +56954,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -56977,9 +56977,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -57000,9 +57000,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -57023,9 +57023,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -57046,9 +57046,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 data:
@@ -57236,9 +57236,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app: kube-prometheus-stack-operator
@@ -57346,9 +57346,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 rules:
@@ -57422,9 +57422,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app: kube-prometheus-stack-operator
@@ -57449,9 +57449,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 roleRef:
@@ -57579,7 +57579,7 @@ metadata:
   name: prometheus-operator-prometheus-node-exporter
   namespace: prometheus-operator
   labels:
-    helm.sh/chart: prometheus-node-exporter-4.37.1
+    helm.sh/chart: prometheus-node-exporter-4.37.3
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: prometheus-node-exporter
@@ -57613,9 +57613,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -57645,9 +57645,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
   namespace: kube-system
@@ -57672,9 +57672,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
   namespace: kube-system
@@ -57700,9 +57700,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
   namespace: kube-system
@@ -57726,9 +57726,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
   namespace: kube-system
@@ -57754,9 +57754,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
   namespace: kube-system
@@ -57781,9 +57781,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app: kube-prometheus-stack-operator
@@ -57811,9 +57811,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -57839,7 +57839,7 @@ metadata:
   name: prometheus-operator-prometheus-node-exporter
   namespace: prometheus-operator
   labels:
-    helm.sh/chart: prometheus-node-exporter-4.37.1
+    helm.sh/chart: prometheus-node-exporter-4.37.3
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: prometheus-node-exporter
@@ -57863,7 +57863,7 @@ spec:
       annotations:
         cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
       labels:
-        helm.sh/chart: prometheus-node-exporter-4.37.1
+        helm.sh/chart: prometheus-node-exporter-4.37.3
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: metrics
         app.kubernetes.io/part-of: prometheus-node-exporter
@@ -57936,6 +57936,7 @@ spec:
               readOnly: true
       hostNetwork: true
       hostPID: true
+      hostIPC: false
       nodeSelector:
         kubernetes.io/os: linux
       tolerations:
@@ -58049,9 +58050,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app: kube-prometheus-stack-operator
@@ -58070,9 +58071,9 @@ spec:
         
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/instance: prometheus-operator
-        app.kubernetes.io/version: "61.7.1"
+        app.kubernetes.io/version: "61.7.2"
         app.kubernetes.io/part-of: kube-prometheus-stack
-        chart: kube-prometheus-stack-61.7.1
+        chart: kube-prometheus-stack-61.7.2
         release: "prometheus-operator"
         heritage: "Helm"
         app: kube-prometheus-stack-operator
@@ -58116,6 +58117,26 @@ spec:
             - name: tls-secret
               mountPath: /cert
               readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: https
+              scheme: HTTPS
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: https
+              scheme: HTTPS
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
       volumes:
         - name: tls-secret
           secret:
@@ -58376,9 +58397,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -58417,9 +58438,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
   namespace: kube-system
@@ -58445,9 +58466,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -58485,9 +58506,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -58558,9 +58579,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -58701,9 +58722,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -58733,9 +58754,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -58901,9 +58922,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -58969,9 +58990,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -58997,9 +59018,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59024,9 +59045,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59051,9 +59072,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59078,9 +59099,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59105,9 +59126,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59194,9 +59215,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59262,9 +59283,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59392,9 +59413,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59714,9 +59735,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59745,9 +59766,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59822,9 +59843,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59847,9 +59868,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59880,9 +59901,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -59937,9 +59958,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60006,9 +60027,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60039,9 +60060,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60298,9 +60319,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60421,9 +60442,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60535,9 +60556,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60609,9 +60630,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60639,9 +60660,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60669,9 +60690,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60810,9 +60831,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60840,9 +60861,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60883,9 +60904,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -60966,9 +60987,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61295,9 +61316,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61325,9 +61346,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61382,9 +61403,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61475,9 +61496,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61814,7 +61835,7 @@ metadata:
   name: prometheus-operator-prometheus-node-exporter
   namespace: prometheus-operator
   labels:
-    helm.sh/chart: prometheus-node-exporter-4.37.1
+    helm.sh/chart: prometheus-node-exporter-4.37.3
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: prometheus-node-exporter
@@ -61848,9 +61869,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61881,9 +61902,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61911,9 +61932,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61952,9 +61973,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -61986,9 +62007,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -62016,9 +62037,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -62046,9 +62067,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -62079,9 +62100,9 @@ metadata:
     app: kube-prometheus-stack-kubelet    
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -62175,9 +62196,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app: kube-prometheus-stack-operator
@@ -62215,9 +62236,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
 spec:
@@ -62248,9 +62269,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62307,9 +62328,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62353,9 +62374,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62383,9 +62404,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62413,9 +62434,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62443,9 +62464,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62505,9 +62526,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62522,9 +62543,9 @@ spec:
         
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/instance: prometheus-operator
-        app.kubernetes.io/version: "61.7.1"
+        app.kubernetes.io/version: "61.7.2"
         app.kubernetes.io/part-of: kube-prometheus-stack
-        chart: kube-prometheus-stack-61.7.1
+        chart: kube-prometheus-stack-61.7.2
         release: "prometheus-operator"
         heritage: "Helm"
         app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62571,9 +62592,9 @@ metadata:
     
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus-operator
-    app.kubernetes.io/version: "61.7.1"
+    app.kubernetes.io/version: "61.7.2"
     app.kubernetes.io/part-of: kube-prometheus-stack
-    chart: kube-prometheus-stack-61.7.1
+    chart: kube-prometheus-stack-61.7.2
     release: "prometheus-operator"
     heritage: "Helm"
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
@@ -62588,9 +62609,9 @@ spec:
         
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/instance: prometheus-operator
-        app.kubernetes.io/version: "61.7.1"
+        app.kubernetes.io/version: "61.7.2"
         app.kubernetes.io/part-of: kube-prometheus-stack
-        chart: kube-prometheus-stack-61.7.1
+        chart: kube-prometheus-stack-61.7.2
         release: "prometheus-operator"
         heritage: "Helm"
         app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
