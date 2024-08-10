@@ -87,8 +87,6 @@ spec:
           name: tv
         - mountPath: /cache
           name: cache
-        - mountPath: /stash
-          name: stash
         - mountPath: /emp
           name: emp
       volumes:
@@ -104,10 +102,6 @@ spec:
         nfs:
           server: truenas.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/tv
-      - name: stash
-        nfs:
-          server: truenas.private.swifthomelab.net
-          path: /mnt/artemis/data/stash
       - name: emp
         nfs:
           server: truenas.private.swifthomelab.net
