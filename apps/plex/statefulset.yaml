@@ -36,14 +36,14 @@ spec:
         nfs:
           path: /mnt/artemis/data/media
           readOnly: false
-          server: truenas.private.swifthomelab.net
+          server: nas1.private.swifthomelab.net
       - name: movies
         nfs:
-          server: truenas.private.swifthomelab.net
+          server: nas1.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/movies
       - name: tv
         nfs:
-          server: truenas.private.swifthomelab.net
+          server: nas1.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/tv
       terminationGracePeriodSeconds: 120
       initContainers: null
