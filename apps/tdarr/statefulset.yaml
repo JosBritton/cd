@@ -93,18 +93,18 @@ spec:
       - name: media
         nfs:
           path: /mnt/artemis/data/media
-          server: truenas.private.swifthomelab.net
+          server: nas1.private.swifthomelab.net
       - name: movies
         nfs:
-          server: truenas.private.swifthomelab.net
+          server: nas1.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/movies
       - name: tv
         nfs:
-          server: truenas.private.swifthomelab.net
+          server: nas1.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/tv
       - name: emp
         nfs:
-          server: truenas.private.swifthomelab.net
+          server: nas1.private.swifthomelab.net
           path: /mnt/artemis/data/bt1/completed/emp
       - name: logs
         emptyDir: {}
