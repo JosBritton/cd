@@ -32,10 +32,13 @@ spec:
         emptyDir: {}
       - name: pms-logs
         emptyDir: {}
-      - name: media
+      - name: media-movies
         nfs:
-          path: /mnt/artemis/data/media
-          readOnly: false
+          path: /mnt/artemis/data/media/movies
+          server: nas1.private.swifthomelab.net
+      - name: media-tv
+        nfs:
+          path: /mnt/artemis/data/media/tv
           server: nas1.private.swifthomelab.net
       - name: movies
         nfs:
@@ -76,8 +79,10 @@ spec:
           mountPath: /config
         - name: pms-transcode
           mountPath: /transcode
-        - mountPath: /media
-          name: media
+        - mountPath: /media/tv
+          name: media-tv
+        - mountPath: /media/movies
+          name: media-movies
         - mountPath: /movies
           name: movies
         - mountPath: /tv
