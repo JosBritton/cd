@@ -81,29 +81,13 @@ spec:
           name: server
         - mountPath: /app/logs
           name: logs
-        - mountPath: /movies
-          name: movies
-        - mountPath: /tv
-          name: tv
-        - mountPath: /emp
-          name: emp
+        - mountPath: /media
+          name: media
       volumes:
       - name: media
         nfs:
           path: /mnt/artemis/data/media
           server: nas1.private.swifthomelab.net
-      - name: movies
-        nfs:
-          server: nas1.private.swifthomelab.net
-          path: /mnt/artemis/data/bt1/completed/movies
-      - name: tv
-        nfs:
-          server: nas1.private.swifthomelab.net
-          path: /mnt/artemis/data/bt1/completed/tv
-      - name: emp
-        nfs:
-          server: nas1.private.swifthomelab.net
-          path: /mnt/artemis/data/bt1/completed/emp
       - name: logs
         emptyDir: {}
   volumeClaimTemplates:
