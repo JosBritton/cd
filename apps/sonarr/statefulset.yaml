@@ -33,14 +33,6 @@ spec:
         nfs:
           path: /mnt/artemis/data/media
           server: nas1.private.swifthomelab.net
-      - name: movies
-        nfs:
-          server: nas1.private.swifthomelab.net
-          path: /mnt/artemis/data/bt1/completed/movies
-      - name: tv
-        nfs:
-          server: nas1.private.swifthomelab.net
-          path: /mnt/artemis/data/bt1/completed/tv
       containers:
       - name: sonarr
         image: ghcr.io/onedr0p/sonarr:4.0.8.1874@sha256:3c8d3d5648f9d292d834252e98c34f459ea81a906ab88782bd53f405bb2c4b26
@@ -53,10 +45,6 @@ spec:
           name: sonarr
         - mountPath: /media
           name: media
-        - mountPath: /movies
-          name: movies
-        - mountPath: /tv
-          name: tv
         livenessProbe:
           httpGet:
             port: 8989
