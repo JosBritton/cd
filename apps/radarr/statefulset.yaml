@@ -33,14 +33,6 @@ spec:
         nfs:
           path: /mnt/artemis/data/media
           server: nas1.private.swifthomelab.net
-      - name: movies
-        nfs:
-          server: nas1.private.swifthomelab.net
-          path: /mnt/artemis/data/bt1/completed/movies
-      - name: tv
-        nfs:
-          server: nas1.private.swifthomelab.net
-          path: /mnt/artemis/data/bt1/completed/tv
       containers:
       - name: radarr
         image: ghcr.io/onedr0p/radarr:5.8.3@sha256:c8fa12f8efdbcb8ef736b019335c39f4962def9bee479b0fb8b0401824bcf26b
@@ -53,10 +45,6 @@ spec:
           name: radarr
         - mountPath: /media
           name: media
-        - mountPath: /movies
-          name: movies
-        - mountPath: /tv
-          name: tv
         livenessProbe:
           httpGet:
             port: 7878
