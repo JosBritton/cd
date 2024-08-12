@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: tdarr-node
+  name: tdarr-node
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: tdarr-node
+  template:
+    metadata:
+      labels:
+        app: tdarr-node
+    spec:
+      containers:
+      - env:
+        - name: S6_READ_ONLY_ROOT
+          value: "1"
+        - name: UMASK
+          value: "0022"
+        - name: TZ
+          value: Etc/UTC
+        - name: PUID
+          value: "65534"
+        - name: PGID
+          value: "65534"
+        - name: serverIP
+          value: tdarr.tdarr.svc.cluster.local
+        - name: serverPort
+          value: "8266"
+        image: ghcr.io/haveagitgat/tdarr_node:2.24.01@sha256:ffa262f4ecb120b77d4e8b4841432daf69b15d528ca8d123b47064daf296b83b
+        imagePullPolicy: IfNotPresent
+        name: tdarr-node
+        ports:
+        - containerPort: 8266
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /media
+          name: media
+      volumes:
+      - name: media
+        nfs:
+          path: /mnt/artemis/data/media
+          server: nas1.private.swifthomelab.net
