@@ -28,6 +28,11 @@ spec:
         runAsGroup: 65534
         fsGroup: 65534
         fsGroupChangePolicy: OnRootMismatch
+      volumes:
+      - name: media
+        nfs:
+          path: /mnt/artemis/data/media
+          server: nas1.private.swifthomelab.net
       containers:
       - name: bazarr
         image: ghcr.io/onedr0p/bazarr:1.4.3@sha256:d2b70813f7d636fb1ab3448e13ca4074630b63216c6c6d02d034cd5d9e938ea3
