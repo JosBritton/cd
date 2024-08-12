@@ -85,8 +85,6 @@ spec:
           name: movies
         - mountPath: /tv
           name: tv
-        - mountPath: /cache
-          name: cache
       volumes:
       - name: media
         nfs:
@@ -119,11 +117,3 @@ spec:
       resources:
         requests:
           storage: 10Gi
-  - metadata:
-      name: cache
-    spec:
-      accessModes: [ReadWriteOnce]
-      storageClassName: proxmox-csi
-      resources:
-        requests:
-          storage: 220Gi
