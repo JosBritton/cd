@@ -30,7 +30,7 @@ spec:
           value: tdarr.tdarr.svc.cluster.local
         - name: serverPort
           value: "8266"
-        image: ghcr.io/haveagitgat/tdarr_node:2.24.02@sha256:615bb9b208268eb6b1309a5a0b9d2bacf38836015d414179bc3da4c0deee375a
+        image: ghcr.io/haveagitgat/tdarr_node:2.24.03@sha256:16ab63cf2344bb673e743fd21b363bbdf0adf94fe2d6ed6a4d9dfc6b0139785e
         imagePullPolicy: IfNotPresent
         name: tdarr-node
         ports:
