@@ -6,7 +6,7 @@ metadata:
   name: proxmox-csi-plugin-controller
   namespace: csi-proxmox
   labels:
-    helm.sh/chart: proxmox-csi-plugin-0.2.5
+    helm.sh/chart: proxmox-csi-plugin-0.2.9
     app.kubernetes.io/name: proxmox-csi-plugin
     app.kubernetes.io/instance: proxmox-csi-plugin
     app.kubernetes.io/version: "v0.7.0"
@@ -19,7 +19,7 @@ metadata:
   name: proxmox-csi-plugin-node
   namespace: csi-proxmox
   labels:
-    helm.sh/chart: proxmox-csi-plugin-0.2.5
+    helm.sh/chart: proxmox-csi-plugin-0.2.9
     app.kubernetes.io/name: proxmox-csi-plugin
     app.kubernetes.io/instance: proxmox-csi-plugin
     app.kubernetes.io/version: "v0.7.0"
@@ -32,7 +32,7 @@ metadata:
   name: proxmox-csi-plugin-controller
   namespace: csi-proxmox
   labels:
-    helm.sh/chart: proxmox-csi-plugin-0.2.5
+    helm.sh/chart: proxmox-csi-plugin-0.2.9
     app.kubernetes.io/name: proxmox-csi-plugin
     app.kubernetes.io/instance: proxmox-csi-plugin
     app.kubernetes.io/version: "v0.7.0"
@@ -75,7 +75,7 @@ metadata:
   name: proxmox-csi-plugin-node
   namespace: csi-proxmox
   labels:
-    helm.sh/chart: proxmox-csi-plugin-0.2.5
+    helm.sh/chart: proxmox-csi-plugin-0.2.9
     app.kubernetes.io/name: proxmox-csi-plugin
     app.kubernetes.io/instance: proxmox-csi-plugin
     app.kubernetes.io/version: "v0.7.0"
@@ -123,7 +123,7 @@ metadata:
   name: proxmox-csi-plugin-controller
   namespace: csi-proxmox
   labels:
-    helm.sh/chart: proxmox-csi-plugin-0.2.5
+    helm.sh/chart: proxmox-csi-plugin-0.2.9
     app.kubernetes.io/name: proxmox-csi-plugin
     app.kubernetes.io/instance: proxmox-csi-plugin
     app.kubernetes.io/version: "v0.7.0"
@@ -165,7 +165,7 @@ metadata:
   name: proxmox-csi-plugin-node
   namespace: csi-proxmox
   labels:
-    helm.sh/chart: proxmox-csi-plugin-0.2.5
+    helm.sh/chart: proxmox-csi-plugin-0.2.9
     app.kubernetes.io/name: proxmox-csi-plugin
     app.kubernetes.io/instance: proxmox-csi-plugin
     app.kubernetes.io/version: "v0.7.0"
@@ -308,7 +308,7 @@ metadata:
   name: proxmox-csi-plugin-controller
   namespace: csi-proxmox
   labels:
-    helm.sh/chart: proxmox-csi-plugin-0.2.5
+    helm.sh/chart: proxmox-csi-plugin-0.2.9
     app.kubernetes.io/name: proxmox-csi-plugin
     app.kubernetes.io/instance: proxmox-csi-plugin
     app.kubernetes.io/version: "v0.7.0"
@@ -362,6 +362,7 @@ spec:
             - "-v=5"
             - "--csi-address=unix:///csi/csi.sock"
             - "--cloud-config=/etc/proxmox/config.yaml"
+          ports:
           resources:
             requests:
               cpu: 10m
