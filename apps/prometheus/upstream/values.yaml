@@ -35,7 +35,7 @@ kube-prometheus-stack:
       storageSpec:
         volumeClaimTemplate:
           spec:
-            storageClassName: proxmox-csi
+            storageClassName: csi-rbd-sc
             accessModes:
             - ReadWriteOnce
             resources:
@@ -47,7 +47,7 @@ kube-prometheus-stack:
     persistence:
       enabled: true
       type: sts
-      storageClassName: proxmox-csi
+      storageClassName: csi-rbd-sc
       accessModes:
       - ReadWriteOnce
       size: 20Gi

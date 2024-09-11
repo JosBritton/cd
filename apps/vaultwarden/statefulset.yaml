@@ -48,7 +48,7 @@ spec:
       name: vaultwarden
     spec:
       accessModes: [ReadWriteOnce]
-      storageClassName: proxmox-csi
+      storageClassName: csi-rbd-sc
       resources:
         requests:
           storage: 4Gi

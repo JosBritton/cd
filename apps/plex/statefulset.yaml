@@ -84,7 +84,7 @@ spec:
       name: pms-config
     spec:
       accessModes: [ReadWriteOnce]
-      storageClassName: proxmox-csi
+      storageClassName: csi-rbd-sc
       resources:
         requests:
           storage: 50Gi
@@ -92,7 +92,7 @@ spec:
       name: pms-cache
     spec:
       accessModes: [ReadWriteOnce]
-      storageClassName: proxmox-csi
+      storageClassName: csi-rbd-sc
       resources:
         requests:
           storage: 25Gi

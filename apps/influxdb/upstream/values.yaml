@@ -41,7 +41,7 @@ influxdb2:
     existingSecret: influxdb-auth
   persistence:
     enabled: true
-    storageClass: proxmox-csi
+    storageClass: csi-rbd-sc
     accessMode: ReadWriteOnce
     size: 50Gi
     mountPath: /var/lib/influxdb2

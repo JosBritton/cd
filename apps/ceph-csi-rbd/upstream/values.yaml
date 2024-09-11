@@ -1,0 +1,365 @@
+ceph-csi-rbd:
+  # Configuration for the CSI to connect to the cluster
+  # Ref: https://github.com/ceph/ceph-csi/blob/devel/examples/README.md
+  # Example:
+  # csiConfig:
+  #   - clusterID: "<cluster-id>"
+  #     monitors:
+  #       - "<MONValue1>"
+  #       - "<MONValue2>"
+  #     rbd:
+  #       netNamespaceFilePath: "{{ .kubeletDir }}/plugins/{{ .driverName }}/net"
+  #       mirrorDaemonCount: 1
+  #     readAffinity:
+  #       enabled: true
+  #       crushLocationLabels:
+  #         - topology.kubernetes.io/region
+  #         - topology.kubernetes.io/zone
+  csiConfig:
+  - clusterID: 1f9d6c76-6b11-44c3-bea8-eae281696e98
+    monitors:
+    - 10.0.8.20:6789
+    - 10.0.8.21:6789
+    - 10.0.8.22:6789
+
+  # Supported values from 0 to 5. 0 for general useful logs,
+  # 5 for trace level verbosity.
+  # logLevel is the variable for CSI driver containers's log level
+  logLevel: 1
+  # sidecarLogLevel is the variable for Kubernetes sidecar container's log level
+  sidecarLogLevel: 1
+
+  # Set fsGroupPolicy for CSI Driver object spec
+  # https://kubernetes-csi.github.io/docs/support-fsgroup.html
+  # The following modes are supported:
+  # - None: Indicates that volumes will be mounted with no modifications, as the
+  #   CSI volume driver does not support these operations.
+  # - File: Indicates that the CSI volume driver supports volume ownership and
+  #   permission change via fsGroup, and Kubernetes may use fsGroup to change
+  #   permissions and ownership of the volume to match user requested fsGroup in
+  #   the pod's SecurityPolicy regardless of fstype or access mode.
+  # - ReadWriteOnceWithFSType: Indicates that volumes will be examined to
+  #   determine if volume ownership and permissions should be modified to match
+  #   the pod's security policy.
+  # Changes will only occur if the fsType is defined and the persistent volume's
+  # accessModes contains ReadWriteOnce.
+  CSIDriver:
+    fsGroupPolicy: File
+    seLinuxMount: false
+
+  nodeplugin:
+    name: nodeplugin
+    # set user created priorityclassName for csi plugin pods. default is
+    # system-node-critical which is high priority
+    priorityClassName: system-node-critical
+    # if you are using rbd-nbd client set this value to OnDelete
+    updateStrategy: RollingUpdate
+
+    httpMetrics:
+      enabled: true
+      containerPort: 8080
+
+      service:
+        enabled: true
+        servicePort: 8080
+        type: ClusterIP
+
+        annotations:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "8080"
+
+    profiling:
+      # enable profiling to check for memory leaks
+      enabled: false
+
+    registrar:
+      image:
+        repository: registry.k8s.io/sig-storage/csi-node-driver-registrar
+        tag: v2.11.1
+        pullPolicy: IfNotPresent
+      resources: {}
+
+    plugin:
+      image:
+        repository: quay.io/cephcsi/cephcsi
+        tag: v3.12.2
+        pullPolicy: IfNotPresent
+      resources: {}
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+    podSecurityContext: {}
+
+  provisioner:
+    name: provisioner
+    replicaCount: 3
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 50%
+    # ext4 is default if unspecified
+    defaultFSType: ext4
+    # enable or disable the deployment of controller which
+    # generates the OMAP data if its not Present.
+    deployController: true
+    # Timeout for waiting for creation or deletion of a volume
+    timeout: 60s
+    # cluster name to set on the RBD image
+    # clustername: "k8s-cluster-1"
+    # Hard limit for maximum number of nested volume clones that are taken before
+    # a flatten occurs
+    hardMaxCloneDepth: 8
+    # Soft limit for maximum number of nested volume clones that are taken before
+    # a flatten occurs
+    softMaxCloneDepth: 4
+    # Maximum number of snapshots allowed on rbd image without flattening
+    maxSnapshotsOnImage: 450
+    # Minimum number of snapshots allowed on rbd image to trigger flattening
+    minSnapshotsOnImage: 250
+    # skip image flattening if kernel support mapping of rbd images
+    # which has the deep-flatten feature
+    # skipForceFlatten: false
+
+    # set user created priorityclassName for csi provisioner pods. default is
+    # system-cluster-critical which is less priority than system-node-critical
+    priorityClassName: system-cluster-critical
+
+    # default is false
+    # useful for deployments where the podNetwork has no access to ceph
+    enableHostNetwork: true
+
+    httpMetrics:
+      enabled: true
+      containerPort: 8080
+
+      service:
+        enabled: true
+        servicePort: 8080
+        type: ClusterIP
+
+        annotations:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "8080"
+
+        clusterIP: ""
+
+        ## List of IP addresses at which the stats-exporter service is available
+        ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+        ##
+        externalIPs: []
+
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+
+    profiling:
+      # used to check for memory leaks
+      enabled: false
+
+    provisioner:
+      image:
+        repository: registry.k8s.io/sig-storage/csi-provisioner
+        tag: v5.0.1
+        pullPolicy: IfNotPresent
+      resources: {}
+      ## For further options, check
+      ## https://github.com/kubernetes-csi/external-provisioner#command-line-options
+      extraArgs: []
+
+    setmetadata: true
+
+    attacher:
+      name: attacher
+      enabled: true
+      image:
+        repository: registry.k8s.io/sig-storage/csi-attacher
+        tag: v4.6.1
+        pullPolicy: IfNotPresent
+      resources: {}
+      ## For further options, check
+      ## https://github.com/kubernetes-csi/external-attacher#command-line-options
+      extraArgs: []
+
+    resizer:
+      name: resizer
+      enabled: true
+      image:
+        repository: registry.k8s.io/sig-storage/csi-resizer
+        tag: v1.11.1
+        pullPolicy: IfNotPresent
+      resources: {}
+      ## For further options, check
+      ## https://github.com/kubernetes-csi/external-resizer#recommended-optional-arguments
+      extraArgs: []
+
+    snapshotter:
+      image:
+        repository: registry.k8s.io/sig-storage/csi-snapshotter
+        tag: v8.0.1
+        pullPolicy: IfNotPresent
+      resources: {}
+      ## For further options, check
+      ## https://github.com/kubernetes-csi/external-snapshotter#csi-external-snapshotter-sidecar-command-line-options
+      extraArgs: []
+
+      args:
+        enableVolumeGroupSnapshots: false
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+    podSecurityContext: {}
+
+  readAffinity:
+    enabled: false
+
+  storageClass:
+    create: true
+    name: csi-rbd-sc
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "true"
+    clusterID: 1f9d6c76-6b11-44c3-bea8-eae281696e98
+    dataPool: ""
+    pool: ceph_pv
+
+    # (optional) RBD image features, CSI creates image with image-format 2 CSI
+    # RBD currently supports `layering`, `journaling`, `exclusive-lock`,
+    # `object-map`, `fast-diff`, `deep-flatten` features.
+    # Refer https://docs.ceph.com/en/latest/rbd/rbd-config-ref/#image-features
+    # for image feature dependencies.
+    # imageFeatures: layering,journaling,exclusive-lock,object-map,fast-diff
+    imageFeatures: layering,exclusive-lock,object-map,fast-diff,deep-flatten
+
+    # (optional) Specifies whether to try other mounters in case if the current
+    # mounter fails to mount the rbd image for any reason. True means fallback
+    # to next mounter, default is set to false.
+    # Note: tryOtherMounters is currently useful to fallback from krbd to rbd-nbd
+    # in case if any of the specified imageFeatures is not supported by krbd
+    # driver on node scheduled for application pod launch, but in the future this
+    # should work with any mounter type.
+    # tryOtherMounters: false
+
+    # (optional) Options to pass to the `mkfs` command while creating the
+    # filesystem on the RBD device. Check the man-page for the `mkfs` command
+    # or the filesystem for more details. When `mkfsOptions` is set here, the
+    # defaults will not be used, consider including them in this parameter.
+    mkfsOptions: -m0 -Ediscard,lazy_itable_init=1,lazy_journal_init=1
+
+    # (optional) uncomment the following to use rbd-nbd as mounter
+    # on supported nodes
+    # mounter: rbd-nbd
+    mounter: ""
+
+    # (optional) ceph client log location, eg: rbd-nbd
+    # By default host-path /var/log/ceph of node is bind-mounted into
+    # csi-rbdplugin pod at /var/log/ceph mount path. This is to configure
+    # target bindmount path used inside container for ceph clients logging.
+    # See docs/rbd-nbd.md for available configuration options.
+    # cephLogDir: /var/log/ceph
+    cephLogDir: ""
+
+    # (optional) ceph client log strategy
+    # By default, log file belonging to a particular volume will be deleted
+    # on unmap, but you can choose to just compress instead of deleting it
+    # or even preserve the log file in text format as it is.
+    # Available options `remove` or `compress` or `preserve`
+    # cephLogStrategy: remove
+    cephLogStrategy: ""
+
+    # (optional) Prefix to use for naming RBD images.
+    # If omitted, defaults to "csi-vol-".
+    # volumeNamePrefix: "foo-bar-"
+    volumeNamePrefix: ""
+
+    # (optional) Instruct the plugin it has to encrypt the volume
+    # By default it is disabled. Valid values are "true" or "false".
+    # A string is expected here, i.e. "true", not true.
+    # encrypted: "true"
+    encrypted: ""
+
+    # (optional) Use external key management system for encryption passphrases by
+    # specifying a unique ID matching KMS ConfigMap. The ID is only used for
+    # correlation to configmap entry.
+    encryptionKMSID: ""
+
+    # (optional) mapOptions is a comma-separated list of map options.
+    # For krbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd/#kernel-rbd-krbd-options
+    # For nbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd-nbd/#options
+    # Format:
+    # mapOptions: "<mounter>:op1,op2;<mounter>:op1,op2"
+    # An empty mounter field is treated as krbd type for compatibility.
+    # eg:
+    # mapOptions: "krbd:lock_on_read,queue_depth=1024;nbd:try-netlink"
+    mapOptions: ""
+
+    # (optional) unmapOptions is a comma-separated list of unmap options.
+    # For krbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd/#kernel-rbd-krbd-options
+    # For nbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd-nbd/#options
+    # Format:
+    # unmapOptions: "<mounter>:op1,op2;<mounter>:op1,op2"
+    # An empty mounter field is treated as krbd type for compatibility.
+    # eg:
+    # unmapOptions: "krbd:force;nbd:force"
+    unmapOptions: ""
+
+    # (optional) stripe unit in bytes
+    # If set, stripeCount must also be specified
+    # For defaults, refer to
+    # https://docs.ceph.com/en/latest/man/8/rbd/#striping
+    stripeUnit: ""
+
+    # (optional) number of objects to stripe over before looping
+    # If set, stripeUnit must also be specified
+    # For defaults, refer to
+    # https://docs.ceph.com/en/latest/man/8/rbd/#striping
+    stripeCount: ""
+
+    # (optional) object size in bytes
+    # If set, must be a power of 2
+    objectSize: ""
+
+    provisionerSecret: csi-rbd-secret
+    provisionerSecretNamespace: ceph-csi-rbd
+
+    controllerExpandSecret: csi-rbd-secret
+    controllerExpandSecretNamespace: ceph-csi-rbd
+
+    nodeStageSecret: csi-rbd-secret
+    nodeStageSecretNamespace: ceph-csi-rbd
+
+    fstype: ext4
+    reclaimPolicy: Delete
+    allowVolumeExpansion: true
+    mountOptions:
+    - discard
+
+  selinuxMount: false
+
+  secret:
+    create: false
+    name: csi-rbd-secret
+
+  # This is a sample configmap that helps define a Ceph configuration as required
+  # by the CSI plugins.
+  cephconf: |
+    [global]
+      auth_cluster_required = cephx
+      auth_service_required = cephx
+      auth_client_required = cephx
+      cluster_network = 10.0.13.20/24
+      public_network = 10.0.8.20/22
+      mon_allow_pool_delete = true
+      ms_bind_ipv4 = true
+      ms_bind_ipv6 = false
+      osd_pool_default_min_size = 2
+      osd_pool_default_size = 3

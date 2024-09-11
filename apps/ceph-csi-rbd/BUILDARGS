@@ -1,0 +1,2 @@
+NAMESPACE=ceph-csi-rbd
+CHART=ceph-csi-rbd

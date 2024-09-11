@@ -95,7 +95,7 @@ spec:
       name: config
     spec:
       accessModes: [ReadWriteOnce]
-      storageClassName: proxmox-csi
+      storageClassName: csi-rbd-sc
       resources:
         requests:
           storage: 1Gi
@@ -103,7 +103,7 @@ spec:
       name: server
     spec:
       accessModes: [ReadWriteOnce]
-      storageClassName: proxmox-csi
+      storageClassName: csi-rbd-sc
       resources:
         requests:
           storage: 10Gi
