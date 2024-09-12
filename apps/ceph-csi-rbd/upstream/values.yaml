@@ -130,7 +130,7 @@ ceph-csi-rbd:
 
     # default is false
     # useful for deployments where the podNetwork has no access to ceph
-    enableHostNetwork: true
+    enableHostNetwork: false
 
     httpMetrics:
       enabled: true

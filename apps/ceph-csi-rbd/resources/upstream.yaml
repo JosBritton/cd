@@ -622,7 +622,7 @@ spec:
       securityContext: 
         {}
       serviceAccountName: ceph-csi-rbd-provisioner
-      hostNetwork: true
+      hostNetwork: false
       priorityClassName: system-cluster-critical
       containers:
         - name: csi-rbdplugin
