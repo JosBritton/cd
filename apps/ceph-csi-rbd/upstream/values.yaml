@@ -176,7 +176,7 @@ ceph-csi-rbd:
       enabled: true
       image:
         repository: registry.k8s.io/sig-storage/csi-attacher
-        tag: v4.6.1
+        tag: v4.7.0
         pullPolicy: IfNotPresent
       resources: {}
       ## For further options, check
