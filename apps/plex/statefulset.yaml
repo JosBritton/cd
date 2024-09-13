@@ -51,7 +51,7 @@ spec:
           name: pms
         env:
         - name: ALLOWED_NETWORKS
-          value: 10.0.12.0/24
+          value: 10.0.8.0/22
         - name: HOSTNAME
           value: PlexServer
         - name: PLEX_GID
