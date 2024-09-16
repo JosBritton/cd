@@ -18,7 +18,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -43,7 +43,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -68,7 +68,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -93,81 +93,13 @@ apiVersion: v1
 kind: Secret
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
   name: kubernetes-dashboard-csrf
 data:
-  private.key: "OTFMMGJIZG8xeHBmejlyUzAwdnVmKzNmU2VUL0lSMkNaN2pCNEJHQ0FuNU1LaFkyRE13cnNzZmg1K0FHZTkxRG11OXdZQ0dnTWlpTkxJZUlTVW9sU0RLaFRDR2I0NWwrMnFsY2plMXo4YUlzakM4M1pnSURRQ240SkprSExvaVlkZW9mQTBhQ2xjZE9rRHRBUEJpd3pQcHBRTEs1QzZtTU1rUThIUTgwaFluMDNLeUNZR0x5UUZ2UHRjRU9ZbmVheWdGMWhMUGppb3dma1BFUEF5SkRodGRRQXMvVlpIOW1vU1Fac1NHMWhXZFZaQ3VBK1NpS3Qyb2lFZTlaNkE0MnZNTkdGVXRLYmp6c2VFZ2pLTlEvTnpISGF5M1FQZFJvR3FVdzUrRHozRFppWjJNejkxYVcrTXBNSmM5UkYrc3VHOVRrQWJWOVJ3L3hFNEZMU1NySnNBPT0="
----
-# Source: dashboard/charts/kubernetes-dashboard/templates/config/gateway.yaml
-# Copyright 2017 The Kubernetes Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
-    app.kubernetes.io/instance: kubernetes-dashboard
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/part-of: kubernetes-dashboard
-  name: kong-dbless-config
-data:
-  kong.yml: |
-    _format_version: "3.0"
-    services:
-      - name: auth
-        host: kubernetes-dashboard-auth
-        port: 8000
-        protocol: http
-        routes:
-          - name: authLogin
-            paths:
-              - /api/v1/login
-            strip_path: false
-          - name: authCsrf
-            paths:
-              - /api/v1/csrftoken/login
-            strip_path: false
-          - name: authMe
-            paths:
-              - /api/v1/me
-            strip_path: false
-      - name: api
-        host: kubernetes-dashboard-api
-        port: 8000
-        protocol: http
-        routes:
-          - name: api
-            paths:
-              - /api
-            strip_path: false
-          - name: metrics
-            paths:
-              - /metrics
-            strip_path: false
-      - name: web
-        host: kubernetes-dashboard-web
-        port: 8000
-        protocol: http
-        routes:
-          - name: root
-            paths:
-              - /
-            strip_path: false
+  private.key: "dDVVRm10eUZ4M1BiZzlBK1greklyOU9hcTg2c0JtVE84R3BnYTdFRWpCd2J2Y2Y5UDJxWU9Ba0hNKzF4MU9URDJCVlpyQm5jNWVhOUdxKzNEZWw3ZGpGTDlpSllIUUJIVlNXN2hZYzVLejc1eWdtQ1kxWFdQcmFrdzZHYWJ3TEhNUVhramp6VURjRWExcjkraUYwUXNJaTVZbHVwNU1ZRlUxRndPZUlnbWlISXdEcGZHZEdTVVdpMkxFYmx2Mm1QV2tLMC9GekpLKzZROXRpWHVTeUtNbUJvaC90QTRDWk1UTDliakZjN1Blc1BsUURJd3N4Q1V2RXJZNE5KR1BrV2dHemFnZGFQOWJSR1NvVm9Zak1kcTRkdlhaWXJJR24zNkFXdEQvY1F4ZEVCb29hdld1SHFLTE8wSjdmSE4rMmdUZ005ZTRFQUJ4eGxxRlI2UnlKVXZBPT0="
 ---
 # Source: dashboard/charts/kubernetes-dashboard/templates/config/settings.yaml
 # Copyright 2017 The Kubernetes Authors.
@@ -188,7 +120,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -214,7 +146,7 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -244,7 +176,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -277,7 +209,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -308,7 +240,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -339,7 +271,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -371,7 +303,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -403,7 +335,7 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -439,7 +371,7 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -475,7 +407,7 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -510,7 +442,7 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -546,7 +478,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -566,7 +498,7 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.5.0
+        helm.sh/chart: kubernetes-dashboard-7.6.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
@@ -574,7 +506,7 @@ spec:
         app.kubernetes.io/version: 1.7.0
         app.kubernetes.io/component: api
       annotations:
-        checksum/config: 00697d7b06967475d70cd87db7973e653f0e95704a0171e46be2d093f49a42c6
+        checksum/config: 9fd4930ada8a9f56eee99b0998b4ffa022fe1e54edf32ba381d056078b52c1b9
     spec:
       containers:
         - name: kubernetes-dashboard-api
@@ -594,10 +526,12 @@ spec:
               valueFrom:
                 resourceFieldRef:
                   resource: limits.cpu
+                  divisor: 1m
             - name: GOMEMLIMIT
               valueFrom:
                 resourceFieldRef:
                   resource: limits.memory
+                  divisor: 1Mi
           ports:
           
             - containerPort: 8000
@@ -656,7 +590,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -676,7 +610,7 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.5.0
+        helm.sh/chart: kubernetes-dashboard-7.6.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
@@ -684,7 +618,7 @@ spec:
         app.kubernetes.io/version: 1.1.3
         app.kubernetes.io/component: auth
       annotations:
-        checksum/config: a0e99c117f063a98a35bb2305d822173d152edbe0b6fe7593ffc927d50c7cd5c
+        checksum/config: cd26d55bef86dd00f21ac3b2805d74aedbe780b9aac604f45cba3e21322b97dc
     spec:
       containers:
         - name: kubernetes-dashboard-auth
@@ -702,10 +636,12 @@ spec:
               valueFrom:
                 resourceFieldRef:
                   resource: limits.cpu
+                  divisor: 1m
             - name: GOMEMLIMIT
               valueFrom:
                 resourceFieldRef:
                   resource: limits.memory
+                  divisor: 1Mi
           ports:
           
             - containerPort: 8000
@@ -763,7 +699,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -783,7 +719,7 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.5.0
+        helm.sh/chart: kubernetes-dashboard-7.6.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
@@ -802,10 +738,12 @@ spec:
               valueFrom:
                 resourceFieldRef:
                   resource: limits.cpu
+                  divisor: 1m
             - name: GOMEMLIMIT
               valueFrom:
                 resourceFieldRef:
                   resource: limits.memory
+                  divisor: 1Mi
           ports:
           
             - containerPort: 8000
@@ -872,7 +810,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.5.0
+    helm.sh/chart: kubernetes-dashboard-7.6.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -892,7 +830,7 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.5.0
+        helm.sh/chart: kubernetes-dashboard-7.6.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
@@ -914,10 +852,12 @@ spec:
               valueFrom:
                 resourceFieldRef:
                   resource: limits.cpu
+                  divisor: 1m
             - name: GOMEMLIMIT
               valueFrom:
                 resourceFieldRef:
                   resource: limits.memory
+                  divisor: 1Mi
           ports:
           
             - containerPort: 8000
@@ -957,6 +897,21 @@ spec:
           name: tmp-volume
 
       serviceAccountName: kubernetes-dashboard-web
+---
+# Source: dashboard/charts/kubernetes-dashboard/templates/config/gateway.yaml
+# Copyright 2017 The Kubernetes Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 ---
 # Source: dashboard/charts/kubernetes-dashboard/templates/extras/manifests.yaml
 # Copyright 2017 The Kubernetes Authors.
