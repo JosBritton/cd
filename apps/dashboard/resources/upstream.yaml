@@ -99,7 +99,7 @@ metadata:
     app.kubernetes.io/part-of: kubernetes-dashboard
   name: kubernetes-dashboard-csrf
 data:
-  private.key: "dDVVRm10eUZ4M1BiZzlBK1greklyOU9hcTg2c0JtVE84R3BnYTdFRWpCd2J2Y2Y5UDJxWU9Ba0hNKzF4MU9URDJCVlpyQm5jNWVhOUdxKzNEZWw3ZGpGTDlpSllIUUJIVlNXN2hZYzVLejc1eWdtQ1kxWFdQcmFrdzZHYWJ3TEhNUVhramp6VURjRWExcjkraUYwUXNJaTVZbHVwNU1ZRlUxRndPZUlnbWlISXdEcGZHZEdTVVdpMkxFYmx2Mm1QV2tLMC9GekpLKzZROXRpWHVTeUtNbUJvaC90QTRDWk1UTDliakZjN1Blc1BsUURJd3N4Q1V2RXJZNE5KR1BrV2dHemFnZGFQOWJSR1NvVm9Zak1kcTRkdlhaWXJJR24zNkFXdEQvY1F4ZEVCb29hdld1SHFLTE8wSjdmSE4rMmdUZ005ZTRFQUJ4eGxxRlI2UnlKVXZBPT0="
+  private.key: "V0ZReHNQMVkxcjdtQ3RXOHhTUzBNbkpTTm5BY3dFRk9WejJ2eDFyRlZuWDBGMUNKd1pYbXp0WTg0Syt3MzlPWE5BTXdZZUk4NTBnVktvY2dTVWxBeFZFMHdpcEw5REw4RThzWUE5aHNVRHpBdWM4eXBtQ2svTVFVY2ljaTM1bE55UEtKNG5nUFN6MlZkVlBWM2hEZnQwSVlPVHpyNUhFWHhRVFRISzdiRTFMU3ZYaFhEOFdoU0l2TFJrQzVNRUdKQkpMNFZTTW9SdCtYUWlFbVpVWDExL3hpVTFSTzU3VE0vMXRPbjVEOElWM3hZV2FBUi9XZWpxSEp3a0tLWGxKemdnRDdhREloejdXbysvMlRRWEQyU1U4VHM4cExVaGJ3SzlCSHFyL2pCeEdpdS9XVVZ0a0R3S2ZWUlBhWUx0TzMwZWZDTTFPMGJQclZTSGxQWXBCQXhBPT0="
 ---
 # Source: dashboard/charts/kubernetes-dashboard/templates/config/settings.yaml
 # Copyright 2017 The Kubernetes Authors.
@@ -340,7 +340,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.7.0
+    app.kubernetes.io/version: 1.8.1
     app.kubernetes.io/component: api
   name: kubernetes-dashboard-api
 spec:
@@ -483,7 +483,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.7.0
+    app.kubernetes.io/version: 1.8.1
     app.kubernetes.io/component: api
   annotations:
   name: kubernetes-dashboard-api
@@ -503,14 +503,14 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-api
-        app.kubernetes.io/version: 1.7.0
+        app.kubernetes.io/version: 1.8.1
         app.kubernetes.io/component: api
       annotations:
-        checksum/config: 9fd4930ada8a9f56eee99b0998b4ffa022fe1e54edf32ba381d056078b52c1b9
+        checksum/config: e1886592e0f1d1288303770fe8c08b1ee8d6726621421cab78bbc4d015415b81
     spec:
       containers:
         - name: kubernetes-dashboard-api
-          image: "docker.io/kubernetesui/dashboard-api:1.7.0"
+          image: "docker.io/kubernetesui/dashboard-api:1.8.1"
           imagePullPolicy: IfNotPresent
           args:
             - --namespace=kubernetes-dashboard
@@ -595,7 +595,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-auth
-    app.kubernetes.io/version: 1.7.0
+    app.kubernetes.io/version: 1.8.1
     app.kubernetes.io/component: auth
   annotations:
   name: kubernetes-dashboard-auth
@@ -618,7 +618,7 @@ spec:
         app.kubernetes.io/version: 1.1.3
         app.kubernetes.io/component: auth
       annotations:
-        checksum/config: cd26d55bef86dd00f21ac3b2805d74aedbe780b9aac604f45cba3e21322b97dc
+        checksum/config: 0317fa2bd932b15ffc0c3e0c807d6f12cd1b373850104359cbae8b3f100f80c3
     spec:
       containers:
         - name: kubernetes-dashboard-auth
