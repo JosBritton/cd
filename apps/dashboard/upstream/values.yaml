@@ -158,7 +158,7 @@ kubernetes-dashboard:
     role: api
     image:
       repository: docker.io/kubernetesui/dashboard-api
-      tag: 1.7.0
+      tag: 1.8.1
     scaling:
       replicas: 3
       revisionHistoryLimit: 10
