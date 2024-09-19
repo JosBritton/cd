@@ -43,6 +43,8 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: bazarr
+        - mountPath: /mnt/media
+          name: media
         livenessProbe:
           httpGet:
             port: 6767

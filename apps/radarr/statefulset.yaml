@@ -43,7 +43,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: radarr
-        - mountPath: /media
+        - mountPath: /mnt/media
           name: media
         livenessProbe:
           httpGet:
