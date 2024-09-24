@@ -32,18 +32,27 @@ data:
     - name: default
       pluginConfig:
       - args:
+          evictFailedBarePods: true
           evictLocalStoragePods: true
-          ignorePvcPods: true
+          evictSystemCriticalPods: true
+          nodeFit: true
         name: DefaultEvictor
+      - name: RemovePodsViolatingInterPodAntiAffinity
+      - args:
+          nodeAffinityType:
+          - requiredDuringSchedulingIgnoredDuringExecution
+        name: RemovePodsViolatingNodeAffinity
+      - name: RemovePodsViolatingNodeTaints
+      - args:
+          constraints:
+          - DoNotSchedule
+          - ScheduleAnyway
+        name: RemovePodsViolatingTopologySpreadConstraint
       - name: RemoveDuplicates
       - args:
           includingInitContainers: true
           podRestartThreshold: 100
         name: RemovePodsHavingTooManyRestarts
-      - args:
-          nodeAffinityType:
-          - requiredDuringSchedulingIgnoredDuringExecution
-        name: RemovePodsViolatingNodeAffinity
       - name: RemovePodsViolatingNodeTaints
       - name: RemovePodsViolatingInterPodAntiAffinity
       - name: RemovePodsViolatingTopologySpreadConstraint
@@ -142,7 +151,7 @@ spec:
         metadata:
           name: descheduler
           annotations:
-            checksum/config: 61a33c07a263b5510d238f732634f62b0c9e8d6ac569c7e5c07ef67a3b8a465d
+            checksum/config: d8d0a1a6a386a68d3377032c748bd2f343a7be4fb6d4896ed99f903768187718
           labels:
             app.kubernetes.io/name: descheduler
             app.kubernetes.io/instance: descheduler
