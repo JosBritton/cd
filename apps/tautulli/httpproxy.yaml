@@ -1,0 +1,14 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: tautulli-ingress
+  namespace: tautulli
+spec:
+  virtualhost:
+    fqdn: tautulli.swifthomelab.net
+    tls:
+      secretName: cert-manager/tautulli-swifthomelab-net
+  routes:
+  - services:
+    - name: tautulli
+      port: 80

@@ -1,0 +1,10 @@
+apiVersion: projectcontour.io/v1
+kind: TLSCertificateDelegation
+metadata:
+  name: tautulli-swifthomelab-net
+  namespace: cert-manager
+spec:
+  delegations:
+  - secretName: tautulli-swifthomelab-net
+    targetNamespaces:
+    - tautulli
