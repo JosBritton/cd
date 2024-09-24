@@ -2,9 +2,9 @@ kube-prometheus-stack:
   kubeEtcd:
     enabled: true
     endpoints:
-    - 10.0.12.21
-    - 10.0.12.22
-    - 10.0.12.23
+    - 10.0.8.40
+    - 10.0.8.41
+    - 10.0.8.42
     service:
       enabled: true
       port: 2381
