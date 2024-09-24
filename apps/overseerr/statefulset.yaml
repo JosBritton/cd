@@ -1,0 +1,116 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: overseerr
+  namespace: overseerr
+  labels:
+    app: overseerr
+    app.kubernetes.io/name: overseerr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: overseerr
+  serviceName: overseerr
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  template:
+    metadata:
+      labels:
+        app: overseerr
+        app.kubernetes.io/name: overseerr
+    spec:
+      enableServiceLinks: false
+      serviceAccountName: default
+      automountServiceAccountToken: true
+      securityContext:
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 568
+        runAsNonRoot: true
+        runAsUser: 568
+        seccompProfile:
+          type: RuntimeDefault
+        sysctls:
+        - name: net.ipv4.ip_unprivileged_port_start
+          value: "80"
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false
+      dnsPolicy: ClusterFirst
+      volumes:
+      - emptyDir: {}
+        name: logs
+      - emptyDir: {}
+        name: tmp
+      containers:
+      - env:
+        - name: LOG_LEVEL
+          value: info
+        - name: PORT
+          value: "80"
+        - name: TZ
+          value: America/Los_Angeles
+        image: ghcr.io/sct/overseerr:1.33.2@sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/v1/status
+            port: 80
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+        name: app
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/v1/status
+            port: 80
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+        resources:
+          limits:
+            memory: 2Gi
+          requests:
+            cpu: 10m
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /app/config/cache
+          name: cache
+        - mountPath: /app/config
+          name: config
+        - mountPath: /app/config/logs
+          name: logs
+        - mountPath: /tmp
+          name: tmp
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+      labels:
+        app.kubernetes.io/part-of: overseerr
+      namespace: overseerr
+    spec:
+      storageClassName: csi-rbd-sc
+      accessModes: [ReadWriteOncePod]
+      resources:
+        requests:
+          storage: 5Gi
+  - metadata:
+      name: cache
+      labels:
+        app.kubernetes.io/part-of: overseerr
+      namespace: overseerr
+    spec:
+      storageClassName: csi-rbd-sc
+      accessModes: [ReadWriteOncePod]
+      resources:
+        requests:
+          storage: 15Gi

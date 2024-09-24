@@ -1,0 +1,27 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: overseerr-overseerr-ingress
+  namespace: overseerr
+spec:
+  virtualhost:
+    fqdn: overseerr.swifthomelab.net
+    tls:
+      secretName: cert-manager/overseerr-swifthomelab-net
+  includes:
+  - name: main
+    namespace: overseerr
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: overseerr-request-ingress
+  namespace: overseerr
+spec:
+  virtualhost:
+    fqdn: request.swifthomelab.net
+    tls:
+      secretName: cert-manager/overseerr-swifthomelab-net
+  includes:
+  - name: main
+    namespace: overseerr
