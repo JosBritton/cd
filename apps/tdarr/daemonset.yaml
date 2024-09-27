@@ -37,7 +37,7 @@ spec:
         - containerPort: 8266
           protocol: TCP
         volumeMounts:
-        - mountPath: /media
+        - mountPath: /mnt/media
           name: media
       volumes:
       - name: media
