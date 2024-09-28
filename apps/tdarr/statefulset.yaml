@@ -83,6 +83,13 @@ spec:
           name: logs
         - mountPath: /mnt/media
           name: media
+        resources:
+          requests:
+            cpu: 20m
+            memory: 450Mi
+          limits:
+            cpu: 150m
+            memory: 700Mi
       volumes:
       - name: media
         nfs:

@@ -78,8 +78,8 @@ spec:
             cpu: 10m
             memory: 50Mi
           limits:
-            cpu: 1500m
-            memory: 2Gi
+            cpu: 500m
+            memory: 700Mi
         env:
         - name: UMASK
           value: "0022"

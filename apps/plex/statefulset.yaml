@@ -62,10 +62,11 @@ spec:
           value: Etc/UTC
         resources:
           requests:
-            cpu: "1.0"
-            memory: 3Gi
+            cpu: 4000m
+            memory: 1500Mi
           limits:
-            memory: 4Gi
+            cpu: 8500m
+            memory: 5Gi
         volumeMounts:
         - name: pms-config
           mountPath: /config

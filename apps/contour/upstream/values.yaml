@@ -5,10 +5,26 @@ contour:
       nodePorts:
         http: 30080
         https: 30443
-    resourcesPreset: medium
+    resources:
+      requests:
+        cpu: 10m
+        ephemeral-storage: 50Mi
+        memory: 200Mi
+      limits:
+        cpu: 200m
+        ephemeral-storage: 2Gi
+        memory: 800Mi
     shutdownManager:
-      resourcesPreset: medium
+      resourcesPreset: nano
   contour:
-    resourcesPreset: medium
+    resources:
+      requests:
+        cpu: 10m
+        ephemeral-storage: 50Mi
+        memory: 90Mi
+      limits:
+        cpu: 80m
+        ephemeral-storage: 2Gi
+        memory: 180Mi
   defaultBackend:
-    resourcesPreset: medium
+    enabled: false

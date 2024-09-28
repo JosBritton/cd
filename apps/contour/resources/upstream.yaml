@@ -9194,13 +9194,13 @@ spec:
           name: shutdown-manager
           resources:
             limits:
-              cpu: 750m
+              cpu: 150m
               ephemeral-storage: 2Gi
-              memory: 1536Mi
+              memory: 192Mi
             requests:
-              cpu: 500m
+              cpu: 100m
               ephemeral-storage: 50Mi
-              memory: 1024Mi
+              memory: 128Mi
           livenessProbe:
             tcpSocket:
               port: http-shutdown
@@ -9289,13 +9289,13 @@ spec:
             failureThreshold: 6
           resources:
             limits:
-              cpu: 750m
+              cpu: 200m
               ephemeral-storage: 2Gi
-              memory: 1536Mi
+              memory: 800Mi
             requests:
-              cpu: 500m
+              cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 1024Mi
+              memory: 200Mi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
@@ -9327,15 +9327,15 @@ spec:
           image: docker.io/bitnami/contour:1.30.0-debian-12-r5
           imagePullPolicy: IfNotPresent
           name: envoy-initconfig
-          resources:
+          resources: 
             limits:
-              cpu: 750m
+              cpu: 200m
               ephemeral-storage: 2Gi
-              memory: 1536Mi
+              memory: 800Mi
             requests:
-              cpu: 500m
+              cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 1024Mi
+              memory: 200Mi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
@@ -9469,15 +9469,15 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-          resources:
+          resources: 
             limits:
-              cpu: 750m
+              cpu: 80m
               ephemeral-storage: 2Gi
-              memory: 1536Mi
+              memory: 180Mi
             requests:
-              cpu: 500m
+              cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 1024Mi
+              memory: 90Mi
           volumeMounts:
             - name: contourcert
               mountPath: /certs
@@ -9685,15 +9685,15 @@ spec:
             seLinuxOptions: {}
             seccompProfile:
               type: RuntimeDefault
-          resources:
+          resources: 
             limits:
-              cpu: 750m
+              cpu: 80m
               ephemeral-storage: 2Gi
-              memory: 1536Mi
+              memory: 180Mi
             requests:
-              cpu: 500m
+              cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 1024Mi
+              memory: 90Mi
           livenessProbe:
             exec:
               command:

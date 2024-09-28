@@ -39,6 +39,13 @@ spec:
         volumeMounts:
         - mountPath: /mnt/media
           name: media
+        resources:
+          requests:
+            cpu: 2m
+            memory: 450Mi
+          limits:
+            cpu: 800m
+            memory: 800Mi
       volumes:
       - name: media
         nfs:
