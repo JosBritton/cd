@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webdav-swifthomelab-net
+  namespace: cert-manager
+spec:
+  secretName: webdav-swifthomelab-net
+  issuerRef:
+    name: swifthomelab-net-issuer
+    kind: ClusterIssuer
+  commonName: webdav.swifthomelab.net
+  dnsNames:
+  - webdav.swifthomelab.net

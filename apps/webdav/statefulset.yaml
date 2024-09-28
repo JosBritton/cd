@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: webdav
+  namespace: webdav
+  labels:
+    app.kubernetes.io/name: webdav
+    app.kubernetes.io/instance: webdav
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: webdav
+      app.kubernetes.io/instance: webdav
+  serviceName: webdav
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: webdav
+        app.kubernetes.io/instance: webdav
+    spec:
+      enableServiceLinks: false
+      serviceAccountName: default
+      automountServiceAccountToken: true
+      securityContext:
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 65534
+        runAsNonRoot: true
+        runAsUser: 65534
+        seccompProfile:
+          type: RuntimeDefault
+        sysctls:
+        - name: net.ipv4.ip_unprivileged_port_start
+          value: "80"
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false
+      dnsPolicy: ClusterFirst
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: logs
+        emptyDir: {}
+      - name: var
+        emptyDir: {}
+      - name: httpd-conf
+        configMap:
+          name: httpd-conf
+      - name: user-passwd
+        secret:
+          secretName: user-passwd
+      containers:
+      - name: webdav
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        image: httpd:2.4.62-bookworm@sha256:7204bce27072f97f244337ebe93c1dfc93d358d103beefc4107ee359d74d9148
+        command: [sh, -c]
+        args:
+        - mkdir -p /usr/local/apache2/var/DavLock;
+          touch /usr/local/apache2/var/DavLock/db;
+          httpd-foreground
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /status
+            port: 80
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /status
+            port: 80
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: httpd-conf
+          mountPath: /usr/local/apache2/conf/httpd.conf
+          subPath: httpd.conf
+        - name: var
+          mountPath: /usr/local/apache2/var
+        - name: user-passwd
+          mountPath: /usr/local/apache2/passwd
+        - name: dav
+          mountPath: /srv/dav
+        - name: tmp
+          mountPath: /tmp
+        - name: logs
+          mountPath: /usr/local/apache2/logs
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        env:
+        # UID/GID: as name or number (prefixed with "#")
+        - name: APACHE_RUN_USER
+          value: nobody
+        - name: APACHE_RUN_GROUP
+          value: nogroup  # nogroup (debian), nobody (everything else)
+        - name: APACHE_PRIVATE_SUBNET
+          value: 10.233.0.0/17
+        - name: LANG
+          value: C  # locale used by modules like mod_dav
+        resources:
+          requests:
+            ephemeral-storage: 50Mi
+          limits:
+            ephemeral-storage: 2Gi
+  volumeClaimTemplates:
+  - metadata:
+      name: dav
+      labels:
+        app.kubernetes.io/part-of: webdav
+      namespace: webdav
+    spec:
+      storageClassName: csi-rbd-sc
+      accessModes: [ReadWriteOncePod]
+      resources:
+        requests:
+          storage: 5Gi

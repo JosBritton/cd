@@ -1,0 +1,151 @@
+apiVersion: v1
+data:
+  httpd.conf: |
+    ServerRoot "/usr/local/apache2"
+
+    Listen 80
+
+    LoadModule mpm_event_module modules/mod_mpm_event.so
+    LoadModule env_module modules/mod_env.so
+    LoadModule alias_module modules/mod_alias.so
+    LoadModule auth_digest_module modules/mod_auth_digest.so
+    LoadModule authn_core_module modules/mod_authn_core.so
+    LoadModule authn_file_module modules/mod_authn_file.so
+    LoadModule authn_dbm_module modules/mod_authn_dbm.so
+    LoadModule authz_core_module modules/mod_authz_core.so
+    LoadModule authz_host_module modules/mod_authz_host.so
+    LoadModule authz_groupfile_module modules/mod_authz_groupfile.so
+    LoadModule authz_user_module modules/mod_authz_user.so
+    LoadModule authz_dbm_module modules/mod_authz_dbm.so
+    LoadModule access_compat_module modules/mod_access_compat.so
+    LoadModule auth_basic_module modules/mod_auth_basic.so
+    LoadModule dav_module modules/mod_dav.so
+    LoadModule dav_fs_module modules/mod_dav_fs.so
+    LoadModule dav_lock_module modules/mod_dav_lock.so
+    LoadModule setenvif_module modules/mod_setenvif.so
+    LoadModule unixd_module modules/mod_unixd.so
+    LoadModule dir_module modules/mod_dir.so
+    LoadModule mime_module modules/mod_mime.so
+    LoadModule log_config_module modules/mod_log_config.so
+    LoadModule headers_module modules/mod_headers.so
+    LoadModule autoindex_module modules/mod_autoindex.so
+    LoadModule status_module modules/mod_status.so
+    LoadModule reqtimeout_module modules/mod_reqtimeout.so
+    LoadModule include_module modules/mod_include.so
+    LoadModule filter_module modules/mod_filter.so
+    LoadModule slotmem_shm_module modules/mod_slotmem_shm.so
+    LoadModule negotiation_module modules/mod_negotiation.so
+    LoadModule userdir_module modules/mod_userdir.so
+
+    User ${APACHE_RUN_USER}
+    Group ${APACHE_RUN_GROUP}
+
+    ServerAdmin you@example.com
+
+    #ServerName www.example.com:80
+
+    DocumentRoot "/srv/dav"
+    <Directory "/srv/dav">
+        Require all denied
+    </Directory>
+
+    # Deny access to the entirety of your server's filesystem. You must
+    # explicitly permit access to web content directories in other
+    # <Directory> blocks below.
+    <Directory />
+        AllowOverride none
+        Require all denied
+    </Directory>
+
+    # prevent .htaccess and .htpasswd files from being viewed by Web clients
+    <Files ".ht*">
+        Require all denied
+    </Files>
+
+    ErrorLog /proc/self/fd/2
+    LogLevel warn
+
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    CustomLog /proc/self/fd/1 common
+
+    TypesConfig conf/mime.types
+
+    DavLockDB "/usr/local/apache2/var/DavLock/db"
+
+    Alias /zotero "/srv/dav"
+
+    <Directory "/srv/dav">
+        Dav On
+        AllowOverride None
+        Options Indexes FollowSymLinks
+        AuthType Digest
+        AuthName DAV-upload
+        AuthUserFile "/usr/local/apache2/passwd/user.passwd"
+        AuthDigestProvider file
+        Require valid-user
+    </Directory>
+
+    BrowserMatch "Microsoft Data Access Internet Publishing Provider" redirect-carefully
+    BrowserMatch "MS FrontPage" redirect-carefully
+    BrowserMatch "^WebDrive" redirect-carefully
+    BrowserMatch "^WebDAVFS/1\.[012]" redirect-carefully
+    BrowserMatch "^gnome-vfs/1\.0" redirect-carefully
+    BrowserMatch "^gvfs/1" redirect-carefully
+    BrowserMatch "^XML Spy" redirect-carefully
+    BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
+    BrowserMatch " Konqueror/4" redirect-carefully
+
+    BrowserMatch "Mozilla/2" nokeepalive
+    BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
+    BrowserMatch "RealPlayer 4\.0" force-response-1.0
+    BrowserMatch "Java/1\.0" force-response-1.0
+    BrowserMatch "JDK/1\.0" force-response-1.0
+
+    Include conf/extra/httpd-autoindex.conf
+
+    # avoid passing HTTP_PROXY env
+    RequestHeader unset Proxy early
+
+    # allow certain DAV methods behind SSL reverse proxy
+    RequestHeader edit Destination ^https http early
+
+    # limit server info
+    ServerTokens Minimal
+    ServerSignature Off
+    TraceEnable Off
+
+    # prevent MSIE from interpreting files as something else than declared by
+    # the content type in the HTTP headers.
+    Header set X-Content-Type-Options: "nosniff"
+
+    # prevent other sites from embedding pages from this site as frames. This
+    # defends against clickjacking attacks
+    Header set Content-Security-Policy "frame-ancestors 'self';"
+
+    # do not serve version control dirs
+    RedirectMatch 404 /\.git
+
+    Redirect gone /favicon.ico
+    RedirectMatch gone ^/apple-touch-icon
+
+    # status page for probes
+    <Location /status>
+      SetHandler server-status
+      Require local
+      Require ip ${APACHE_PRIVATE_SUBNET}
+    </Location>
+    ExtendedStatus Off
+
+    Timeout 60
+    KeepAlive On
+    MaxKeepAliveRequests 100
+    KeepAliveTimeout 5
+
+    HostnameLookups Off
+kind: ConfigMap
+metadata:
+  name: httpd-conf
+  namespace: webdav
+  labels:
+    app.kubernetes.io/name: webdav
+    app.kubernetes.io/instance: webdav

@@ -1,0 +1,17 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: webdav-ingress
+  namespace: webdav
+  labels:
+    app.kubernetes.io/name: webdav
+    app.kubernetes.io/instance: webdav
+spec:
+  virtualhost:
+    fqdn: webdav.swifthomelab.net
+    tls:
+      secretName: cert-manager/webdav-swifthomelab-net
+  routes:
+  - services:
+    - name: webdav
+      port: 80
