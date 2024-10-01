@@ -6,6 +6,8 @@ metadata:
   labels:
     app.kubernetes.io/name: webdav
     app.kubernetes.io/instance: webdav
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   revisionHistoryLimit: 3

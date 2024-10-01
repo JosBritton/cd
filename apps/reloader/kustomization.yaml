@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: reloader
+resources:
+- https://github.com/stakater/Reloader/deployments/kubernetes?ref=db0eaaabdc12edd1be4af12195e602a99be25c74
+patches:
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/resources
+      value:
+        limits:
+          cpu: 150m
+          memory: 512Mi
+        requests:
+          cpu: 10m
+          memory: 128Mi
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: ghcr.io/stakater/reloader:v1.1.0@sha256:a6d34801a2b7d38f38a93c72cf8a6a16ceedd510df6c4d25b269bf52b789450a
