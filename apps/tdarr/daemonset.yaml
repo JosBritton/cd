@@ -44,8 +44,8 @@ spec:
             cpu: 2m
             memory: 450Mi
           limits:
-            cpu: 800m
-            memory: 800Mi
+            cpu: 2.0
+            memory: 4Gi
       volumes:
       - name: media
         nfs:
