@@ -12,7 +12,7 @@
     "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
     "rebaseWhen": "behind-base-branch",
     "kustomize": {
-        "fileMatch": ["(^|/)kustomization\\.ya?ml(?:\\.j2)?$"]
+        "enabled": false
     },
     "kubernetes": {
         "fileMatch": ["(^|/).+\\.ya?ml(?:\\.j2)?$"]
@@ -156,14 +156,12 @@
     "customManagers": [
         {
             "customType": "regex",
-            "description": ["Process custom dependencies"],
-            "fileMatch": ["(^|/).+\\.ya?ml(?:\\.j2)?$"],
+            "description": ["Process kustomize resouces"],
+            "fileMatch": ["(^|/)kustomization\\.ya?ml$"],
             "matchStrings": [
-                // # renovate: datasource=helm depName=cilium repository=https://helm.cilium.io
-                // version: 1.15.1
-                "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)"
+                "- github\\.com\\/(?<depName>[^/]+?\\/[^/]*?)(\\/.*)*\\?ref=(?<currentDigest>[a-f0-9]{40}) # tag=(?<currentValue>.*)"
             ],
-            "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+            "datasourceTemplate": "github-tags"
         }
     ]
 }
