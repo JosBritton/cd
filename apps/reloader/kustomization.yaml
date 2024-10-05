@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: reloader
 resources:
-- github.com/stakater/Reloader/deployments/kubernetes?ref=db0eaaabdc12edd1be4af12195e602a99be25c74 # tag=v1.1.0
+- github.com/stakater/Reloader/deployments/kubernetes?ref=v1.1.0 # tag=v1.1.0
 patches:
 - target:
     group: apps
