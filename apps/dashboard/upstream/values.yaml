@@ -2,6 +2,17 @@ kubernetes-dashboard:
   app:
     mode: dashboard
     security:
+      # 256-byte dummy csrf key for template idempotency, is ignored with kustomize
+      # validate resource is ignored using:
+      #    `kustomize build apps/dashboard/upstream | grep -C 6 kubernetes-dashboard-csrf`
+      # (should output no "Secret" kind resource)
+
+      # yamllint disable-line rule:quoted-strings
+      csrfKey: "0000000000000000000000000000000000000000000000000000000000000000000000000\
+        000000000000000000000000000000000000000000000000000000000000000000000000000000000\
+        000000000000000000000000000000000000000000000000000000000000000000000000000000000\
+        000000000000000000000000000000000000000000000000000000000000000000000000000000000\
+        00000000000000000000000000=="
       securityContext:
         runAsNonRoot: true
         seccompProfile:
