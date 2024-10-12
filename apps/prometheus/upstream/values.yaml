@@ -8,7 +8,7 @@ kube-prometheus-stack:
     serviceMonitor:
       https: true
       insecureSkipVerify: true
-      #serverName: null
+      # serverName: null
   kubeControllerManager:
     enabled: true
     service:
@@ -18,7 +18,7 @@ kube-prometheus-stack:
     serviceMonitor:
       https: true
       insecureSkipVerify: true
-      #serverName: null
+      # serverName: null
   kubeEtcd:
     enabled: true
     endpoints:

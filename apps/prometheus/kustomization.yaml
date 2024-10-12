@@ -61,7 +61,7 @@ patches:
     - op: replace
       path: /metadata/annotations/grafana_folder
       value: Cluster
-  # delete trivy dashboard
+# delete trivy dashboard
 - path: overlays/dashboards-k8s-addons-trivy-operator-cm.yaml
-  # delete macos node exporter dashboard
+# delete macos node exporter dashboard
 - path: overlays/prometheus-operator-kube-p-nodes-darwin-cm.yaml
