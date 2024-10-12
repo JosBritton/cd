@@ -1,5 +1,6 @@
 .SILENT:
 .DEFAULT_GOAL := build
+MAKEFLAGS += --jobs=$(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 1)
 
 CHARTS := $(shell find apps/ -regex ".*/upstream/Chart.ya?ml")
 
@@ -34,7 +35,7 @@ build: $(RENDERS)
 
 .PHONY: renderclean
 renderclean:
-	find apps/ -regex ".*/resources/upstream.ya?ml" -delete
+	@:
 
 .PHONY: clean
 clean:
@@ -118,3 +119,7 @@ prepush: lint validate
 
 .gitignore:
 	touch .gitignore
+
+ifneq ($(filter renderclean,$(MAKECMDGOALS)),)
+    $(shell find apps/ -regex ".*/resources/upstream.ya?ml" -delete)
+endif
