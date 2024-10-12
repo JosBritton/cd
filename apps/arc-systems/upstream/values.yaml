@@ -1,0 +1,24 @@
+gha-runner-scale-set-controller:
+  replicaCount: 1
+  image:
+    repository: ghcr.io/actions/gha-runner-scale-set-controller
+    tag: 0.9.3
+  fullnameOverride: gha-runner-scale-set-controller
+  serviceAccount:
+    create: true
+    name: gha-runner-scale-set-controller
+  resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+  flags:
+    logLevel: debug
+    logFormat: text
+    watchSingleNamespace: arc-runners
+    updateStrategy: immediate
+    ## See https://github.com/actions/actions-runner-controller/issues/3533 for more information.
+    excludeLabelPropagationPrefixes:
+    - argocd.argoproj.io/instance

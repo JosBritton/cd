@@ -1,0 +1,209 @@
+---
+# Source: arc-runner-set/charts/gha-runner-scale-set/templates/no_permission_serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gha-runner-scale-set-gha-rs-no-permission
+  namespace: arc-runners
+  labels:
+    helm.sh/chart: gha-rs-0.9.3
+    app.kubernetes.io/name: gha-runner-scale-set
+    app.kubernetes.io/instance: gha-runner-scale-set
+    app.kubernetes.io/version: "0.9.3"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: gha-rs
+    actions.github.com/scale-set-name: gha-runner-scale-set
+    actions.github.com/scale-set-namespace: arc-runners
+  finalizers:
+    - actions.github.com/cleanup-protection
+---
+# Source: arc-runner-set/charts/gha-runner-scale-set/templates/manager_role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: gha-runner-scale-set-gha-rs-manager
+  namespace: arc-runners
+  labels:
+    helm.sh/chart: gha-rs-0.9.3
+    app.kubernetes.io/name: gha-runner-scale-set
+    app.kubernetes.io/instance: gha-runner-scale-set
+    app.kubernetes.io/version: "0.9.3"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: gha-rs
+    actions.github.com/scale-set-name: gha-runner-scale-set
+    actions.github.com/scale-set-namespace: arc-runners
+    app.kubernetes.io/component: manager-role
+  finalizers:
+    - actions.github.com/cleanup-protection
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - create
+  - delete
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - pods/status
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - rolebindings
+  verbs:
+  - create
+  - delete
+  - get
+  - patch
+  - update
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - roles
+  verbs:
+  - create
+  - delete
+  - get
+  - patch
+  - update
+---
+# Source: arc-runner-set/charts/gha-runner-scale-set/templates/manager_role_binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: gha-runner-scale-set-gha-rs-manager
+  namespace: arc-runners
+  labels:
+    helm.sh/chart: gha-rs-0.9.3
+    app.kubernetes.io/name: gha-runner-scale-set
+    app.kubernetes.io/instance: gha-runner-scale-set
+    app.kubernetes.io/version: "0.9.3"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: gha-rs
+    actions.github.com/scale-set-name: gha-runner-scale-set
+    actions.github.com/scale-set-namespace: arc-runners
+    app.kubernetes.io/component: manager-role-binding
+  finalizers:
+    - actions.github.com/cleanup-protection
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: gha-runner-scale-set-gha-rs-manager
+subjects:
+- kind: ServiceAccount
+  name: 
+    gha-runner-scale-set-controller
+  namespace: 
+    arc-systems
+---
+# Source: arc-runner-set/charts/gha-runner-scale-set/templates/autoscalingrunnerset.yaml
+apiVersion: actions.github.com/v1alpha1
+kind: AutoscalingRunnerSet
+metadata:
+  name: gha-runner-scale-set
+  namespace: arc-runners
+  labels:
+    app.kubernetes.io/component: "autoscaling-runner-set"
+    helm.sh/chart: gha-rs-0.9.3
+    app.kubernetes.io/name: gha-runner-scale-set
+    app.kubernetes.io/instance: gha-runner-scale-set
+    app.kubernetes.io/version: "0.9.3"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: gha-rs
+    actions.github.com/scale-set-name: gha-runner-scale-set
+    actions.github.com/scale-set-namespace: arc-runners
+  annotations:
+    actions.github.com/values-hash: fc1d0f5d3487e7efcf65e64c1b3514aa7168ac39c52e83d62fa4cd77535a8a9
+    actions.github.com/cleanup-manager-role-binding: gha-runner-scale-set-gha-rs-manager
+    actions.github.com/cleanup-manager-role-name: gha-runner-scale-set-gha-rs-manager
+    actions.github.com/cleanup-no-permission-service-account-name: gha-runner-scale-set-gha-rs-no-permission
+spec:
+  githubConfigUrl: https://github.com/JosBritton/cd
+  githubConfigSecret: arc-secret
+  runnerScaleSetName: gha-runner-scale-set
+  maxRunners: 5
+  minRunners: 1
+
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: gha-runner-scale-set-gha-rs-no-permission
+      initContainers:
+      - name: init-dind-externals
+        
+        image: ghcr.io/actions/actions-runner:2.320.0@sha256:8de989a63c2dad8aeb7c44b70f86189d148f887cbd917ecbe83879df54bf6590
+        command: ["cp"]
+        args: ["-r", "-v", "/home/runner/externals/.", "/home/runner/tmpDir/"]
+        volumeMounts:
+          - name: dind-externals
+            mountPath: /home/runner/tmpDir
+      containers:
+      - name: runner
+        
+        command: 
+          - /home/runner/run.sh
+        image: 
+          ghcr.io/actions/actions-runner:2.320.0@sha256:8de989a63c2dad8aeb7c44b70f86189d148f887cbd917ecbe83879df54bf6590
+        env:
+          - name: DOCKER_HOST
+            value: unix:///var/run/docker.sock
+          - name: RUNNER_WAIT_FOR_DOCKER_IN_SECONDS
+            value: "120"
+        volumeMounts:
+          - name: work
+            mountPath: /home/runner/_work
+          - name: dind-sock
+            mountPath: /var/run
+      - name: dind
+        image: docker:dind
+        args:
+          - dockerd
+          - --host=unix:///var/run/docker.sock
+          - --group=$(DOCKER_GROUP_GID)
+        env:
+          - name: DOCKER_GROUP_GID
+            value: "123"
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - name: work
+            mountPath: /home/runner/_work
+          - name: dind-sock
+            mountPath: /var/run
+          - name: dind-externals
+            mountPath: /home/runner/externals
+      
+      volumes:
+      - name: dind-sock
+        emptyDir: {}
+      - name: dind-externals
+        emptyDir: {}
+      
+      - name: work
+        emptyDir: {}
