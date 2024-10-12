@@ -17,7 +17,7 @@ CHARTS := $(shell find apps/ -regex ".*/upstream/Chart.ya?ml")
 	@:
 
 %/resources/upstream.yaml: %/upstream/Chart.yaml %/upstream/Chart.yml
-	source "$*/BUILDARGS" && \
+	. "$*/BUILDARGS" && \
 	helm dependency update "$*/upstream" && \
 	helm template \
 	    --include-crds \
