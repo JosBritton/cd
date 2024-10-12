@@ -154,7 +154,7 @@ kubernetes-dashboard:
     enabled: false
   extras:
     serviceMonitor:
-      enabled: false
+      enabled: true
       scheme: https
       tlsConfig:
         insecureSkipVerify: true
