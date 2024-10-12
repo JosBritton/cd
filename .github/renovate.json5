@@ -10,7 +10,6 @@
     ],
     "dependencyDashboard": true,
     "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
-    "rebaseWhen": "behind-base-branch",
     "kustomize": {
         "enabled": false
     },
