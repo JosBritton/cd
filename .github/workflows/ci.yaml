@@ -1,5 +1,6 @@
+# yamllint disable rule:comments
 name: Validate Manifests
-on:  # yamllint disable-line rule:truthy
+on:
   push: {}
 permissions:
   contents: read
