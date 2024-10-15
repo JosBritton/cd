@@ -1,0 +1,39 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: jellyfin-ingress
+  labels:
+    app.kubernetes.io/name: jellyfin
+    app.kubernetes.io/instance: jellyfin
+    app.kubernetes.io/component: media-server
+    app.kubernetes.io/part-of: jellyfin
+  namespace: jellyfin
+spec:
+  virtualhost:
+    fqdn: jellyfin.swifthomelab.net
+    tls:
+      secretName: cert-manager/jellyfin-swifthomelab-net
+  routes:
+  - services:
+    - name: jellyfin
+      port: 8096
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: music-ingress
+  labels:
+    app.kubernetes.io/name: jellyfin
+    app.kubernetes.io/instance: jellyfin
+    app.kubernetes.io/component: media-server
+    app.kubernetes.io/part-of: jellyfin
+  namespace: jellyfin
+spec:
+  virtualhost:
+    fqdn: music.swifthomelab.net
+    tls:
+      secretName: cert-manager/jellyfin-swifthomelab-net
+  routes:
+  - services:
+    - name: jellyfin
+      port: 8096
