@@ -1,6 +1,8 @@
 .SILENT:
 .DEFAULT_GOAL := build
 
+GIT_DIR := $(shell git rev-parse --git-dir)
+
 CHARTS := $(shell find apps/ -regex ".*/upstream/Chart.ya?ml")
 
 %/upstream/values.yml:
@@ -90,7 +92,7 @@ validate:
 		-- apps/
 
 .PHONY: install
-install: .git/hooks/pre-commit .git/hooks/pre-push | .gitignore
+install: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
 
 .PHONY: precommit
 precommit: lint
@@ -106,15 +108,15 @@ prepush: lint validate
 
 	touch .venv/lock
 
-.git/hooks/pre-commit: .pre-commit-config.yaml .venv/lock
+$(GIT_DIR)/hooks/pre-commit: .pre-commit-config.yaml .venv/lock
 	. .venv/bin/activate && \
 	pre-commit install --hook-type pre-commit && \
-	touch .git/hooks/pre-commit
+	touch $(GIT_DIR)/hooks/pre-commit
 
-.git/hooks/pre-push: .pre-commit-config.yaml .venv/lock
+$(GIT_DIR)/hooks/pre-push: .pre-commit-config.yaml .venv/lock
 	. .venv/bin/activate && \
 	pre-commit install --hook-type pre-push && \
-	touch .git/hooks/pre-push
+	touch $(GIT_DIR)/hooks/pre-push
 
 .gitignore:
 	touch .gitignore
