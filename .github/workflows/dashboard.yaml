@@ -1,6 +1,6 @@
 # yamllint disable rule:comments
 name: Dependency dashboard
-on:
+on: # yamllint disable-line rule:truthy
   issues:
     types: [edited]
 
@@ -20,11 +20,11 @@ jobs:
     uses: ./.github/workflows/renovate.yaml
     secrets: inherit
 
-  # debug-event:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: print event json
-  #     env:
-  #       EVENT_DEBUG: ${{ toJSON(github.event) }}
-  #     run: |
-  #       echo "${EVENT_DEBUG}"
+# debug-event:
+#   runs-on: ubuntu-latest
+#   steps:
+#   - name: print event json
+#     env:
+#       EVENT_DEBUG: ${{ toJSON(github.event) }}
+#     run: |
+#       echo "${EVENT_DEBUG}"
