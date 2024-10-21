@@ -28,8 +28,6 @@ on:
   - cron: 0,30 * * * *  # every 30 minutes
   push:
     branches: [main]
-    paths:
-    - .github/renovate.json5
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
