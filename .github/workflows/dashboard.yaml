@@ -1,0 +1,30 @@
+# yamllint disable rule:comments
+name: Dependency dashboard
+on:
+  issues:
+    types: [edited]
+
+env:
+  LOG_LEVEL: ${{ inputs.logLevel || 'debug' }}
+  RENOVATE_AUTODISCOVER: true
+  RENOVATE_AUTODISCOVER_FILTER: ${{ github.repository }}
+  RENOVATE_DRY_RUN: ${{ inputs.dryRun == true }}
+  RENOVATE_PLATFORM: github
+  RENOVATE_PLATFORM_COMMIT: true
+  RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: ^make build$
+  WORKFLOW_RENOVATE_VERSION: ${{ inputs.version || 'latest' }}
+
+jobs:
+  dispatch-issue:
+    if: github.event.issue.id == 2583431285 && github.event.sender.id != 184785746
+    uses: ./.github/workflows/renovate.yaml
+    secrets: inherit
+
+  # debug-event:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: print event json
+  #     env:
+  #       EVENT_DEBUG: ${{ toJSON(github.event) }}
+  #     run: |
+  #       echo "${EVENT_DEBUG}"

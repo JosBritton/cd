@@ -1,6 +1,7 @@
 # yamllint disable rule:comments
 name: Renovate
 on:
+  workflow_call: {}
   workflow_dispatch:
     inputs:
       dryRun:
