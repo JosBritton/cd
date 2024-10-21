@@ -158,6 +158,12 @@
         {
             "matchManagers": ["github-actions"],
             "addLabels": ["renovate/github-action"]
+        },
+        {
+            "matchDatasources": ["docker"],
+            "matchFileNames": ["apps/tdarr/**"],
+            "matchPackageNames": ["ghcr.io/haveagitgat/**"],
+            "groupName": "all-tdarr"
         }
     ],
     "customManagers": [
