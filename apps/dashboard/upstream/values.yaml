@@ -37,7 +37,7 @@ kubernetes-dashboard:
     role: auth
     image:
       repository: docker.io/kubernetesui/dashboard-auth
-      tag: 1.2.0
+      tag: 1.2.1
     scaling:
       replicas: 1
       revisionHistoryLimit: 10

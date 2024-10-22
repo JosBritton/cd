@@ -400,7 +400,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-auth
-    app.kubernetes.io/version: 1.2.0
+    app.kubernetes.io/version: 1.2.1
     app.kubernetes.io/component: auth
   annotations:
     
@@ -647,14 +647,14 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-auth
-        app.kubernetes.io/version: 1.2.0
+        app.kubernetes.io/version: 1.2.1
         app.kubernetes.io/component: auth
       annotations:
         checksum/config: 0b27202076a207bafd000bf4c58e14e0256a29414c110764c7934804ca939fc3
     spec:
       containers:
         - name: kubernetes-dashboard-auth
-          image: "docker.io/kubernetesui/dashboard-auth:1.2.0"
+          image: "docker.io/kubernetesui/dashboard-auth:1.2.1"
           imagePullPolicy: IfNotPresent
           args:
 
