@@ -6,7 +6,6 @@
         ":disableRateLimiting",
         ":semanticCommits",
         "replacements:k8s-registry-move",
-        "schedule:daily"
     ],
     "dependencyDashboard": true,
     "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
