@@ -475,7 +475,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-web
-    app.kubernetes.io/version: 1.5.0
+    app.kubernetes.io/version: 1.5.1
     app.kubernetes.io/component: web
   annotations:
     
@@ -848,7 +848,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-web
-    app.kubernetes.io/version: 1.5.0
+    app.kubernetes.io/version: 1.5.1
     app.kubernetes.io/component: web
   annotations:
     
@@ -869,13 +869,13 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-web
-        app.kubernetes.io/version: 1.5.0
+        app.kubernetes.io/version: 1.5.1
         app.kubernetes.io/component: web
       annotations:
     spec:
       containers:
         - name: kubernetes-dashboard-web
-          image: "docker.io/kubernetesui/dashboard-web:1.5.0"
+          image: "docker.io/kubernetesui/dashboard-web:1.5.1"
           imagePullPolicy: IfNotPresent
           args:
             - --namespace=kubernetes-dashboard
