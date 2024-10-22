@@ -362,7 +362,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.9.0
+    app.kubernetes.io/version: 1.10.0
     app.kubernetes.io/component: api
   annotations:
     
@@ -513,7 +513,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.9.0
+    app.kubernetes.io/version: 1.10.0
     app.kubernetes.io/component: api
   annotations:
     
@@ -534,14 +534,14 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-api
-        app.kubernetes.io/version: 1.9.0
+        app.kubernetes.io/version: 1.10.0
         app.kubernetes.io/component: api
       annotations:
         checksum/config: 0b27202076a207bafd000bf4c58e14e0256a29414c110764c7934804ca939fc3
     spec:
       containers:
         - name: kubernetes-dashboard-api
-          image: "docker.io/kubernetesui/dashboard-api:1.9.0"
+          image: "docker.io/kubernetesui/dashboard-api:1.10.0"
           imagePullPolicy: IfNotPresent
           args:
             - --namespace=kubernetes-dashboard
@@ -626,7 +626,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-auth
-    app.kubernetes.io/version: 1.9.0
+    app.kubernetes.io/version: 1.10.0
     app.kubernetes.io/component: auth
   annotations:
     
