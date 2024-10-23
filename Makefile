@@ -40,7 +40,7 @@ renderclean:
 
 .PHONY: clean
 clean:
-	(. .venv/bin/activate && pre-commit uninstall) || true
+	rm -f $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push
 	rm -rf .venv/
 
 .PHONY: lint
