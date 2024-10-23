@@ -34,13 +34,10 @@ all: build
 .PHONY: build
 build: $(RENDERS)
 
-.PHONY: renderclean
-renderclean:
-	find apps/ -regex ".*/resources/upstream.ya?ml" -delete
-
 .PHONY: clean
 clean:
 	rm -f $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push
+	find apps/ -regex ".*/resources/upstream.ya?ml" -delete
 	rm -rf .venv/
 
 .PHONY: lint
