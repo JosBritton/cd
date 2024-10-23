@@ -70,16 +70,19 @@ jobs:
       with:
         fail-on-cache-miss: false
         path: |
-          /var/cache/kubeconform
+          ${{ github.workspace }}/.cache/kubeconform
         key: kubeconform-schemas-${{ steps.generate-cache-key.outputs.key }}
+    - name: Get cached schemas
+      if: steps.cache-kubeconform-restore.outputs.cache-hit == 'true'
+      run: |
+        ls -R "$GITHUB_WORKSPACE/.cache/kubeconform"
     - name: Validate manifests with kubeconform
       run: |
-        sudo mkdir -p /var/cache/kubeconform/
-        sudo chown -R runner:docker /var/cache/kubeconform/
+        mkdir -p "$GITHUB_WORKSPACE/.cache/kubeconform"
 
         kubeconform \
           -n "$(nproc)" \
-          --cache "/var/cache/kubeconform" \
+          --cache "$GITHUB_WORKSPACE/.cache/kubeconform" \
           --skip CustomResourceDefinition \
           --ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
           --ignore-filename-pattern "apps/.*/overlays/.*\.ya?ml" \
@@ -93,8 +96,9 @@ jobs:
           -- apps/
     - name: Cache schemas
       id: cache-kubeconform-save
+      if: steps.cache-kubeconform-restore.outputs.cache-hit != 'true'
       uses: actions/cache/save@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
       with:
         path: |
-          /var/cache/kubeconform
+          ${{ github.workspace }}/.cache/kubeconform
         key: kubeconform-schemas-${{ steps.generate-cache-key.outputs.key }}
