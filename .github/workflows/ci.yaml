@@ -5,27 +5,95 @@ on: # yamllint disable-line rule:truthy
 permissions:
   contents: read
 jobs:
-  lint-yaml:
+  lint:
+    name: Lint yaml
     runs-on: ubuntu-latest
     steps:
     - name: Code Checkout
-      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
-    - name: Validate YAML
+      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
+    - name: Run yamllint
       uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c # v3
       with:
-        format: github
-  validate-templates:
+        file_or_dir: .
+        format: github  # OUTPUT format (github=fancy github output)
+
+  helm:
+    name: Render helm chart templates
     runs-on: ubuntu-latest
     steps:
     - name: Code Checkout
-      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
+    - name: Render helm chart templates
+      run: |
+        parallel -j0 "helm dependency update "{//}" && helm template --include-crds --namespace testns -- testchart "{//}"" ::: "$(find apps/ -regex ".*/upstream/Chart.ya?ml")"
+
+  kustomize:
+    name: Build kustomization files
+    runs-on: ubuntu-latest
+    steps:
+    - name: Code Checkout
+      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
+    - name: Build kustomize files
+      run: |
+        parallel -j0 "kustomize build "{//}"" ::: "$(find apps/ -name kustomization.yaml)" bootstrap/argo-cd/kustomization.yaml
+
+  kubeconform:
+    name: Validate kubernetes manifests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Code Checkout
+      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
     - name: Setup Go environment
       uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # v5.0.2
       with:
-        go-version: 1.22.5
+        go-version: stable
+        cache: false  # no deps to cache
     - name: Install kubeconform
       run: |
-        go install github.com/yannh/kubeconform/cmd/kubeconform@v0.6.6
-    - name: Validate Manifests
+        go install github.com/yannh/kubeconform/cmd/kubeconform@latest
+    - name: Generate cache key
+      id: generate-cache-key
       run: |
-        make validate
+        datree_sha="$(curl -s -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          -H "Accept: application/vnd.github.VERSION.sha" \
+          "${GITHUB_API_URL}/repos/datreeio/CRDs-catalog/commits/main")"
+
+        schemastore_sha="$(curl -s -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          -H "Accept: application/vnd.github.VERSION.sha" \
+          "${GITHUB_API_URL}/repos/schemastore/schemastore/commits/master")"
+
+        echo "key=$(echo -n "$datree_sha$schemastore_sha" | md5sum | cut -c 1-7)" >> "$GITHUB_OUTPUT"
+    - name: Restore cached schemas
+      id: cache-kubeconform-restore
+      uses: actions/cache/restore@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+      with:
+        fail-on-cache-miss: false
+        path: |
+          /var/cache/kubeconform
+        key: kubeconform-schemas-${{ steps.generate-cache-key.outputs.key }}
+    - name: Validate manifests with kubeconform
+      run: |
+        sudo mkdir -p /var/cache/kubeconform/
+        sudo chown -R runner:docker /var/cache/kubeconform/
+
+        kubeconform \
+          -n "$(nproc)" \
+          --cache "/var/cache/kubeconform" \
+          --skip CustomResourceDefinition \
+          --ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
+          --ignore-filename-pattern "apps/.*/overlays/.*\.ya?ml" \
+          --ignore-filename-pattern "/.*\.json" \
+          --schema-location default \
+          --schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
+          --schema-location "https://json.schemastore.org/{{.ResourceKind}}.json" \
+          --summary \
+          --strict \
+          --verbose \
+          -- apps/
+    - name: Cache schemas
+      id: cache-kubeconform-save
+      uses: actions/cache/save@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+      with:
+        path: |
+          /var/cache/kubeconform
+        key: kubeconform-schemas-${{ steps.generate-cache-key.outputs.key }}
