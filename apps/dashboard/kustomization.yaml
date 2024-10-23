@@ -6,6 +6,8 @@ resources:
 - ./resources/cert.yaml
 - ./resources/httpproxy.yaml
 - ./resources/delegation.yaml
-- ./resources/auth.yaml
+- ./resources/clusterrolebinding.yaml
+- ./resources/secret.yaml
+- ./resources/serviceaccount.yaml
 patches:
 - path: ./overlays/kubernetes-dashboard-csrf.yaml
