@@ -1,17 +1,68 @@
 # yaml-language-server: $schema=https://json.schemastore.org/pre-commit-config.json
+# yamllint disable rule:quoted-strings
 default_stages: [pre-commit, pre-push]
 repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-case-conflict
+  - id: check-executables-have-shebangs
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: forbid-new-submodules
+  - id: requirements-txt-fixer
+  - id: trailing-whitespace
+    exclude: "/resources/upstream\\.ya?ml$"
+
+- repo: https://github.com/adrienverge/yamllint.git
+  rev: v1.35.1
+  hooks:
+  - id: yamllint
+    args: [--strict]
+
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.10.0.1
+  hooks:
+  - id: shellcheck
+    args: [--severity=error]
+    exclude: ^.git
+    files: "\\.sh$"
+
 - repo: local
   hooks:
-  - id: precommit
-    name: pre-commit actions
+  - id: make-build
+    name: make build
     language: system
-    entry: make precommit
-    verbose: true
+    entry: make build
     stages: [pre-commit]
-  - id: prepush
-    name: pre-push actions
-    language: system
-    entry: make prepush
-    verbose: true
-    stages: [pre-push]
+
+  - id: render-charts
+    name: render helm charts
+    language: script
+    entry: tests/render-charts.sh
+    pass_filenames: true
+    files: "/upstream/Chart\\.ya?ml$"
+    stages: [pre-commit]
+
+  - id: build-kustomizations
+    name: build kustomization files
+    language: script
+    entry: tests/build-kustomizations.sh
+    pass_filenames: true
+    files: "kustomization\\.yaml$"
+    stages: [pre-commit]
+
+  - id: validate-manifests
+    name: validate kubernetes manifests
+    language: script
+    entry: tests/validate-manifests.sh
+    pass_filenames: true
+    files: "(apps|defs|bootstrap)/.+\\.ya?ml$"
+    stages: [pre-commit]
+
+# - id: prepush
+#   name: pre-push actions
+#   language: system
+#   entry: make prepush
+#   stages: [pre-push]

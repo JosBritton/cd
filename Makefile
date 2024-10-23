@@ -40,62 +40,29 @@ clean:
 	find apps/ -regex ".*/resources/upstream.ya?ml" -delete
 	rm -rf .venv/
 
-.PHONY: lint
-lint: .venv/lock | .gitignore
-	. ./.venv/bin/activate && \
-	python3 -m yamllint .
 
 .PHONY: validate
-validate:
-# kustomize validation
-	command -v kustomize &> /dev/null || \
-		(echo "Error: Kustomize not installed"; exit 1)
+validate: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
+	pre-commit run --all-files --color always
 
-	kustomize build bootstrap/argo-cd
+.PHONY: kustomizebuild
+kustomizebuild: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
+	pre-commit run build-kustomizations --all-files --color always --verbose
 
-	set -e; \
-	for k in $$(find apps/ -name kustomization.yaml); do \
-	kustomize build "$$(dirname $$k)"; done
+.PHONY: lint
+lint: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
+	pre-commit run yamllint --all-files --color always --verbose
 
-# helm validation
-	command -v helm &> /dev/null || \
-		(echo "Error: Helm not installed"; exit 1)
+.PHONY: testbuildall
+testbuildall: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
+	pre-commit run render-charts --all-files --color always --verbose
 
-	for c in $(CHARTS); do \
-		set -- $$(dirname $$c)/charts/*.tgz; \
-		[ -f "$$1" ] || helm dependency update "$$(dirname $$c)"; done
-
-	set -e; \
-	for c in $(CHARTS); do \
-	. "$$(dirname $$(dirname $$c))/BUILDARGS" && \
-	helm template \
-		--include-crds \
-		--namespace $$NAMESPACE \
-		$$CHART \
-		$$(dirname $$c); done
-
-# kubeconform validation
-	command -v kubeconform &> /dev/null || (echo "Error: Kubeconform not installed"; exit 1)
-
-	kubeconform \
-		-skip Kustomization,CustomResourceDefinition \
-		-ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
-		-ignore-filename-pattern "apps/.*/overlays/.*\.ya?ml" \
-		-ignore-filename-pattern "/.*\.json" \
-		-schema-location default \
-		-schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
-		-summary \
-		-strict \
-		-- apps/
+.PHONY: kubeconform
+kubeconform: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
+	pre-commit run validate-manifests --all-files --color always --verbose
 
 .PHONY: install
 install: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
-
-.PHONY: precommit
-precommit: lint
-
-.PHONY: prepush
-prepush: lint validate
 
 .venv/lock: requirements.txt
 	python3 -m venv .venv/
