@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 # yamllint disable rule:comments
 name: Validate Manifests
 on: # yamllint disable-line rule:truthy

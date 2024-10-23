@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/pre-commit-config.json
 default_stages: [pre-commit, pre-push]
 repos:
 - repo: local
