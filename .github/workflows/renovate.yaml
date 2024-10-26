@@ -62,11 +62,6 @@ jobs:
       with:
         token: ${{ steps.app-token.outputs.token }}
 
-    - uses: mercurytechnologies/delete-cancelled-runs@f5c9d322d9c7afbd41f779199818c1ffe381d34b # 1.0.0
-      with:
-        workflow-file: renovate.yaml
-        max-deletions: 6
-
     - name: Get last workflow run-id
       id: last-run
       run: |
@@ -137,3 +132,8 @@ jobs:
         # for long. Just make sure this value is large enough that multiple renovate
         # runs can happen before older cache archives are deleted.
         retention-days: 1
+
+    - uses: mercurytechnologies/delete-cancelled-runs@f5c9d322d9c7afbd41f779199818c1ffe381d34b # 1.0.0
+      with:
+        workflow-file: renovate.yaml
+        max-deletions: 6
