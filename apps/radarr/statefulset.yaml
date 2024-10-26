@@ -36,7 +36,7 @@ spec:
           server: nas1.private.swifthomelab.net
       containers:
       - name: radarr
-        image: ghcr.io/onedr0p/radarr:5.12.2@sha256:d7ab75d9280e9067c9c7b4e3fc6366c030a5090dc842785d098f5967417cbac9
+        image: ghcr.io/onedr0p/radarr:5.13.1@sha256:5043679d8473f4bde0d48008d44f250981526cb80ab20e6f428de7f4709bb87a
         ports:
         - name: http
           containerPort: 7878
