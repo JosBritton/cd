@@ -362,7 +362,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.10.0
+    app.kubernetes.io/version: 1.10.1
     app.kubernetes.io/component: api
   annotations:
     
@@ -400,7 +400,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-auth
-    app.kubernetes.io/version: 1.2.1
+    app.kubernetes.io/version: 1.2.2
     app.kubernetes.io/component: auth
   annotations:
     
@@ -475,7 +475,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-web
-    app.kubernetes.io/version: 1.5.1
+    app.kubernetes.io/version: 1.5.2
     app.kubernetes.io/component: web
   annotations:
     
@@ -513,7 +513,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.10.0
+    app.kubernetes.io/version: 1.10.1
     app.kubernetes.io/component: api
   annotations:
     
@@ -534,14 +534,14 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-api
-        app.kubernetes.io/version: 1.10.0
+        app.kubernetes.io/version: 1.10.1
         app.kubernetes.io/component: api
       annotations:
         checksum/config: a24f69145f3ac111da24da9660c36a8875bdeaa8b1dbeb70c507c4f3131ac83c
     spec:
       containers:
         - name: kubernetes-dashboard-api
-          image: "docker.io/kubernetesui/dashboard-api:1.10.0"
+          image: "docker.io/kubernetesui/dashboard-api:1.10.1"
           imagePullPolicy: IfNotPresent
           args:
             - --namespace=kubernetes-dashboard
@@ -626,7 +626,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-auth
-    app.kubernetes.io/version: 1.10.0
+    app.kubernetes.io/version: 1.10.1
     app.kubernetes.io/component: auth
   annotations:
     
@@ -647,14 +647,14 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-auth
-        app.kubernetes.io/version: 1.2.1
+        app.kubernetes.io/version: 1.2.2
         app.kubernetes.io/component: auth
       annotations:
         checksum/config: a24f69145f3ac111da24da9660c36a8875bdeaa8b1dbeb70c507c4f3131ac83c
     spec:
       containers:
         - name: kubernetes-dashboard-auth
-          image: "docker.io/kubernetesui/dashboard-auth:1.2.1"
+          image: "docker.io/kubernetesui/dashboard-auth:1.2.2"
           imagePullPolicy: IfNotPresent
           args:
 
@@ -848,7 +848,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-web
-    app.kubernetes.io/version: 1.5.1
+    app.kubernetes.io/version: 1.5.2
     app.kubernetes.io/component: web
   annotations:
     
@@ -869,13 +869,13 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-web
-        app.kubernetes.io/version: 1.5.1
+        app.kubernetes.io/version: 1.5.2
         app.kubernetes.io/component: web
       annotations:
     spec:
       containers:
         - name: kubernetes-dashboard-web
-          image: "docker.io/kubernetesui/dashboard-web:1.5.1"
+          image: "docker.io/kubernetesui/dashboard-web:1.5.2"
           imagePullPolicy: IfNotPresent
           args:
             - --namespace=kubernetes-dashboard
