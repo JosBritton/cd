@@ -55,7 +55,7 @@ jobs:
         token: ${{ steps.app-token.outputs.token }}
 
     - name: Renovate
-      uses: renovatebot/github-action@e02bf7b1c996027e55e910400653576a8293246c # v41.0.3
+      uses: renovatebot/github-action@e3a862510f27d57a380efb11f0b52ad7e8dbf213 # v41.0.6
       with:
         docker-cmd-file: .github/renovate/entrypoint.sh
         docker-user: root
