@@ -7,7 +7,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -20,7 +20,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -33,7 +33,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -61,7 +61,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -79,7 +79,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -96,7 +96,7 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     release: ceph-csi-rbd
     heritage: Helm
 provisioner: rbd.csi.ceph.com
@@ -127,7 +127,7 @@ metadata:
   name: ceph-csi-rbd-nodeplugin
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -162,7 +162,7 @@ metadata:
   name: ceph-csi-rbd-provisioner
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -232,7 +232,7 @@ metadata:
   name: ceph-csi-rbd-nodeplugin
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -252,7 +252,7 @@ metadata:
   name: ceph-csi-rbd-provisioner
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -273,7 +273,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -293,7 +293,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -317,7 +317,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -343,7 +343,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -366,7 +366,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -382,7 +382,7 @@ spec:
     metadata:
       labels:
         app: ceph-csi-rbd
-        chart: ceph-csi-rbd-3.12.2
+        chart: ceph-csi-rbd-3.13.0
         component: nodeplugin
         release: ceph-csi-rbd
         heritage: Helm
@@ -412,6 +412,7 @@ spec:
             - "--v=1"
             - "--drivername=$(DRIVER_NAME)"
             - "--enable-read-affinity=false"
+            - "--logslowopinterval=30s"
           env:
             - name: POD_IP
               valueFrom:
@@ -581,7 +582,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -600,7 +601,7 @@ spec:
     metadata:
       labels:
         app: ceph-csi-rbd
-        chart: ceph-csi-rbd-3.12.2
+        chart: ceph-csi-rbd-3.13.0
         component: provisioner
         release: ceph-csi-rbd
         heritage: Helm
@@ -642,6 +643,7 @@ spec:
             - "--maxsnapshotsonimage=450"
             - "--minsnapshotsonimage=250"
             - "--setmetadata=true"
+            - "--logslowopinterval=30s"
           env:
             - name: POD_IP
               valueFrom:
@@ -849,7 +851,7 @@ metadata:
   name: rbd.csi.ceph.com
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.12.2
+    chart: ceph-csi-rbd-3.13.0
     release: ceph-csi-rbd
     heritage: Helm
 spec:
