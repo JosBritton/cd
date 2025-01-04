@@ -28,7 +28,7 @@ spec:
         - name: PGID
           value: "65534"
         - name: serverIP
-          value: tdarr.tdarr.svc.cluster.local
+          value: tdarr-server.tdarr.svc.cluster.local
         - name: serverPort
           value: "8266"
         image: ghcr.io/haveagitgat/tdarr_node:2.27.02@sha256:8d9f778faa58e18f2bd02ca3964c512224b4b3fd4be9a97bff501208d25131c1
