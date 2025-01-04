@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/part-of: plexamp
   namespace: plexamp
   annotations:
-    projectcontour.io/upstream-protocol.tls: "32401"
+    projectcontour.io/upstream-protocol.tls: "32400"
 spec:
   type: NodePort
   ports:

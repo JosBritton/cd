@@ -17,7 +17,7 @@ spec:
   routes:
   - services:
     - name: plexamp
-      port: 32401
+      port: 32400
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/projectcontour.io/httpproxy_v1.json
 apiVersion: projectcontour.io/v1
@@ -38,4 +38,4 @@ spec:
   routes:
   - services:
     - name: plexamp
-      port: 32401
+      port: 32400
