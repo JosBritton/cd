@@ -1,0 +1,94 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/statefulset.json
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: plex-media-server
+  labels:
+    app.kubernetes.io/name: plexamp
+    app.kubernetes.io/instance: plexamp
+    app.kubernetes.io/component: media-server
+    app.kubernetes.io/part-of: plexamp
+  namespace: plexamp
+spec:
+  serviceName: plexamp
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: plexamp
+      app.kubernetes.io/instance: plexamp
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: plexamp
+        app.kubernetes.io/instance: plexamp
+        app.kubernetes.io/component: media-server
+        app.kubernetes.io/part-of: plexamp
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+      serviceAccountName: plexamp
+      volumes:
+      - name: pms-transcode
+        emptyDir: {}
+      - name: pms-logs
+        emptyDir: {}
+      - name: music
+        nfs:
+          path: /mnt/artemis/data/media/music
+          server: nas1.private.swifthomelab.net
+      terminationGracePeriodSeconds: 120
+      containers:
+      - name: plexamp
+        image: ghcr.io/onedr0p/plex:rolling@sha256:38fcbef239341db591f8ff87f20777d9a783b79f757fc42e360041d7ba78eada
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 32400
+          name: pms
+        env:
+        - name: ALLOWED_NETWORKS
+          value: 10.0.8.0/22
+        - name: HOSTNAME
+          value: PlexampServer
+        - name: PLEX_GID
+          value: "1000"
+        - name: PLEX_UID
+          value: "1000"
+        - name: TZ
+          value: Etc/UTC
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 750Mi
+          limits:
+            cpu: 4250m
+            memory: 2.5Gi
+        volumeMounts:
+        - name: pms-config
+          mountPath: /config
+        - name: pms-transcode
+          mountPath: /transcode
+        - mountPath: /music
+          name: music
+        - mountPath: /config/Library/Application Support/Plex Media Server/Logs
+          name: pms-logs
+        - mountPath: /config/Library/Application Support/Plex Media Server/Cache
+          name: pms-cache
+  volumeClaimTemplates:
+  - metadata:
+      name: pms-config
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: csi-rbd-sc
+      resources:
+        requests:
+          storage: 15Gi
+  - metadata:
+      name: pms-cache
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: csi-rbd-sc
+      resources:
+        requests:
+          storage: 20Gi

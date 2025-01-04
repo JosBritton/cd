@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/projectcontour.io/httpproxy_v1.json
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: plexamp-ingress
+  labels:
+    app.kubernetes.io/name: plexamp
+    app.kubernetes.io/instance: plexamp
+    app.kubernetes.io/component: media-server
+    app.kubernetes.io/part-of: plexamp
+  namespace: plexamp
+spec:
+  virtualhost:
+    fqdn: plexamp.swifthomelab.net
+    tls:
+      secretName: cert-manager/plexamp-swifthomelab-net
+  routes:
+  - services:
+    - name: plexamp
+      port: 32401
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/projectcontour.io/httpproxy_v1.json
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: plexamp-alt-ingress
+  labels:
+    app.kubernetes.io/name: plexamp
+    app.kubernetes.io/instance: plexamp
+    app.kubernetes.io/component: media-server
+    app.kubernetes.io/part-of: plexamp
+  namespace: plexamp
+spec:
+  virtualhost:
+    fqdn: music.swifthomelab.net
+    tls:
+      secretName: cert-manager/plexamp-swifthomelab-net
+  routes:
+  - services:
+    - name: plexamp
+      port: 32401

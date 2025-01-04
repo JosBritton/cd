@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/service-v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: plexamp
+  labels:
+    app.kubernetes.io/name: plexamp
+    app.kubernetes.io/instance: plexamp
+    app.kubernetes.io/component: media-server
+    app.kubernetes.io/part-of: plexamp
+  namespace: plexamp
+  annotations:
+    projectcontour.io/upstream-protocol.tls: "32401"
+spec:
+  type: NodePort
+  ports:
+  - port: 32400
+    targetPort: 32400
+    nodePort: 32401
+    protocol: TCP
+    name: pms
+  selector:
+    app.kubernetes.io/name: plexamp
+    app.kubernetes.io/instance: plexamp
