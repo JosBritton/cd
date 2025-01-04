@@ -8,8 +8,6 @@ metadata:
     app.kubernetes.io/name: plex-media-server
     app.kubernetes.io/instance: plex-media-server
   namespace: plex-media-server
-  annotations:
-    projectcontour.io/upstream-protocol.tls: "32400"
 spec:
   type: NodePort
   ports:
@@ -20,4 +18,25 @@ spec:
     name: pms
   selector:
     app.kubernetes.io/name: plex-media-server
+    app.kubernetes.io/instance: plex-media-server
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/service-v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: envoy-plex-ingress
+  labels:
+    app.kubernetes.io/name: envoy-plex
+    app.kubernetes.io/instance: plex-media-server
+  namespace: cert-manager
+spec:
+  type: NodePort
+  ports:
+  - port: 8443
+    targetPort: 8443
+    nodePort: 31443
+    protocol: TCP
+    name: https
+  selector:
+    app.kubernetes.io/name: envoy-plex
     app.kubernetes.io/instance: plex-media-server
