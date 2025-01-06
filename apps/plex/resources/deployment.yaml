@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/instance: plex-media-server
   namespace: cert-manager
 spec:
+  revisionHistoryLimit: 3
   replicas: 1
   selector:
     matchLabels:
