@@ -85,6 +85,7 @@ jobs:
           --cache "$GITHUB_WORKSPACE/.cache/kubeconform" \
           --skip CustomResourceDefinition \
           --ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
+          --ignore-filename-pattern "apps/.*/files/.*\.ya?ml" \
           --ignore-filename-pattern "apps/.*/overlays/.*\.ya?ml" \
           --ignore-filename-pattern "/.*\.json" \
           --schema-location default \

@@ -8,6 +8,7 @@ kubeconform \
   --skip CustomResourceDefinition \
   --ignore-filename-pattern "apps/.*/upstream/.*\.ya?ml" \
   --ignore-filename-pattern "apps/.*/overlays/.*\.ya?ml" \
+  --ignore-filename-pattern "apps/.*/files/.*\.ya?ml" \
   --ignore-filename-pattern "/.*\.json" \
   --schema-location default \
   --schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
