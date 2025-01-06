@@ -1,3 +1,6 @@
+node:
+  id: service0
+  cluster: cluster0
 overload_manager:
   refresh_interval: 0.25s
   resource_monitors:
