@@ -107,3 +107,4 @@ static_resources:
           validation_context:
             trusted_ca:
               filename: /etc/ssl/certs/ca-certificates.crt
+        auto_host_sni: true
