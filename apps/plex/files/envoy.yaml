@@ -63,9 +63,9 @@ static_resources:
           common_tls_context:
             tls_certificates:
             - certificate_chain:
-                filename: /etc/ssl/certs/plex_chain.crt
+                filename: /etc/ssl/certs/plex/tls.crt
               private_key:
-                filename: /etc/ssl/certs/plex.key
+                filename: /etc/ssl/certs/plex/tls.key
             alpn_protocols: ["h2,http/1.1"]
             validation_context:
               trusted_ca:
@@ -80,7 +80,7 @@ static_resources:
     eds_cluster_config:
       service_name: plex_direct
       eds_config:
-        path: /etc/envoy/dynamic/eds.yaml  # secret upstream config
+        path: /var/lib/envoy/eds.yaml  # dynamic upstream
     # typed_extension_protocol_options:
     #   envoy.extensions.upstreams.http.v3.HttpProtocolOptions:
     #     "@type": type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions

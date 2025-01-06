@@ -40,9 +40,12 @@ spec:
       - name: envoy-yaml
         configMap:
           name: envoy-yaml
-      - name: plex-tls
+      - name: plex-public
         secret:
           secretName: plex-public
+      - name: eds-vol
+        secret:
+          secretName: eds-yaml
       containers:
       - name: envoy-plex
         securityContext:
@@ -58,12 +61,9 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: envoy-yaml
-          mountPath: /etc/envoy/envoy.yaml
-          subPath: envoy.yaml
-        - name: plex-tls
-          subPath: tls.crt
-          mountPath: /etc/ssl/certs/plex_chain.crt
-        - name: plex-tls
-          subPath: tls.key
-          mountPath: /etc/ssl/certs/plex.key
+          mountPath: /etc/envoy
+        - name: plex-public
+          mountPath: /etc/ssl/certs/plex
+        - name: eds-vol
+          mountPath: /var/lib/envoy
       restartPolicy: Always
