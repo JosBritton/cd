@@ -83,7 +83,10 @@ static_resources:
     eds_cluster_config:
       service_name: plex_direct
       eds_config:
-        path: /var/lib/envoy/eds.yaml  # dynamic upstream
+        path_config_source:  # dynamic upstream
+          path: /var/lib/envoy/eds.yaml
+          watched_directory:
+            path: /var/lib/envoy
     # typed_extension_protocol_options:
     #   envoy.extensions.upstreams.http.v3.HttpProtocolOptions:
     #     "@type": type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions
