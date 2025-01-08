@@ -49,7 +49,7 @@ spec:
       initContainers: null
       containers:
       - name: plex-media-server-pms
-        image: ghcr.io/onedr0p/plex:rolling@sha256:4e004defdf450e5d86ce8c29f2dc62fa95fa12dfaae52fd36c948427eb186952
+        image: ghcr.io/onedr0p/plex:rolling@sha256:38fcbef239341db591f8ff87f20777d9a783b79f757fc42e360041d7ba78eada
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 32400
