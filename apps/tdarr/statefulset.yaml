@@ -86,10 +86,10 @@ spec:
           name: media
         resources:
           requests:
-            cpu: 20m
+            cpu: 120m
             memory: 450Mi
           limits:
-            cpu: 150m
+            cpu: 350m
             memory: 700Mi
       volumes:
       - name: media
