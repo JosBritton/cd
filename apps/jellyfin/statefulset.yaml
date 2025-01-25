@@ -23,6 +23,13 @@ spec:
         app.kubernetes.io/component: media-server
         app.kubernetes.io/part-of: jellyfin
     spec:
+      hostAliases:
+      - ip: 0.0.0.0
+        hostnames:
+        - media.theaudiodb.com
+        - www.theaudiodb.com
+        - theaudiodb.com
+        - r2.theaudiodb.com
       securityContext:
         runAsUser: 65534
         runAsGroup: 65534
