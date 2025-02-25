@@ -65,7 +65,7 @@ spec:
             drop:
             - ALL
           readOnlyRootFilesystem: true
-        image: httpd:2.4.62-bookworm@sha256:4c7788695c832bf415a662dfb5160f1895e65fc65c025e85f436ee2c9e7d7f3e
+        image: httpd:2.4.63-bookworm@sha256:10381816bb7e60ae3a9db3784f2966a8910b6ff07c4da54bd2d62d2671c8ab6e
         command: [sh, -c]
         args:
         - mkdir -p /usr/local/apache2/var/DavLock;
