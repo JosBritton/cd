@@ -18,7 +18,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -45,7 +45,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -72,7 +72,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -99,7 +99,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -128,7 +128,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -156,7 +156,7 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -188,7 +188,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -223,7 +223,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -256,7 +256,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -289,7 +289,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -323,7 +323,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -357,20 +357,26 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.10.1
+    app.kubernetes.io/version: 1.11.1
     app.kubernetes.io/component: api
   annotations:
     
   name: kubernetes-dashboard-api
 spec:
+  type: ClusterIP
   ports:
     - name: api
       port: 8000
+      protocol: TCP
+      
+      
+      
+  
   selector:
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -395,20 +401,26 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-auth
-    app.kubernetes.io/version: 1.2.2
+    app.kubernetes.io/version: 1.2.4
     app.kubernetes.io/component: auth
   annotations:
     
   name: kubernetes-dashboard-auth
 spec:
+  type: ClusterIP
   ports:
     - name: auth
       port: 8000
+      protocol: TCP
+      
+      
+      
+  
   selector:
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -433,19 +445,27 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-metrics-scraper
-    app.kubernetes.io/version: 1.2.1
+    app.kubernetes.io/version: 1.2.2
     app.kubernetes.io/component: metrics-scraper
   annotations:
     
   name: kubernetes-dashboard-metrics-scraper
 spec:
+  type: ClusterIP
   ports:
+    # Name is intentionally not used here as it breaks the connection between API <-> Scraper
+    # Named ports have an issue when trying to connect through in-cluster service proxy.
     - port: 8000
+      protocol: TCP
+      
+      
+      
+  
   selector:
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -470,20 +490,26 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-web
-    app.kubernetes.io/version: 1.6.0
+    app.kubernetes.io/version: 1.6.2
     app.kubernetes.io/component: web
   annotations:
     
   name: kubernetes-dashboard-web
 spec:
+  type: ClusterIP
   ports:
     - name: web
       port: 8000
+      protocol: TCP
+      
+      
+      
+  
   selector:
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -508,12 +534,12 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-api
-    app.kubernetes.io/version: 1.10.1
+    app.kubernetes.io/version: 1.11.1
     app.kubernetes.io/component: api
   annotations:
     
@@ -529,19 +555,19 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.10.0
+        helm.sh/chart: kubernetes-dashboard-7.11.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-api
-        app.kubernetes.io/version: 1.10.1
+        app.kubernetes.io/version: 1.11.1
         app.kubernetes.io/component: api
       annotations:
-        checksum/config: c2e97c4b43d6dc16dabe5045b3e934e0d730ecbc88227578cb377433648fd1a0
+        checksum/config: 9c03003498edfde98499446b03adb175d0a33a5a3d4e9248d0bc4fcbf486a6fa
     spec:
       containers:
         - name: kubernetes-dashboard-api
-          image: "docker.io/kubernetesui/dashboard-api:1.10.1"
+          image: "docker.io/kubernetesui/dashboard-api:1.11.1"
           imagePullPolicy: IfNotPresent
           args:
             - --namespace=kubernetes-dashboard
@@ -621,12 +647,12 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-auth
-    app.kubernetes.io/version: 1.10.1
+    app.kubernetes.io/version: 1.11.1
     app.kubernetes.io/component: auth
   annotations:
     
@@ -642,19 +668,19 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.10.0
+        helm.sh/chart: kubernetes-dashboard-7.11.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-auth
-        app.kubernetes.io/version: 1.2.2
+        app.kubernetes.io/version: 1.2.4
         app.kubernetes.io/component: auth
       annotations:
-        checksum/config: c2e97c4b43d6dc16dabe5045b3e934e0d730ecbc88227578cb377433648fd1a0
+        checksum/config: 9c03003498edfde98499446b03adb175d0a33a5a3d4e9248d0bc4fcbf486a6fa
     spec:
       containers:
         - name: kubernetes-dashboard-auth
-          image: "docker.io/kubernetesui/dashboard-auth:1.2.2"
+          image: "docker.io/kubernetesui/dashboard-auth:1.2.4"
           imagePullPolicy: IfNotPresent
           args:
 
@@ -731,12 +757,12 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-metrics-scraper
-    app.kubernetes.io/version: 1.2.1
+    app.kubernetes.io/version: 1.2.2
     app.kubernetes.io/component: metrics-scraper
   annotations:
     
@@ -752,18 +778,18 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.10.0
+        helm.sh/chart: kubernetes-dashboard-7.11.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-metrics-scraper
-        app.kubernetes.io/version: 1.2.1
+        app.kubernetes.io/version: 1.2.2
         app.kubernetes.io/component: metrics-scraper
       annotations:
     spec:
       containers:
         - name: kubernetes-dashboard-metrics-scraper
-          image: "docker.io/kubernetesui/dashboard-metrics-scraper:1.2.1"
+          image: "docker.io/kubernetesui/dashboard-metrics-scraper:1.2.2"
           imagePullPolicy: IfNotPresent
 
           env:
@@ -843,12 +869,12 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
     app.kubernetes.io/name: kubernetes-dashboard-web
-    app.kubernetes.io/version: 1.6.0
+    app.kubernetes.io/version: 1.6.2
     app.kubernetes.io/component: web
   annotations:
     
@@ -864,18 +890,18 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: kubernetes-dashboard-7.10.0
+        helm.sh/chart: kubernetes-dashboard-7.11.1
         app.kubernetes.io/instance: kubernetes-dashboard
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: kubernetes-dashboard
         app.kubernetes.io/name: kubernetes-dashboard-web
-        app.kubernetes.io/version: 1.6.0
+        app.kubernetes.io/version: 1.6.2
         app.kubernetes.io/component: web
       annotations:
     spec:
       containers:
         - name: kubernetes-dashboard-web
-          image: "docker.io/kubernetesui/dashboard-web:1.6.0"
+          image: "docker.io/kubernetesui/dashboard-web:1.6.2"
           imagePullPolicy: IfNotPresent
           args:
             - --namespace=kubernetes-dashboard
@@ -1028,7 +1054,7 @@ kind: ServiceMonitor
 metadata:
   name: kubernetes-dashboard
   labels:
-    helm.sh/chart: kubernetes-dashboard-7.10.0
+    helm.sh/chart: kubernetes-dashboard-7.11.1
     app.kubernetes.io/instance: kubernetes-dashboard
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kubernetes-dashboard
@@ -1044,7 +1070,7 @@ spec:
   selector:
     matchLabels:
     
-      helm.sh/chart: kubernetes-dashboard-7.10.0
+      helm.sh/chart: kubernetes-dashboard-7.11.1
       app.kubernetes.io/instance: kubernetes-dashboard
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/part-of: kubernetes-dashboard
