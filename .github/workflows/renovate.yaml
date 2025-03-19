@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Generate Token
-      uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 # v1.11.1
+      uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
       id: app-token
       with:
         app-id: ${{ secrets.BOT_APP_ID }}
@@ -55,7 +55,7 @@ jobs:
         token: ${{ steps.app-token.outputs.token }}
 
     - name: Renovate
-      uses: renovatebot/github-action@2be773c4be8361d8182cc1b750e75bbc75af71b0 # v41.0.7
+      uses: renovatebot/github-action@cf5954a2aac7999882d3de4e462499adde159d04 # v41.0.17
       with:
         docker-cmd-file: .github/renovate/entrypoint.sh
         docker-user: root
