@@ -171,6 +171,11 @@
             "matchFileNames": ["apps/dashboard/**"],
             "groupName": "all-dashboard"
         },
+        {
+            "matchFileNames": ["apps/ceph-csi-rbd/**"],
+            "matchPackageNames": ["**csi-**"],
+            "groupName": "all-sig-storage-csi"
+        },
     ],
     "customManagers": [
         {
