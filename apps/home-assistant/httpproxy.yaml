@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/projectcontour.io/httpproxy_v1.json
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: ha-ingress
+  labels:
+    app.kubernetes.io/name: home-assistant
+    app.kubernetes.io/instance: home-assistant
+    app.kubernetes.io/component: home-assistant
+    app.kubernetes.io/part-of: home-assistant
+  namespace: home-assistant
+spec:
+  virtualhost:
+    fqdn: ha.swifthomelab.net
+    tls:
+      secretName: cert-manager/ha-swifthomelab-net
+  routes:
+  - services:
+    - name: home-assistant
+      port: 8123
