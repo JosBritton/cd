@@ -473,7 +473,7 @@ spec:
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
-          image: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.12.0"
+          image: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.13.0"
           imagePullPolicy: IfNotPresent
           args:
             - "--v=1"
@@ -683,7 +683,7 @@ spec:
           resources:
             {}
         - name: csi-provisioner
-          image: "registry.k8s.io/sig-storage/csi-provisioner:v5.1.0"
+          image: "registry.k8s.io/sig-storage/csi-provisioner:v5.2.0"
           imagePullPolicy: IfNotPresent
           args:
             - "--csi-address=$(ADDRESS)"
@@ -705,7 +705,7 @@ spec:
           resources:
             {}
         - name: csi-resizer
-          image: "registry.k8s.io/sig-storage/csi-resizer:v1.12.0"
+          image: "registry.k8s.io/sig-storage/csi-resizer:v1.13.2"
           imagePullPolicy: IfNotPresent
           args:
             - "--v=1"
@@ -724,7 +724,7 @@ spec:
           resources:
             {}
         - name: csi-snapshotter
-          image: registry.k8s.io/sig-storage/csi-snapshotter:v8.1.0
+          image: registry.k8s.io/sig-storage/csi-snapshotter:v8.2.1
           imagePullPolicy: IfNotPresent
           args:
             - "--csi-address=$(ADDRESS)"
@@ -742,7 +742,7 @@ spec:
           resources:
             {}
         - name: csi-attacher
-          image: "registry.k8s.io/sig-storage/csi-attacher:v4.7.0"
+          image: "registry.k8s.io/sig-storage/csi-attacher:v4.8.1"
           imagePullPolicy: IfNotPresent
           args:
             - "--v=1"
