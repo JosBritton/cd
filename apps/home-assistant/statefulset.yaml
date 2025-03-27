@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/statefulset.json
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: home-assistant
+  labels:
+    app.kubernetes.io/name: home-assistant
+    app.kubernetes.io/instance: home-assistant
+    app.kubernetes.io/component: home-assistant
+    app.kubernetes.io/part-of: home-assistant
+  namespace: home-assistant
+spec:
+  serviceName: home-assistant
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: home-assistant
+      app.kubernetes.io/instance: home-assistant
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: home-assistant
+        app.kubernetes.io/instance: home-assistant
+        app.kubernetes.io/component: home-assistant
+        app.kubernetes.io/part-of: home-assistant
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+      terminationGracePeriodSeconds: 90
+      containers:
+      - name: home-assistant
+        image: homeassistant/home-assistant:stable@sha256:5d510569a2ceaa2fa8f8a34b91bddd36f5f7f03e4cb23e942f245e4a5a98bbef
+        ports:
+        - containerPort: 8123
+          name: http
+        resources: {}
+        volumeMounts:
+        - name: config
+          mountPath: /config
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: csi-rbd-sc
+      resources:
+        requests:
+          storage: 15Gi

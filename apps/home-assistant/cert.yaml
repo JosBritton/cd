@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ha-swifthomelab-net
+  labels:
+    app.kubernetes.io/name: home-assistant
+    app.kubernetes.io/instance: home-assistant
+    app.kubernetes.io/component: home-assistant
+    app.kubernetes.io/part-of: home-assistant
+  namespace: cert-manager
+spec:
+  secretName: ha-swifthomelab-net
+  issuerRef:
+    name: swifthomelab-net-issuer
+    kind: ClusterIssuer
+  commonName: ha.swifthomelab.net
+  dnsNames:
+  - ha.swifthomelab.net
