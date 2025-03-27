@@ -31,7 +31,7 @@ spec:
       terminationGracePeriodSeconds: 90
       containers:
       - name: home-assistant
-        image: homeassistant/home-assistant:stable
+        image: homeassistant/home-assistant:stable@sha256:5d510569a2ceaa2fa8f8a34b91bddd36f5f7f03e4cb23e942f245e4a5a98bbef
         ports:
         - containerPort: 8123
           name: http
