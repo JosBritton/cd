@@ -14,7 +14,7 @@ resources:
 - ./resources/stork-agent-endpoints-bind.yaml
 - ./resources/stork-agent-servicemonitor-bind.yaml
 # yamllint disable-line rule:comments
-- github.com/dotdc/grafana-dashboards-kubernetes?ref=aeab4cc6680b59d8116bb41a5c3d1ff549023a35 # tag=v2.7.1
+- github.com/dotdc/grafana-dashboards-kubernetes?ref=476e18570c6a0eeffecf51c3b2f9ce8ce60d6a55 # tag=v2.7.3
 generatorOptions:
   disableNameSuffixHash: true
   labels:
