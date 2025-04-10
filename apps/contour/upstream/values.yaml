@@ -1,4 +1,6 @@
 contour:
+  configInline:
+    serverHeaderTransformation: pass_through  # do not add envoy server header to requests
   envoy:
     service:
       type: NodePort

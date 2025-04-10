@@ -133,6 +133,7 @@ data:
   contour.yaml: |-
     accesslog-format: envoy
     disablePermitInsecure: false
+    serverHeaderTransformation: pass_through
     tls:
       fallback-certificate: {}
 ---
@@ -9396,7 +9397,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 49e91479aac9f61d1e27061f3e5dc8335ab9ef05da3a0b7a497e7717c4426a88
+        checksum/config: cd6216a05f59384eb365ef26040f030314447194239e544c5725b693795df3d4
       labels:
         app.kubernetes.io/instance: contour
         app.kubernetes.io/managed-by: Helm
