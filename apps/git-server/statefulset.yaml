@@ -1,0 +1,74 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/statefulset.json
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: git-server
+  labels:
+    app.kubernetes.io/name: git-server
+    app.kubernetes.io/instance: git-server
+    app.kubernetes.io/component: git-server
+    app.kubernetes.io/part-of: git-server
+  namespace: git-server
+spec:
+  serviceName: git-server
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: git-server
+      app.kubernetes.io/instance: git-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: git-server
+        app.kubernetes.io/instance: git-server
+        app.kubernetes.io/component: git-server
+        app.kubernetes.io/part-of: git-server
+    spec:
+      terminationGracePeriodSeconds: 90
+      containers:
+      - name: git-server
+        image: alpine/git:v2.47.2
+        ports:
+        - containerPort: 22
+          protocol: TCP
+          name: ssh
+        env:
+        - name: AUTHORIZED_KEYS
+          valueFrom:
+            secretKeyRef:
+              name: git-server-authorized-keys
+              key: data
+        resources: {}
+        command: [/bin/sh, -c]
+        args:
+        - |
+          set -e
+          adduser -D -h /home/git git
+          mkdir -p /home/git/.ssh
+          echo "$AUTHORIZED_KEYS" > /home/git/.ssh/authorized_keys
+          chmod 0700 /home/git/.ssh
+          chmod 0600 /home/git/.ssh
+          chown -R git:git /home/git
+          ssh-keygen -A
+          /usr/sbin/sshd -D -e
+        volumeMounts:
+        - name: home
+          mountPath: /home/git
+        - name: hostkeys
+          mountPath: /etc/ssh
+  volumeClaimTemplates:
+  - metadata:
+      name: home  # repos go here
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: csi-rbd-sc
+      resources:
+        requests:
+          storage: 20Gi
+  - metadata:
+      name: hostkeys  # persist hostkeys
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: csi-rbd-sc
+      resources:
+        requests:
+          storage: 512Mi
