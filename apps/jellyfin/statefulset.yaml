@@ -53,7 +53,7 @@ spec:
           name: http
         env:
         - name: JELLYFIN_PublishedServerUrl
-          value: https://music.swifthomelab.net
+          value: https://jellyfin.swifthomelab.net
         resources:
           requests:
             cpu: 1500m
@@ -72,6 +72,30 @@ spec:
           mountPath: /var/logs
         - name: tmp
           mountPath: /tmp
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /system/info/public
+            port: 8096
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /system/info/public
+            port: 8096
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+        startupProbe:
+          failureThreshold: 8
+          httpGet:
+            path: /system/info/public
+            port: 8096
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
   volumeClaimTemplates:
   - metadata:
       name: config
