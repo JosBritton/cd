@@ -34,6 +34,7 @@ spec:
         image: ghcr.io/haveagitgat/tdarr_node:2.37.01@sha256:646366e907f89d2bb308b4173cfbfa407d00830ad771e8b75c9f38cf3987c6ca
         imagePullPolicy: IfNotPresent
         name: tdarr-node
+        command: [sh, -c, ln -s /usr/local/bin/ffmpeg /usr/bin/ffmpeg && exec /init]
         ports:
         - containerPort: 8266
           protocol: TCP
