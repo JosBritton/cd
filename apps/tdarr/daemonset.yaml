@@ -46,7 +46,8 @@ spec:
             cpu: 2m
             memory: 450Mi
           limits:
-            cpu: 2.0
+            # high throttling for fairness
+            cpu: 1.3
             memory: 4Gi
       volumes:
       - name: media
