@@ -3,3 +3,18 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - ./resources/upstream.yaml
+patches:
+- target:
+    group: apps
+    version: v1
+    kind: DaemonSet
+    name: contour-envoy
+    namespace: projectcontour
+  patch: |-
+    - op: replace
+      path: /spec/updateStrategy
+      value:
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 0
+        type: RollingUpdate
