@@ -15,4 +15,6 @@ gitea:
     http:
       port: 3000
     ssh:
+      type: NodePort
       port: 22
+      nodePort: 30022

@@ -395,13 +395,13 @@ metadata:
   annotations:
     {}
 spec:
-  type: ClusterIP
-  clusterIP: None
+  type: NodePort
   ports:
   - name: ssh
     port: 22
     targetPort: 2222
     protocol: TCP
+    nodePort: 30022
   selector:
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
