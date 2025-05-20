@@ -3,3 +3,5 @@ valkey:
     existingSecret: valkey
   global:
     defaultStorageClass: csi-rbd-sc
+  replica:
+    replicaCount: 1

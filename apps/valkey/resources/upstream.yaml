@@ -586,7 +586,7 @@ metadata:
     app.kubernetes.io/component: replica
     app.kubernetes.io/part-of: valkey
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/instance: valkey
