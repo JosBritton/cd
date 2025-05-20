@@ -1,0 +1,9 @@
+cloudnative-pg:
+  cloudnative-pg:
+    crds:
+      create: true
+    replicaCount: 2
+    monitoring:
+      podMonitorEnabled: false
+      grafanaDashboard:
+        create: true
