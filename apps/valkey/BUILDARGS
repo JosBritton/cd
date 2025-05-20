@@ -1,0 +1,2 @@
+NAMESPACE=valkey
+CHART=valkey

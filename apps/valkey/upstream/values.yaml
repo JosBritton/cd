@@ -1,0 +1,5 @@
+valkey:
+  auth:
+    existingSecret: valkey
+  global:
+    defaultStorageClass: csi-rbd-sc
