@@ -20,7 +20,7 @@ stringData:
     ADAPTER=memory
     HOST=
   indexer: ISSUE_INDEXER_TYPE=db
-  metrics: ENABLED=false
+  metrics: ENABLED=true
   queue: |-
     CONN_STR=
     TYPE=level
@@ -435,7 +435,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d8124dc4651cfec8d98a3c9d5d6150b5dd8a684e615f9b6bc50500226a102888
+        checksum/config: e3a7e306ef44b092935d541e06abc36accff0b1d4109e0b8e8ecbcaeb8dd8f31
       labels:
         helm.sh/chart: gitea-12.0.0
         app: gitea
@@ -621,6 +621,28 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: gitea-shared-storage
+---
+# Source: gitea/charts/gitea/templates/gitea/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: gitea
+  namespace: gitea
+  labels:
+    helm.sh/chart: gitea-12.0.0
+    app: gitea
+    app.kubernetes.io/name: gitea
+    app.kubernetes.io/instance: gitea
+    app.kubernetes.io/version: "1.23.8"
+    version: "1.23.8"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gitea
+      app.kubernetes.io/instance: gitea
+  endpoints:
+  - port: http
 ---
 # Source: gitea/charts/gitea/templates/tests/test-http-connection.yaml
 apiVersion: v1

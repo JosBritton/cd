@@ -1,5 +1,9 @@
 gitea:
   gitea:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
     config:
       server:
         HTTP_PORT: 3000
