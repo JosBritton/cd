@@ -34,3 +34,19 @@ patches:
     kind: Secret
     metadata:
       name: argocd-secret
+- target:
+    kind: Deployment
+    group: apps
+    version: v1
+    name: argocd-redis-ha-haproxy
+    namespace: argocd
+  # Due to anti-affinity in deployment, we must set maxSurge to 0 to force the scheduler to
+  # remove existing pods before creating new ones to avoid deadlock.
+  patch: |-
+    - op: replace
+      path: /spec/strategy
+      value:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
