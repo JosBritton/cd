@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ./resources/upstream.yaml
+patches:
+# delete gitea secret
+- path: overlays/gitea.yaml
+- path: overlays/gitea-init.yaml
+- path: overlays/gitea-inline-config.yaml

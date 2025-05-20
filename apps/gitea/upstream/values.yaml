@@ -1,0 +1,14 @@
+gitea:
+  postgresql:
+    enabled: false
+  postgresql-ha:
+    enabled: false
+  valkey:
+    enabled: false
+  valkey-cluster:
+    enabled: false
+  service:
+    http:
+      port: 3000
+    ssh:
+      port: 22
