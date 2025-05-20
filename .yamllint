@@ -31,7 +31,7 @@ rules:
     max-spaces-inside-empty: 0
   octal-values: enable
   comments: enable
-  comments-indentation: enable
+  comments-indentation: disable
   empty-values: enable
   float-values: enable
   quoted-strings:
