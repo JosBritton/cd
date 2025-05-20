@@ -10,7 +10,9 @@ spec:
     tls:
       secretName: cert-manager/git-swifthomelab-net
   routes:
-  - services:
+  - conditions:
+    - prefix: /
+    services:
     - name: gitea-http
       port: 3000
     enableWebsockets: true
