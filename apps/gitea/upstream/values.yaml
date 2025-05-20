@@ -1,4 +1,8 @@
 gitea:
+  gitea:
+    config:
+      server:
+        HTTP_PORT: 3000
   postgresql:
     enabled: false
   postgresql-ha:
