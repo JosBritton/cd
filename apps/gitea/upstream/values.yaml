@@ -1,4 +1,6 @@
 gitea:
+  strategy:
+    type: Recreate
   gitea:
     metrics:
       enabled: true
