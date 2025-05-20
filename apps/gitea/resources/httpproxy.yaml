@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/projectcontour.io/httpproxy_v1.json
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: git-ingress
+  namespace: gitea
+spec:
+  virtualhost:
+    fqdn: git.swifthomelab.net
+    tls:
+      secretName: cert-manager/git-swifthomelab-net
+  routes:
+  - services:
+    - name: gitea-http
+      port: 3000
+    enableWebsockets: true
