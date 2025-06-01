@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: tdarr
-        image: ghcr.io/haveagitgat/tdarr:2.40.01@sha256:4a9a20b71752eb6f770aba30247b1403e4c9ed2602453ffdd073e9fae25b4dfd
+        image: ghcr.io/haveagitgat/tdarr:2.42.01@sha256:66e5c9d8e701faa9b5a36bec3830e16c6314592a1e7cecd836eb4043fae58ac1
         imagePullPolicy: IfNotPresent
         env:
         - name: S6_READ_ONLY_ROOT
