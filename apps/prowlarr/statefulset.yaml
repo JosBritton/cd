@@ -16,6 +16,7 @@ spec:
   persistentVolumeClaimRetentionPolicy:
     whenDeleted: Retain
     whenScaled: Retain
+  revisionHistoryLimit: 3
   template:
     metadata:
       labels:
