@@ -39,6 +39,14 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /config
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /manifest.json
+            port: 8123
+          initialDelaySeconds: 3
+          periodSeconds: 10
+          timeoutSeconds: 1
   volumeClaimTemplates:
   - metadata:
       name: config
