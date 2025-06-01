@@ -46,7 +46,6 @@ spec:
           path: /mnt/artemis/data/media/music
           server: nas1.private.swifthomelab.net
       terminationGracePeriodSeconds: 120
-      initContainers: null
       containers:
       - name: plex-media-server-pms
         image: ghcr.io/onedr0p/plex:rolling@sha256:6d393c4eee152100bd6762a94bdd891b8c80c1c8a914a7f906b4097ab69fd557
