@@ -9292,11 +9292,11 @@ spec:
             limits:
               cpu: 200m
               ephemeral-storage: 2Gi
-              memory: 800Mi
+              memory: 1500Mi
             requests:
               cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 200Mi
+              memory: 400Mi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
@@ -9332,11 +9332,11 @@ spec:
             limits:
               cpu: 200m
               ephemeral-storage: 2Gi
-              memory: 800Mi
+              memory: 1500Mi
             requests:
               cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 200Mi
+              memory: 400Mi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
