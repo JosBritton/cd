@@ -11,13 +11,13 @@ contour:
       requests:
         cpu: 10m
         ephemeral-storage: 50Mi
-        memory: 400Mi
+        memory: 1Gi
       limits:
         cpu: 200m
         ephemeral-storage: 2Gi
-        memory: 1500Mi
+        memory: 2500Mi
     shutdownManager:
-      resourcesPreset: nano
+      resourcesPreset: small
   contour:
     resources:
       requests:

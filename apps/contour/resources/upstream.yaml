@@ -9328,13 +9328,13 @@ spec:
           name: shutdown-manager
           resources:
             limits:
-              cpu: 150m
+              cpu: 750m
               ephemeral-storage: 2Gi
-              memory: 192Mi
+              memory: 768Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               ephemeral-storage: 50Mi
-              memory: 128Mi
+              memory: 512Mi
           livenessProbe:
             tcpSocket:
               port: http-shutdown
@@ -9425,11 +9425,11 @@ spec:
             limits:
               cpu: 200m
               ephemeral-storage: 2Gi
-              memory: 1500Mi
+              memory: 2500Mi
             requests:
               cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 400Mi
+              memory: 1Gi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
@@ -9465,11 +9465,11 @@ spec:
             limits:
               cpu: 200m
               ephemeral-storage: 2Gi
-              memory: 1500Mi
+              memory: 2500Mi
             requests:
               cpu: 10m
               ephemeral-storage: 50Mi
-              memory: 400Mi
+              memory: 1Gi
           volumeMounts:
             - name: empty-dir
               mountPath: /config
