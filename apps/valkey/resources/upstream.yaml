@@ -407,7 +407,6 @@ spec:
   serviceName: valkey-headless
   updateStrategy:
     type: RollingUpdate
-  minReadySeconds: 0
   template:
     metadata:
       labels:
@@ -596,7 +595,6 @@ spec:
   serviceName: valkey-headless
   updateStrategy:
     type: RollingUpdate
-  minReadySeconds: 0
   template:
     metadata:
       labels:
