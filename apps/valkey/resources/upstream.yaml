@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/part-of: valkey
 spec:
   podSelector:
@@ -37,8 +37,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/component: replica
 spec:
   maxUnavailable: 1
@@ -59,8 +59,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/part-of: valkey
 ---
 # Source: valkey/charts/valkey/templates/replicas/serviceaccount.yaml
@@ -74,8 +74,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/part-of: valkey
 ---
 # Source: valkey/charts/valkey/templates/configmap.yaml
@@ -88,8 +88,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/part-of: valkey
 data:
   valkey.conf: |-
@@ -122,8 +122,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
 data:
   ping_readiness_local.sh: |-
     #!/bin/bash
@@ -230,8 +230,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/part-of: valkey
 data:
   start-primary.sh: |
@@ -313,8 +313,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/part-of: valkey
 spec:
   type: ClusterIP
@@ -337,8 +337,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/component: primary
     app.kubernetes.io/part-of: valkey
 spec:
@@ -365,8 +365,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/component: replica
     app.kubernetes.io/part-of: valkey
 spec:
@@ -393,8 +393,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/component: primary
     app.kubernetes.io/part-of: valkey
 spec:
@@ -413,8 +413,8 @@ spec:
         app.kubernetes.io/instance: valkey
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: valkey
-        app.kubernetes.io/version: 8.1.1
-        helm.sh/chart: valkey-3.0.12
+        app.kubernetes.io/version: 8.1.2
+        helm.sh/chart: valkey-3.0.13
         app.kubernetes.io/component: primary
       annotations:
         checksum/configmap: c8cdc0c4c772ac3192446a08bf401c29f1e39f33614657d36e4bb1692e34b39f
@@ -449,7 +449,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: valkey
-          image: docker.io/bitnami/valkey:8.1.1-debian-12-r2
+          image: docker.io/bitnami/valkey:8.1.2-debian-12-r0
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
@@ -581,8 +581,8 @@ metadata:
     app.kubernetes.io/instance: valkey
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: valkey
-    app.kubernetes.io/version: 8.1.1
-    helm.sh/chart: valkey-3.0.12
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: valkey-3.0.13
     app.kubernetes.io/component: replica
     app.kubernetes.io/part-of: valkey
 spec:
@@ -601,8 +601,8 @@ spec:
         app.kubernetes.io/instance: valkey
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: valkey
-        app.kubernetes.io/version: 8.1.1
-        helm.sh/chart: valkey-3.0.12
+        app.kubernetes.io/version: 8.1.2
+        helm.sh/chart: valkey-3.0.13
         app.kubernetes.io/component: replica
       annotations:
         checksum/configmap: c8cdc0c4c772ac3192446a08bf401c29f1e39f33614657d36e4bb1692e34b39f
@@ -637,7 +637,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: valkey
-          image: docker.io/bitnami/valkey:8.1.1-debian-12-r2
+          image: docker.io/bitnami/valkey:8.1.2-debian-12-r0
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
