@@ -6,12 +6,12 @@ metadata:
   name: gitea-inline-config
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 stringData:
@@ -48,12 +48,12 @@ metadata:
   name: gitea
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 stringData:
@@ -221,12 +221,12 @@ metadata:
   name: gitea-init
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 stringData:
@@ -358,12 +358,12 @@ metadata:
   name: gitea-http
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
     {}
@@ -385,12 +385,12 @@ metadata:
   name: gitea-ssh
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
     {}
@@ -414,12 +414,12 @@ metadata:
   namespace: gitea
   annotations:
   labels:
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -432,14 +432,14 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: e3a7e306ef44b092935d541e06abc36accff0b1d4109e0b8e8ecbcaeb8dd8f31
+        checksum/config: 1ade44d9edad787b06100b41aa3cdb9c3c69f9a8219f028b1196c745f477ccc7
       labels:
-        helm.sh/chart: gitea-12.0.0
+        helm.sh/chart: gitea-12.1.0
         app: gitea
         app.kubernetes.io/name: gitea
         app.kubernetes.io/instance: gitea
-        app.kubernetes.io/version: "1.23.8"
-        version: "1.23.8"
+        app.kubernetes.io/version: "1.24.0"
+        version: "1.24.0"
         app.kubernetes.io/managed-by: Helm
     spec:
       
@@ -626,12 +626,12 @@ metadata:
   name: gitea
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   selector:
@@ -649,12 +649,12 @@ metadata:
   namespace: gitea
   labels:
 
-    helm.sh/chart: gitea-12.0.0
+    helm.sh/chart: gitea-12.1.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.23.8"
-    version: "1.23.8"
+    app.kubernetes.io/version: "1.24.0"
+    version: "1.24.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test-success
