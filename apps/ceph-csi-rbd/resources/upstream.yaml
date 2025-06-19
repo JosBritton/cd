@@ -711,7 +711,7 @@ spec:
           resources:
             {}
         - name: csi-resizer
-          image: "registry.k8s.io/sig-storage/csi-resizer:v1.13.2"
+          image: "registry.k8s.io/sig-storage/csi-resizer:v1.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "--v=1"
@@ -730,7 +730,7 @@ spec:
           resources:
             {}
         - name: csi-snapshotter
-          image: registry.k8s.io/sig-storage/csi-snapshotter:v8.2.1
+          image: registry.k8s.io/sig-storage/csi-snapshotter:v8.3.0
           imagePullPolicy: IfNotPresent
           args:
             - "--csi-address=$(ADDRESS)"
