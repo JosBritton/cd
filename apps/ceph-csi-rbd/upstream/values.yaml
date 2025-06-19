@@ -188,7 +188,7 @@ ceph-csi-rbd:
       enabled: true
       image:
         repository: registry.k8s.io/sig-storage/csi-resizer
-        tag: v1.13.2
+        tag: v1.14.0
         pullPolicy: IfNotPresent
       resources: {}
       ## For further options, check
@@ -198,7 +198,7 @@ ceph-csi-rbd:
     snapshotter:
       image:
         repository: registry.k8s.io/sig-storage/csi-snapshotter
-        tag: v8.2.1
+        tag: v8.3.0
         pullPolicy: IfNotPresent
       resources: {}
       ## For further options, check
