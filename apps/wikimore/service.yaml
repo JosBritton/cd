@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/service-v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: wikimore
+  labels:
+    app.kubernetes.io/name: wikimore
+    app.kubernetes.io/instance: wikimore
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: web-mirror
+  namespace: web-mirror
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8109
+    protocol: TCP
+    targetPort: 8109
+  selector:
+    app.kubernetes.io/name: wikimore
+    app.kubernetes.io/instance: wikimore

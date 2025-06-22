@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/projectcontour.io/httpproxy_v1.json
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: mirror-proxy
+  labels:
+    app.kubernetes.io/name: mirror-proxy
+    app.kubernetes.io/instance: mirror
+    app.kubernetes.io/component: proxy
+    app.kubernetes.io/part-of: web-mirror
+  namespace: web-mirror
+spec:
+  virtualhost:
+    fqdn: mirror.swifthomelab.net
+    tls:
+      secretName: cert-manager/mirror-swifthomelab-net
+  routes:
+  - conditions:
+    - prefix: /wiki
+    services:
+    - name: wikimore
+      port: 8109
+    enableWebsockets: false
