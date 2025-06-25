@@ -32,7 +32,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
       - name: prowlarr
-        image: ghcr.io/onedr0p/prowlarr:1.32.2.4987@sha256:aa248643aa72c407d2f565c2b63831f887152aae47acb076a12b062bbbdeb61d
+        image: ghcr.io/home-operations/prowlarr:2.0.0.5094
         ports:
         - name: http
           containerPort: 9696
