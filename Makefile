@@ -47,25 +47,10 @@ validate: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
 	. .venv/bin/activate && \
 	pre-commit run --all-files --color always
 
-.PHONY: kustomizebuild
-kustomizebuild: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
-	. .venv/bin/activate && \
-	pre-commit run build-kustomizations --all-files --color always --verbose
-
 .PHONY: lint
 lint: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
 	. .venv/bin/activate && \
 	pre-commit run yamllint --all-files --color always --verbose
-
-.PHONY: testbuildall
-testbuildall: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
-	. .venv/bin/activate && \
-	pre-commit run render-charts --all-files --color always --verbose
-
-.PHONY: kubeconform
-kubeconform: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
-	. .venv/bin/activate && \
-	pre-commit run validate-manifests --all-files --color always --verbose
 
 .PHONY: install
 install: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
