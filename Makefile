@@ -42,6 +42,9 @@ clean:
 	rm -rf .venv/
 
 
+.PHONY: test
+test: validate
+
 .PHONY: validate
 validate: $(GIT_DIR)/hooks/pre-commit $(GIT_DIR)/hooks/pre-push | .gitignore
 	. .venv/bin/activate && \
