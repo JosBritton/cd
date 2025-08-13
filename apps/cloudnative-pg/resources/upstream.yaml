@@ -6,10 +6,10 @@ metadata:
   name: cloudnative-pg
   namespace: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: cloudnative-pg/charts/cloudnative-pg/templates/config.yaml
@@ -34,10 +34,10 @@ metadata:
   name: cnpg-controller-manager-config
   namespace: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 data:
   {}
@@ -49,10 +49,10 @@ metadata:
   name: cnpg-default-monitoring
   namespace: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
     cnpg.io/reload: ""
 data:
@@ -683,6 +683,9 @@ spec:
             required:
             - cluster
             type: object
+            x-kubernetes-validations:
+            - message: BackupSpec is immutable once set
+              rule: oldSelf == self
           status:
             description: |-
               Most recently observed status of the backup. This data may not be up to
@@ -5079,6 +5082,67 @@ spec:
                       This should only be used for debugging and troubleshooting.
                       Defaults to false.
                     type: boolean
+                  extensions:
+                    description: The configuration of the extensions to be added
+                    items:
+                      description: |-
+                        ExtensionConfiguration is the configuration used to add
+                        PostgreSQL extensions to the Cluster.
+                      properties:
+                        dynamic_library_path:
+                          description: |-
+                            The list of directories inside the image which should be added to dynamic_library_path.
+                            If not defined, defaults to "/lib".
+                          items:
+                            type: string
+                          type: array
+                        extension_control_path:
+                          description: |-
+                            The list of directories inside the image which should be added to extension_control_path.
+                            If not defined, defaults to "/share".
+                          items:
+                            type: string
+                          type: array
+                        image:
+                          description: The image containing the extension, required
+                          properties:
+                            pullPolicy:
+                              description: |-
+                                Policy for pulling OCI objects. Possible values are:
+                                Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.
+                                Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.
+                                IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.
+                                Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.
+                              type: string
+                            reference:
+                              description: |-
+                                Required: Image or artifact reference to be used.
+                                Behaves in the same way as pod.spec.containers[*].image.
+                                Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets.
+                                More info: https://kubernetes.io/docs/concepts/containers/images
+                                This field is optional to allow higher level config management to default or override
+                                container images in workload controllers like Deployments and StatefulSets.
+                              type: string
+                          type: object
+                          x-kubernetes-validations:
+                          - message: An image reference is required
+                            rule: has(self.reference)
+                        ld_library_path:
+                          description: The list of directories inside the image which
+                            should be added to ld_library_path.
+                          items:
+                            type: string
+                          type: array
+                        name:
+                          description: The name of the extension, required
+                          minLength: 1
+                          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                          type: string
+                      required:
+                      - image
+                      - name
+                      type: object
+                    type: array
                   ldap:
                     description: Options to specify LDAP configuration
                     properties:
@@ -5317,6 +5381,30 @@ spec:
                           More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
                         format: int32
                         type: integer
+                      isolationCheck:
+                        description: |-
+                          Configure the feature that extends the liveness probe for a primary
+                          instance. In addition to the basic checks, this verifies whether the
+                          primary is isolated from the Kubernetes API server and from its
+                          replicas, ensuring that it can be safely shut down if network
+                          partition or API unavailability is detected. Enabled by default.
+                        properties:
+                          connectionTimeout:
+                            default: 1000
+                            description: Timeout in milliseconds for connections during
+                              the primary isolation check
+                            type: integer
+                          enabled:
+                            default: true
+                            description: Whether primary isolation checking is enabled
+                              for the liveness probe
+                            type: boolean
+                          requestTimeout:
+                            default: 1000
+                            description: Timeout in milliseconds for requests during
+                              the primary isolation check
+                            type: integer
+                        type: object
                       periodSeconds:
                         description: |-
                           How often (in seconds) to perform the probe.
@@ -5888,6 +5976,15 @@ spec:
                           This can only be set at creation time. By default set to `_cnpg_`.
                         pattern: ^[0-9a-z_]*$
                         type: string
+                      synchronizeLogicalDecoding:
+                        description: |-
+                          When enabled, the operator automatically manages synchronization of logical
+                          decoding (replication) slots across high-availability clusters.
+
+                          Requires one of the following conditions:
+                          - PostgreSQL version 17 or later
+                          - PostgreSQL version < 17 with pg_failover_slots extension enabled
+                        type: boolean
                     type: object
                   synchronizeReplicas:
                     description: Configures the synchronization of the user defined
@@ -7911,6 +8008,85 @@ spec:
         required:
         - metadata
         - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+---
+# Source: cloudnative-pg/charts/cloudnative-pg/templates/crds/crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+    helm.sh/resource-policy: keep
+  name: failoverquorums.postgresql.cnpg.io
+spec:
+  group: postgresql.cnpg.io
+  names:
+    kind: FailoverQuorum
+    listKind: FailoverQuorumList
+    plural: failoverquorums
+    singular: failoverquorum
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1
+    schema:
+      openAPIV3Schema:
+        description: |-
+          FailoverQuorum contains the information about the current failover
+          quorum status of a PG cluster. It is updated by the instance manager
+          of the primary node and reset to zero by the operator to trigger
+          an update.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          status:
+            description: Most recently observed status of the failover quorum.
+            properties:
+              method:
+                description: Contains the latest reported Method value.
+                type: string
+              primary:
+                description: |-
+                  Primary is the name of the primary instance that updated
+                  this object the latest time.
+                type: string
+              standbyNames:
+                description: |-
+                  StandbyNames is the list of potentially synchronous
+                  instance names.
+                items:
+                  type: string
+                type: array
+              standbyNumber:
+                description: |-
+                  StandbyNumber is the number of synchronous standbys that transactions
+                  need to wait for replies from.
+                type: integer
+            type: object
+        required:
+        - metadata
         type: object
     served: true
     storage: true
@@ -17414,10 +17590,10 @@ kind: ClusterRole
 metadata:
   name: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:
@@ -17580,6 +17756,16 @@ rules:
 - apiGroups:
   - postgresql.cnpg.io
   resources:
+  - failoverquorums
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - postgresql.cnpg.io
+  resources:
   - backups/status
   - databases/status
   - publications/status
@@ -17609,6 +17795,7 @@ rules:
   resources:
   - clusters/status
   - poolers/status
+  - failoverquorums/status
   verbs:
   - get
   - patch
@@ -17643,10 +17830,10 @@ kind: ClusterRole
 metadata:
   name: cloudnative-pg-view
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:
@@ -17655,6 +17842,7 @@ rules:
   - backups
   - clusters
   - databases
+  - failoverquorums
   - poolers
   - publications
   - scheduledbackups
@@ -17672,10 +17860,10 @@ kind: ClusterRole
 metadata:
   name: cloudnative-pg-edit
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:
@@ -17684,6 +17872,7 @@ rules:
   - backups
   - clusters
   - databases
+  - failoverquorums
   - poolers
   - publications
   - scheduledbackups
@@ -17703,10 +17892,10 @@ kind: ClusterRoleBinding
 metadata:
   name: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -17724,10 +17913,10 @@ metadata:
   name: cnpg-webhook-service
   namespace: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -17746,10 +17935,10 @@ metadata:
   name: cloudnative-pg
   namespace: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -17760,9 +17949,9 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/rbac: 40fc58775e0daa095b3fa20fdea90edefd7d38b08bbc203cdd2be0144aeb0129
-        checksum/config: 94aba664f7d57ed997658b140acc51399b6a670a968d413607cdad1e9a383ca9
-        checksum/monitoring-config: c92e57b5f73a7e64edc676a14668792e1cb1f1bb72894671116162abbde1a347
+        checksum/rbac: e0c531d5287c93310a58e1dfa5742c218eee5c6d5e2ac4c8e949d4f1fffed7e0
+        checksum/config: f3f9c9f0c121691ccb881f773a1f9fc010d87eb1f2bb4ee83def746f3340b9de
+        checksum/monitoring-config: e55bbd4ac583611018ac6e77110acf530ab87bd6a4f4320e7f79c02679db462a
       labels:
         app.kubernetes.io/name: cloudnative-pg
         app.kubernetes.io/instance: cloudnative-pg
@@ -17778,14 +17967,14 @@ spec:
         - /manager
         env:
         - name: OPERATOR_IMAGE_NAME
-          value: "ghcr.io/cloudnative-pg/cloudnative-pg:1.26.1"
+          value: "ghcr.io/cloudnative-pg/cloudnative-pg:1.27.0"
         - name: OPERATOR_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
         - name: MONITORING_QUERIES_CONFIGMAP
           value: "cnpg-default-monitoring"
-        image: "ghcr.io/cloudnative-pg/cloudnative-pg:1.26.1"
+        image: "ghcr.io/cloudnative-pg/cloudnative-pg:1.27.0"
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -17971,10 +18160,10 @@ kind: MutatingWebhookConfiguration
 metadata:
   name: cnpg-mutating-webhook-configuration
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 webhooks:
 - admissionReviewVersions:
@@ -18068,10 +18257,10 @@ kind: ValidatingWebhookConfiguration
 metadata:
   name: cnpg-validating-webhook-configuration
   labels:
-    helm.sh/chart: cloudnative-pg-0.25.0
+    helm.sh/chart: cloudnative-pg-0.26.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.26.1"
+    app.kubernetes.io/version: "1.27.0"
     app.kubernetes.io/managed-by: Helm
 webhooks:
 - admissionReviewVersions:
