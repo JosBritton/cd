@@ -1,2 +1,2 @@
-NAMESPCE=influxdb
+NAMESPACE=influxdb
 CHART=influxdb2
