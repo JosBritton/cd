@@ -1,0 +1,155 @@
+metrics-server:
+  image:
+    repository: registry.k8s.io/metrics-server/metrics-server
+    pullPolicy: IfNotPresent
+  serviceAccount:
+    create: true
+  rbac:
+    create: true
+    pspEnabled: false
+  apiService:
+    # v1beta1.metrics.k8s.io API service
+    create: true
+    insecureSkipTLSVerify: true
+    # caBundle: |
+    #   -----BEGIN CERTIFICATE-----
+    #   MIIDZzCCAk+gAwIBAgIRALku2l+dPSvp8wg8uWflW6MwDQYJKoZIhvcNAQELBQAw
+    #   GTEXMBUGA1UEAxMObWV0cmljcy1zZXJ2ZXIwHhcNMjUwODE0MDEyODIzWhcNMjYw
+    #   ODE0MDEyODIzWjAZMRcwFQYDVQQDEw5tZXRyaWNzLXNlcnZlcjCCASIwDQYJKoZI
+    #   hvcNAQEBBQADggEPADCCAQoCggEBAL70+XgF5D7oUd1jvRzlk8hyGrbl7m68w9iK
+    #   AY8E9bu1KSFq9yby0tuADp5j4x7KjgVwRzKu5UL+ebunILvsCCm6mguw9fly+685
+    #   GtFDKl5hsPr8LW+alC0Uv7ArLWktodY9yjCUM/BeSLnIH9xzbXZ6rf75NfBtrCrz
+    #   RRq3zbeCS295NU9INdfRM9BSq0umpCnonKNUhoHoOPVBeaFkTJjRAfqko1aBJwQh
+    #   ebOreaGKR1T/a3hYKwofWrJkVZENsjAFARAWmKS4ue2/vdYTz8b+L8QL1/P/ABOw
+    #   x1XdA5m1SBw5NwzEYWeRcZvaCYSmJQKHLoNGExE/3Yj53Qj5FucCAwEAAaOBqTCB
+    #   pjAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC
+    #   MAwGA1UdEwEB/wQCMAAwZwYDVR0RBGAwXoIWbWV0cmljcy1zZXJ2ZXIuZGVmYXVs
+    #   dIIabWV0cmljcy1zZXJ2ZXIuZGVmYXVsdC5zdmOCKG1ldHJpY3Mtc2VydmVyLmRl
+    #   ZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwwDQYJKoZIhvcNAQELBQADggEBAL1ijKn1
+    #   N1tCNVhXt58mziaZdg3FNqWv0aY0A4x62q8vRsO013ju/S9p25wBd2WhtAb7Uzb1
+    #   qIvLz8M4+8yvoQZnHuQULo7ESG12y/LcfyU/xV4k2rn8lL5YLBukoFFj/39R+J/t
+    #   h04Y5NE3+DrItjwkyOksxP1+Ox54qVF2GXykzDvJZa8p1Bpe51ClYQONi9Impp3Y
+    #   CbN34qptAmwd5tAY3UmH7PDTK2FnWGDUPKcU8Es6fk2Q9hHAV2cnBCnrCm3H/K95
+    #   fgM6ZrofS+Dz0+3WW4bfdD/J9wRsUMuHknpHRkzvt1Dkv8qY8E2aj9Y2BeMWSWDq
+    #   q/Ex4H4gvakQsn0=
+    #   -----END CERTIFICATE-----
+  securityContext:
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 1000
+    seccompProfile:
+      type: RuntimeDefault
+    capabilities:
+      drop:
+      - ALL
+  priorityClassName: system-cluster-critical
+  containerPort: 10250
+  hostNetwork:
+    enabled: false
+  replicas: 1
+  # revisionHistoryLimit: null
+  # updateStrategy: {}
+  # #   type: RollingUpdate
+  # #   rollingUpdate:
+  # #     maxSurge: 0
+  # #     maxUnavailable: 1
+  podDisruptionBudget:
+    # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+    enabled: false
+    # minAvailable: null
+    # maxUnavailable: null
+    # unhealthyPodEvictionPolicy: null
+  defaultArgs:
+  # kubelets use a self-signed certificate that rotates
+  # ca and cert found at /var/lib/kubelet/pki/kubelet.crt on each kubelet
+  # using published certs via kubeadm with serverTLSBootstrap and kubelet-csr-approver would enable automatic
+  # cert management
+  # see: https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/#kubelet-serving-certs
+  # for more info
+  - --kubelet-insecure-tls
+  - --cert-dir=/tmp
+  - --kubelet-preferred-address-types=InternalDNS,ExternalDNS,InternalIP,Hostname
+  - --kubelet-use-node-status-port
+  - --metric-resolution=10s
+  - --kubelet-request-timeout=2s
+  livenessProbe:
+    httpGet:
+      path: /livez
+      port: https
+      scheme: HTTPS
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    failureThreshold: 3
+  readinessProbe:
+    httpGet:
+      path: /readyz
+      port: https
+      scheme: HTTPS
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    failureThreshold: 3
+  service:
+    type: ClusterIP
+    port: 443
+    labels:
+      kubernetes.io/cluster-service: "true"
+      kubernetes.io/name: Metrics-server
+  addonResizer:
+    enabled: false
+    image:
+      repository: registry.k8s.io/autoscaling/addon-resizer
+      tag: 1.8.23
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop:
+        - ALL
+    resources:
+      requests:
+        cpu: 40m
+        memory: 25Mi
+      limits:
+        cpu: 40m
+        memory: 25Mi
+    nanny:
+      cpu: 0m
+      extraCpu: 1m
+      memory: 0Mi
+      extraMemory: 2Mi
+      minClusterSize: 100
+      pollPeriod: 300000
+      threshold: 5
+  metrics:
+    enabled: false
+  serviceMonitor:
+    enabled: false
+    interval: 1m
+    scrapeTimeout: 10s
+  # See https://github.com/kubernetes-sigs/metrics-server#scaling
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+      # limits:
+      #   cpu:
+      #   memory:
+  # extraVolumeMounts:
+  # - mountPath: /tmp/cluster-ca
+  #   name: cluster-ca
+  #   readOnly: true
+  # extraVolumes:
+  # - name: cluster-ca
+  #   secret:
+  #     secretName: metrics-server-cluster-ca
+  tls:
+    type: existingSecret
+    clusterDomain: cluster.local
+    existingSecret:
+      name: metrics-server-tls
+      lookup: false
