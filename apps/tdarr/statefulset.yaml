@@ -85,6 +85,10 @@ spec:
           name: logs
         - mountPath: /mnt/media
           name: media
+        # extreme disk thrashing from temp database operations
+        # this CANNOT EVER be put on storage again
+        - mountPath: /var/tmp
+          name: var-tmp
         resources:
           requests:
             cpu: 360m
@@ -98,7 +102,13 @@ spec:
           path: /mnt/artemis/data/media
           server: nas1.private.swifthomelab.net
       - name: logs
-        emptyDir: {}
+        emptyDir:
+          medium: Memory
+          sizeLimit: 100Mi
+      - name: var-tmp
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi
   volumeClaimTemplates:
   - metadata:
       name: config
