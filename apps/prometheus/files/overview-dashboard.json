@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 1974,
+  "id": 2180,
   "links": [],
   "panels": [
     {
@@ -225,8 +225,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 9,
+        "h": 7,
+        "w": 12,
         "x": 0,
         "y": 9
       },
@@ -329,9 +329,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 9,
-        "x": 9,
+        "h": 7,
+        "w": 12,
+        "x": 12,
         "y": 9
       },
       "id": 25,
@@ -377,7 +377,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "id": 24,
       "panels": [],
@@ -506,9 +506,9 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 15,
+        "w": 11,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 2,
       "options": {
@@ -606,7 +606,19 @@
               },
               {
                 "id": "custom.width",
-                "value": 363
+                "value": 316
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
               }
             ]
           }
@@ -614,9 +626,9 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 9,
-        "x": 9,
-        "y": 16
+        "w": 13,
+        "x": 11,
+        "y": 17
       },
       "id": 26,
       "options": {
