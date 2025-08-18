@@ -506,7 +506,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 9,
+        "w": 15,
         "x": 0,
         "y": 16
       },
@@ -827,5 +827,5 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "681902f7-372c-448b-8b13-c297583eb7ca",
-  "version": 46
+  "version": 47
 }
