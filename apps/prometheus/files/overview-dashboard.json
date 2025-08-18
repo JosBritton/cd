@@ -50,6 +50,7 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMax": 0.012,
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
