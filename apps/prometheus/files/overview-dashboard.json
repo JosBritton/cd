@@ -674,6 +674,10 @@
             "indexByName": {
               "alertname": 0,
               "severity": 1
+            },
+            "renameByName": {
+              "alertname": "Name",
+              "severity": "Severity"
             }
           }
         }
