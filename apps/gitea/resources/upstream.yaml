@@ -6,12 +6,12 @@ metadata:
   name: gitea-inline-config
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 stringData:
@@ -48,12 +48,12 @@ metadata:
   name: gitea
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 stringData:
@@ -221,12 +221,12 @@ metadata:
   name: gitea-init
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 stringData:
@@ -358,12 +358,12 @@ metadata:
   name: gitea-http
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
   annotations:
     {}
@@ -385,12 +385,12 @@ metadata:
   name: gitea-ssh
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
   annotations:
     {}
@@ -414,12 +414,12 @@ metadata:
   namespace: gitea
   annotations:
   labels:
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -432,14 +432,14 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 700f469d2c3aa799a4d86db8e7feee4eaca7608b45adb89166e0f7b76952457a
+        checksum/config: 5978b9f8b684036ebdd9e06de9976a995fd2053589805bf6b53fcf5a6cd4ecca
       labels:
-        helm.sh/chart: gitea-12.1.3
+        helm.sh/chart: gitea-12.2.0
         app: gitea
         app.kubernetes.io/name: gitea
         app.kubernetes.io/instance: gitea
-        app.kubernetes.io/version: "1.24.3"
-        version: "1.24.3"
+        app.kubernetes.io/version: "1.24.5"
+        version: "1.24.5"
         app.kubernetes.io/managed-by: Helm
     spec:
       
@@ -478,7 +478,7 @@ spec:
         - name: init-app-ini
           image: "docker.io/gitea/gitea:1.23.8-rootless@sha256:331875f35bdcc3c1110fc8410a4e809e3103ebb091ef424fec2df53ac1b658fc"
           imagePullPolicy: IfNotPresent
-          command: 
+          command:
           - "/usr/sbinx/config_environment.sh"
           env:
             - name: GITEA_APP_INI
@@ -626,12 +626,12 @@ metadata:
   name: gitea
   namespace: gitea
   labels:
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
 spec:
   selector:
@@ -649,12 +649,12 @@ metadata:
   namespace: gitea
   labels:
 
-    helm.sh/chart: gitea-12.1.3
+    helm.sh/chart: gitea-12.2.0
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
-    app.kubernetes.io/version: "1.24.3"
-    version: "1.24.3"
+    app.kubernetes.io/version: "1.24.5"
+    version: "1.24.5"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test-success
