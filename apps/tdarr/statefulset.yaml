@@ -24,6 +24,32 @@ spec:
       labels:
         app: tdarr
     spec:
+      serviceAccountName: tdarr-node-labeler-sa
+      initContainers:
+      - name: tdarr-node-labeler
+        image: bitnami/kubectl:1.33.4@sha256:ed0b31a0508da84ee655c5c6e01bd3897fc56ad6cf69debb27fa1893a06d2246
+        command:
+        - /bin/sh
+        - -c
+        - |
+          kubectl label nodes -l "kubernetes.io/hostname!=$NODE" tdarr-sa-host="false" --overwrite && \
+          kubectl label node "$NODE" tdarr-sa-host="true" --overwrite
+        env:
+        - name: NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsUser: 65534
+          runAsGroup: 65534
+          capabilities:
+            drop: [ALL]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
       containers:
       - name: tdarr
         image: ghcr.io/haveagitgat/tdarr:2.45.01@sha256:69d28aff66318ecc1c9496717c1731fbdbbfb8c0c4664a90bbb36747fbf279fe

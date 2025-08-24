@@ -16,6 +16,15 @@ spec:
       labels:
         app: tdarr-node
     spec:
+      # do not schedule on nodes where tdarr server is running
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: tdarr-sa-host
+                operator: NotIn
+                values: ["true"]
       containers:
       - env:
         - name: S6_READ_ONLY_ROOT
