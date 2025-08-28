@@ -34,6 +34,7 @@ patches:
     kind: Secret
     metadata:
       name: argocd-secret
+# below is not applicable to non-HA installs
 - target:
     kind: Deployment
     group: apps
