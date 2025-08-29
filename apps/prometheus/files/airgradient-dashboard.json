@@ -197,7 +197,7 @@
             "uid": "${DS_PROMETHEUS6}"
           },
           "editorMode": "code",
-          "expr": "airgradient_temperature_degc * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
+          "expr": "airgradient_temperature_compensated_celsius * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
           "interval": "",
           "legendFormat": "{{sensor}}",
           "range": true,
@@ -853,7 +853,7 @@
                 "uid": "${DS_PROMETHEUS6}"
               },
               "editorMode": "code",
-              "expr": "airgradient_temperature_degc * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+              "expr": "airgradient_temperature_compensated_celsius * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
               "interval": "",
               "legendFormat": "{{airgradient_serial_number}}",
               "range": true,
