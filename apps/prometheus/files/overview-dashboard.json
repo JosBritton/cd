@@ -1253,7 +1253,7 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true,
+          "showLegend": false,
           "sortBy": "Max",
           "sortDesc": true
         },
@@ -1357,7 +1357,7 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true,
+          "showLegend": false,
           "sortBy": "Max",
           "sortDesc": true
         },
@@ -1465,7 +1465,7 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true,
+          "showLegend": false,
           "sortBy": "Max",
           "sortDesc": true
         },
@@ -1573,7 +1573,7 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true,
+          "showLegend": false,
           "sortBy": "Max",
           "sortDesc": true
         },
