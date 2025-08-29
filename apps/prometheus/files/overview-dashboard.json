@@ -243,7 +243,78 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "index": 0
+                },
+                "to": 500
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 500,
+                "result": {
+                  "index": 1
+                },
+                "to": 1000
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 1000,
+                "result": {
+                  "index": 2
+                },
+                "to": 1200
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 1200,
+                "result": {
+                  "index": 3
+                },
+                "to": 2000
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 2000,
+                "result": {
+                  "index": 4
+                },
+                "to": 3000
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 3000,
+                "result": {
+                  "index": 5
+                },
+                "to": 5000
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5000,
+                "result": {
+                  "index": 6
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
