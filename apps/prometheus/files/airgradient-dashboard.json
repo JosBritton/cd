@@ -1021,8 +1021,8 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -2164,5 +2164,5 @@
   "timezone": "",
   "title": "Airgradient Native",
   "uid": "d11cb5b1-cb9b-47a9-98a6-94cc40fbc0a6",
-  "version": 4
+  "version": 5
 }
