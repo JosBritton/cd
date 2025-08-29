@@ -14,6 +14,10 @@ data:
     provisioning = /etc/grafana/provisioning
     [auth.anonymous]
     enabled = true
+    [feature_toggles.openfeature]
+    targetingKey = https://grafana.swifthomelab.net/
+    [server]
+    root_url = https://grafana.swifthomelab.net/
 kind: ConfigMap
 metadata:
   name: prometheus-operator-grafana
