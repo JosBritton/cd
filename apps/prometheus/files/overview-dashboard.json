@@ -173,16 +173,16 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "continuous-BlYlRd"
           },
+          "decimals": 0,
           "mappings": [],
-          "max": 100,
-          "min": 0,
+          "max": 75,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "transparent",
                 "value": 0
               }
             ]
@@ -230,7 +230,242 @@
           "refId": "A"
         }
       ],
-      "title": "Temperature",
+      "title": "Temperature (°F)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": 0
+              },
+              {
+                "color": "#F2495C",
+                "value": 20
+              },
+              {
+                "color": "#F25757",
+                "value": 21
+              },
+              {
+                "color": "#F36652",
+                "value": 22
+              },
+              {
+                "color": "#F4754D",
+                "value": 23
+              },
+              {
+                "color": "#F58448",
+                "value": 24
+              },
+              {
+                "color": "#F69343",
+                "value": 25
+              },
+              {
+                "color": "#F6A23E",
+                "value": 26
+              },
+              {
+                "color": "#F7B139",
+                "value": 27
+              },
+              {
+                "color": "#F8C034",
+                "value": 28
+              },
+              {
+                "color": "#F9CF2F",
+                "value": 29
+              },
+              {
+                "color": "#FADE2A",
+                "value": 30
+              },
+              {
+                "color": "#ECDA30",
+                "value": 31
+              },
+              {
+                "color": "#DFD736",
+                "value": 32
+              },
+              {
+                "color": "#D1D43C",
+                "value": 33
+              },
+              {
+                "color": "#C4D143",
+                "value": 34
+              },
+              {
+                "color": "#B6CE49",
+                "value": 35
+              },
+              {
+                "color": "#A9CB4F",
+                "value": 36
+              },
+              {
+                "color": "#9BC856",
+                "value": 37
+              },
+              {
+                "color": "#8EC55C",
+                "value": 38
+              },
+              {
+                "color": "#80C262",
+                "value": 39
+              },
+              {
+                "color": "#73BF69",
+                "value": 40
+              },
+              {
+                "color": "#80C262",
+                "value": 41
+              },
+              {
+                "color": "#8EC55C",
+                "value": 42
+              },
+              {
+                "color": "#9BC856",
+                "value": 43
+              },
+              {
+                "color": "#A9CB4F",
+                "value": 44
+              },
+              {
+                "color": "#B6CE49",
+                "value": 45
+              },
+              {
+                "color": "#C4D143",
+                "value": 46
+              },
+              {
+                "color": "#D1D43C",
+                "value": 47
+              },
+              {
+                "color": "#DFD736",
+                "value": 48
+              },
+              {
+                "color": "#ECDA30",
+                "value": 49
+              },
+              {
+                "color": "#FADE2A",
+                "value": 50
+              },
+              {
+                "color": "#F9CF2F",
+                "value": 51
+              },
+              {
+                "color": "#F8C034",
+                "value": 52
+              },
+              {
+                "color": "#F7B139",
+                "value": 53
+              },
+              {
+                "color": "#F6A23E",
+                "value": 54
+              },
+              {
+                "color": "#F69343",
+                "value": 55
+              },
+              {
+                "color": "#F58448",
+                "value": 56
+              },
+              {
+                "color": "#F4754D",
+                "value": 57
+              },
+              {
+                "color": "#F36652",
+                "value": 58
+              },
+              {
+                "color": "#F25757",
+                "value": 59
+              },
+              {
+                "color": "#F2495C",
+                "value": 60
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 9
+      },
+      "id": 72,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "airgradient_humidity_percent * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$airgradient_serial\"}",
+          "interval": "",
+          "legendFormat": "{{airgradient_serial_number}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Relative Humidity",
       "type": "stat"
     },
     {
@@ -735,7 +970,7 @@
       "gridPos": {
         "h": 5,
         "w": 6,
-        "x": 6,
+        "x": 12,
         "y": 9
       },
       "id": 73,
@@ -770,241 +1005,7 @@
           "refId": "A"
         }
       ],
-      "title": "CO2 Level (Sensor: SenseAir S8)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "transparent",
-                "value": 0
-              },
-              {
-                "color": "#F2495C",
-                "value": 20
-              },
-              {
-                "color": "#F25757",
-                "value": 21
-              },
-              {
-                "color": "#F36652",
-                "value": 22
-              },
-              {
-                "color": "#F4754D",
-                "value": 23
-              },
-              {
-                "color": "#F58448",
-                "value": 24
-              },
-              {
-                "color": "#F69343",
-                "value": 25
-              },
-              {
-                "color": "#F6A23E",
-                "value": 26
-              },
-              {
-                "color": "#F7B139",
-                "value": 27
-              },
-              {
-                "color": "#F8C034",
-                "value": 28
-              },
-              {
-                "color": "#F9CF2F",
-                "value": 29
-              },
-              {
-                "color": "#FADE2A",
-                "value": 30
-              },
-              {
-                "color": "#ECDA30",
-                "value": 31
-              },
-              {
-                "color": "#DFD736",
-                "value": 32
-              },
-              {
-                "color": "#D1D43C",
-                "value": 33
-              },
-              {
-                "color": "#C4D143",
-                "value": 34
-              },
-              {
-                "color": "#B6CE49",
-                "value": 35
-              },
-              {
-                "color": "#A9CB4F",
-                "value": 36
-              },
-              {
-                "color": "#9BC856",
-                "value": 37
-              },
-              {
-                "color": "#8EC55C",
-                "value": 38
-              },
-              {
-                "color": "#80C262",
-                "value": 39
-              },
-              {
-                "color": "#73BF69",
-                "value": 40
-              },
-              {
-                "color": "#80C262",
-                "value": 41
-              },
-              {
-                "color": "#8EC55C",
-                "value": 42
-              },
-              {
-                "color": "#9BC856",
-                "value": 43
-              },
-              {
-                "color": "#A9CB4F",
-                "value": 44
-              },
-              {
-                "color": "#B6CE49",
-                "value": 45
-              },
-              {
-                "color": "#C4D143",
-                "value": 46
-              },
-              {
-                "color": "#D1D43C",
-                "value": 47
-              },
-              {
-                "color": "#DFD736",
-                "value": 48
-              },
-              {
-                "color": "#ECDA30",
-                "value": 49
-              },
-              {
-                "color": "#FADE2A",
-                "value": 50
-              },
-              {
-                "color": "#F9CF2F",
-                "value": 51
-              },
-              {
-                "color": "#F8C034",
-                "value": 52
-              },
-              {
-                "color": "#F7B139",
-                "value": 53
-              },
-              {
-                "color": "#F6A23E",
-                "value": 54
-              },
-              {
-                "color": "#F69343",
-                "value": 55
-              },
-              {
-                "color": "#F58448",
-                "value": 56
-              },
-              {
-                "color": "#F4754D",
-                "value": 57
-              },
-              {
-                "color": "#F36652",
-                "value": 58
-              },
-              {
-                "color": "#F25757",
-                "value": 59
-              },
-              {
-                "color": "#F2495C",
-                "value": 60
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 6,
-        "x": 12,
-        "y": 9
-      },
-      "id": 72,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "airgradient_humidity_percent * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$airgradient_serial\"}",
-          "interval": "",
-          "legendFormat": "{{airgradient_serial_number}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Relative Humidity (%)",
+      "title": "CO₂ Concentration",
       "type": "stat"
     },
     {
@@ -1737,7 +1738,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 11,
+        "w": 12,
         "x": 0,
         "y": 31
       },
@@ -1857,8 +1858,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 13,
-        "x": 11,
+        "w": 12,
+        "x": 12,
         "y": 31
       },
       "id": 26,
