@@ -119,20 +119,25 @@ kube-prometheus-stack:
               requests:
                 storage: 50Gi
       additionalScrapeConfigs:
-      - job_name: blackbox-i9PSL
-        metrics_path: /probe
-        params:
-          module: [http_2xx]
+      # - job_name: blackbox-i9PSL
+      #   metrics_path: /probe
+      #   params:
+      #     module: [http_2xx]
+      #   static_configs:
+      #   - targets:
+      #     - http://esp32c3-c77628.fleet.private.swifthomelab.net/measures/current
+      #   relabel_configs:
+      #   - source_labels: [__address__]
+      #     target_label: __param_target
+      #   - source_labels: [__param_target]
+      #     target_label: instance
+      #   - target_label: __address__
+      #     replacement: blackbox-exporter.prometheus-operator.svc.cluster.local:9115
+      - job_name: airgradient-i9psl
+        metrics_path: /metrics
+        scheme: http
         static_configs:
-        - targets:
-          - http://esp32c3-c77628.fleet.private.swifthomelab.net/measures/current
-        relabel_configs:
-        - source_labels: [__address__]
-          target_label: __param_target
-        - source_labels: [__param_target]
-          target_label: instance
-        - target_label: __address__
-          replacement: blackbox-exporter.prometheus-operator.svc.cluster.local:9115
+        - targets: [esp32c3-c77628.fleet.private.swifthomelab.net:80]
   grafana:
     enabled: true
     defaultDashboardsEnabled: true

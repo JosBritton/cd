@@ -28,6 +28,8 @@ configMapGenerator:
   files: [files/bind9-resolver.json]
 - name: overview-dashboard-cm
   files: [files/overview-dashboard.json]
+- name: airgradient-dashboard-cm
+  files: [files/airgradient-dashboard.json]
 patches:
 - path: overlays/prometheus-operator-grafana-secret.yaml
 - path: overlays/prometheus-crds-annotations.yaml
