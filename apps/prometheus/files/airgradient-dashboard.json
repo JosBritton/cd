@@ -146,211 +146,6 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS6}"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 3,
-        "x": 0,
-        "y": 7
-      },
-      "id": 71,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "editorMode": "code",
-          "expr": "airgradient_temperature_compensated_celsius * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
-          "interval": "",
-          "legendFormat": "{{sensor}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Temperature (degrees celcius)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS6}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 3,
-        "x": 3,
-        "y": 7
-      },
-      "id": 72,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "editorMode": "code",
-          "expr": "airgradient_humidity_percent * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
-          "interval": "",
-          "legendFormat": "{{sensor}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Relative Humidity (%)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS6}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "#EAB839",
-                "value": 700
-              },
-              {
-                "color": "red",
-                "value": 900
-              }
-            ]
-          },
-          "unit": "ppm"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 3,
-        "x": 6,
-        "y": 7
-      },
-      "id": 51,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "editorMode": "code",
-          "expr": "airgradient_co2_ppm * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
-          "legendFormat": "{{airgradient_serial_number}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "CO2 Level (Sensor: SenseAir S8)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS6}"
-      },
       "description": "Total number of particles with a diameter of 0.3 micrometers or smaller per 100ml air",
       "fieldConfig": {
         "defaults": {
@@ -372,9 +167,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 2,
-        "x": 9,
+        "h": 8,
+        "w": 5,
+        "x": 0,
         "y": 7
       },
       "id": 22,
@@ -441,9 +236,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 3,
-        "x": 11,
+        "h": 8,
+        "w": 5,
+        "x": 5,
         "y": 7
       },
       "id": 5,
@@ -486,7 +281,6 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS6}"
       },
-      "description": "Total weight of particles with a diameter of 2.5 micrometers or smaller, in μg / m3",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -502,17 +296,17 @@
               }
             ]
           },
-          "unit": "conμgm3"
+          "unit": "celsius"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 3,
-        "x": 14,
+        "h": 8,
+        "w": 5,
+        "x": 10,
         "y": 7
       },
-      "id": 33,
+      "id": 71,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -538,14 +332,80 @@
             "uid": "${DS_PROMETHEUS6}"
           },
           "editorMode": "code",
-          "expr": "airgradient_pm2d5_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
-          "hide": false,
-          "legendFormat": "PM 2.5 μg / m3",
+          "expr": "airgradient_temperature_compensated_celsius * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
+          "interval": "",
+          "legendFormat": "{{sensor}}",
           "range": true,
-          "refId": "B"
+          "refId": "A"
         }
       ],
-      "title": "PM2.5 Particle Concentration in μg / m3",
+      "title": "Temperature (degrees celcius)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 15,
+        "y": 7
+      },
+      "id": 72,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_humidity_percent * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
+          "interval": "",
+          "legendFormat": "{{sensor}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Relative Humidity (%)",
       "type": "stat"
     },
     {
@@ -574,10 +434,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 3,
-        "x": 17,
-        "y": 7
+        "h": 8,
+        "w": 5,
+        "x": 0,
+        "y": 15
       },
       "id": 7,
       "options": {
@@ -634,6 +494,79 @@
                 "value": 0
               },
               {
+                "color": "#EAB839",
+                "value": 700
+              },
+              {
+                "color": "red",
+                "value": 900
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 5,
+        "y": 15
+      },
+      "id": 51,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_co2_ppm * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
+          "legendFormat": "{{airgradient_serial_number}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CO2 Level (Sensor: SenseAir S8)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
                 "color": "red",
                 "value": 1.1
               }
@@ -644,10 +577,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 2,
-        "x": 20,
-        "y": 7
+        "h": 8,
+        "w": 5,
+        "x": 10,
+        "y": 15
       },
       "id": 18,
       "options": {
@@ -717,10 +650,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 2,
-        "x": 22,
-        "y": 7
+        "h": 8,
+        "w": 5,
+        "x": 15,
+        "y": 15
       },
       "id": 11,
       "options": {
@@ -758,957 +691,1520 @@
       "type": "stat"
     },
     {
-      "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "description": "Total weight of particles with a diameter of 2.5 micrometers or smaller, in μg / m3",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 0,
+        "y": 23
+      },
+      "id": 33,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_pm2d5_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$serial\"}",
+          "hide": false,
+          "legendFormat": "PM 2.5 μg / m3",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "PM2.5 Particle Concentration in μg / m3",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 31
       },
       "id": 60,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "line"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "celsius"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 13,
-            "w": 12,
-            "x": 0,
-            "y": 29
-          },
-          "id": 69,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_temperature_compensated_celsius * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
-              "interval": "",
-              "legendFormat": "{{airgradient_serial_number}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Temperature (degrees celcius)",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "line"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 13,
-            "w": 12,
-            "x": 12,
-            "y": 29
-          },
-          "id": 70,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_humidity_percent * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
-              "interval": "",
-              "legendFormat": "{{airgradient_serial_number}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Relative Humidity (%)",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "Temperature & Humidity",
       "type": "row"
     },
     {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 18
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
       },
-      "id": 42,
-      "panels": [
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic-by-name"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "custom.lineInterpolation",
+                "value": "linear"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 69,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS6}"
           },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "axisSoftMin": 380,
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "line+area"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 700
-                  },
-                  {
-                    "color": "red",
-                    "value": 900
-                  }
-                ]
-              },
-              "unit": "ppm"
-            },
-            "overrides": []
+          "editorMode": "code",
+          "expr": "airgradient_temperature_celsius * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "interval": "",
+          "legendFormat": "{{airgradient_serial_number}} (raw)",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
           },
-          "gridPos": {
-            "h": 13,
-            "w": 24,
-            "x": 0,
-            "y": 43
-          },
-          "id": 50,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_co2_ppm * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
-              "legendFormat": "{{airgradient_serial_number}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "CO2 Level (Sensor: SenseAir S8)",
-          "type": "timeseries"
+          "editorMode": "code",
+          "expr": "airgradient_temperature_compensated_celsius * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "hide": false,
+          "instant": false,
+          "interval": "10s",
+          "legendFormat": "{{airgradient_serial_number}}",
+          "range": true,
+          "refId": "B"
         }
       ],
+      "title": "Temperature (°C)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 12,
+        "x": 12,
+        "y": 32
+      },
+      "id": 70,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_humidity_percent * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "interval": "",
+          "legendFormat": "{{airgradient_serial_number}} (raw)",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_humidity_compensated_percent * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "hide": false,
+          "instant": false,
+          "interval": "10s",
+          "legendFormat": "{{airgradient_serial_number}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Relative Humidity (%)",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 42,
+      "panels": [],
       "title": "CO2 PPM",
       "type": "row"
     },
     {
-      "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds",
+            "seriesBy": "last"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 8,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": 0
+              },
+              {
+                "color": "#1E93FC",
+                "value": 0
+              },
+              {
+                "color": "#2395F6",
+                "value": 525
+              },
+              {
+                "color": "#2897F1",
+                "value": 550
+              },
+              {
+                "color": "#2E99EB",
+                "value": 575
+              },
+              {
+                "color": "#339BE6",
+                "value": 600
+              },
+              {
+                "color": "#389DE1",
+                "value": 625
+              },
+              {
+                "color": "#3E9FDB",
+                "value": 650
+              },
+              {
+                "color": "#43A1D6",
+                "value": 675
+              },
+              {
+                "color": "#48A3D1",
+                "value": 700
+              },
+              {
+                "color": "#4EA5CB",
+                "value": 725
+              },
+              {
+                "color": "#53A7C6",
+                "value": 750
+              },
+              {
+                "color": "#58A9C1",
+                "value": 775
+              },
+              {
+                "color": "#5EABBB",
+                "value": 800
+              },
+              {
+                "color": "#63ADB6",
+                "value": 825
+              },
+              {
+                "color": "#68AFB1",
+                "value": 850
+              },
+              {
+                "color": "#6EB1AB",
+                "value": 875
+              },
+              {
+                "color": "#73B3A6",
+                "value": 900
+              },
+              {
+                "color": "#78B5A1",
+                "value": 925
+              },
+              {
+                "color": "#7EB79B",
+                "value": 950
+              },
+              {
+                "color": "#83B996",
+                "value": 975
+              },
+              {
+                "color": "#89BC91",
+                "value": 1000
+              },
+              {
+                "color": "#8EBD8B",
+                "value": 1010
+              },
+              {
+                "color": "#94BF85",
+                "value": 1020
+              },
+              {
+                "color": "#9AC17F",
+                "value": 1030
+              },
+              {
+                "color": "#A0C37A",
+                "value": 1040
+              },
+              {
+                "color": "#A6C574",
+                "value": 1050
+              },
+              {
+                "color": "#ACC76E",
+                "value": 1060
+              },
+              {
+                "color": "#B2C968",
+                "value": 1070
+              },
+              {
+                "color": "#B8CB63",
+                "value": 1080
+              },
+              {
+                "color": "#BECD5D",
+                "value": 1090
+              },
+              {
+                "color": "#C4CF57",
+                "value": 1100
+              },
+              {
+                "color": "#C9D051",
+                "value": 1110
+              },
+              {
+                "color": "#CFD24C",
+                "value": 1120
+              },
+              {
+                "color": "#D5D446",
+                "value": 1130
+              },
+              {
+                "color": "#DBD640",
+                "value": 1140
+              },
+              {
+                "color": "#E1D83A",
+                "value": 1150
+              },
+              {
+                "color": "#E7DA35",
+                "value": 1160
+              },
+              {
+                "color": "#EDDC2F",
+                "value": 1170
+              },
+              {
+                "color": "#F3DE29",
+                "value": 1180
+              },
+              {
+                "color": "#F9E023",
+                "value": 1190
+              },
+              {
+                "color": "#FFE21E",
+                "value": 1200
+              },
+              {
+                "color": "#FEDC1D",
+                "value": 1240
+              },
+              {
+                "color": "#FED71D",
+                "value": 1280
+              },
+              {
+                "color": "#FED11C",
+                "value": 1320
+              },
+              {
+                "color": "#FECC1C",
+                "value": 1360
+              },
+              {
+                "color": "#FEC61B",
+                "value": 1400
+              },
+              {
+                "color": "#FEC11B",
+                "value": 1440
+              },
+              {
+                "color": "#FEBB1A",
+                "value": 1480
+              },
+              {
+                "color": "#FEB61A",
+                "value": 1520
+              },
+              {
+                "color": "#FEB019",
+                "value": 1560
+              },
+              {
+                "color": "#FEAB19",
+                "value": 1600
+              },
+              {
+                "color": "#FEA619",
+                "value": 1640
+              },
+              {
+                "color": "#FEA018",
+                "value": 1680
+              },
+              {
+                "color": "#FE9B18",
+                "value": 1720
+              },
+              {
+                "color": "#FE9517",
+                "value": 1760
+              },
+              {
+                "color": "#FE9017",
+                "value": 1800
+              },
+              {
+                "color": "#FE8A16",
+                "value": 1840
+              },
+              {
+                "color": "#FE8516",
+                "value": 1880
+              },
+              {
+                "color": "#FE7F15",
+                "value": 1920
+              },
+              {
+                "color": "#FE7A15",
+                "value": 1960
+              },
+              {
+                "color": "#FE7515",
+                "value": 2000
+              },
+              {
+                "color": "#FD7117",
+                "value": 2050
+              },
+              {
+                "color": "#FD6D19",
+                "value": 2100
+              },
+              {
+                "color": "#FD6A1B",
+                "value": 2150
+              },
+              {
+                "color": "#FD661E",
+                "value": 2200
+              },
+              {
+                "color": "#FD6320",
+                "value": 2250
+              },
+              {
+                "color": "#FD5F22",
+                "value": 2300
+              },
+              {
+                "color": "#FC5B24",
+                "value": 2350
+              },
+              {
+                "color": "#FC5827",
+                "value": 2400
+              },
+              {
+                "color": "#FC5429",
+                "value": 2450
+              },
+              {
+                "color": "#FC512B",
+                "value": 2500
+              },
+              {
+                "color": "#FC4D2D",
+                "value": 2550
+              },
+              {
+                "color": "#FC4930",
+                "value": 2600
+              },
+              {
+                "color": "#FC4632",
+                "value": 2650
+              },
+              {
+                "color": "#FB4234",
+                "value": 2700
+              },
+              {
+                "color": "#FB3F36",
+                "value": 2750
+              },
+              {
+                "color": "#FB3B39",
+                "value": 2800
+              },
+              {
+                "color": "#FB373B",
+                "value": 2850
+              },
+              {
+                "color": "#FB343D",
+                "value": 2900
+              },
+              {
+                "color": "#FB303F",
+                "value": 2950
+              },
+              {
+                "color": "#FB2D42",
+                "value": 3000
+              },
+              {
+                "color": "#F42B40",
+                "value": 3050
+              },
+              {
+                "color": "#EE2A3F",
+                "value": 3100
+              },
+              {
+                "color": "#E8293E",
+                "value": 3150
+              },
+              {
+                "color": "#E2283D",
+                "value": 3200
+              },
+              {
+                "color": "#DC273C",
+                "value": 3250
+              },
+              {
+                "color": "#D6263B",
+                "value": 3300
+              },
+              {
+                "color": "#D0253A",
+                "value": 3350
+              },
+              {
+                "color": "#CA2439",
+                "value": 3400
+              },
+              {
+                "color": "#C42338",
+                "value": 3450
+              },
+              {
+                "color": "#BE2237",
+                "value": 3500
+              },
+              {
+                "color": "#B72036",
+                "value": 3550
+              },
+              {
+                "color": "#B11F35",
+                "value": 3600
+              },
+              {
+                "color": "#AB1E34",
+                "value": 3650
+              },
+              {
+                "color": "#A51D33",
+                "value": 3700
+              },
+              {
+                "color": "#9F1C32",
+                "value": 3750
+              },
+              {
+                "color": "#991B31",
+                "value": 3800
+              },
+              {
+                "color": "#931A30",
+                "value": 3850
+              },
+              {
+                "color": "#8D192F",
+                "value": 3900
+              },
+              {
+                "color": "#87182E",
+                "value": 3950
+              },
+              {
+                "color": "#81172D",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 18,
+        "x": 0,
+        "y": 46
+      },
+      "id": 50,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_co2_ppm * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "legendFormat": "{{airgradient_serial_number}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CO₂ Concentration",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 56
       },
       "id": 9,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "description": "Total number of particles with a diameter of 0.3 micrometers or smaller per 100ml air",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "particles/100ml"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 14,
-            "w": 12,
-            "x": 0,
-            "y": 57
-          },
-          "id": 3,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_pm0d3_p100ml * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
-              "hide": false,
-              "legendFormat": "{{ airgradient_serial_number }} PM 0.3 particles / 100ml",
-              "range": true,
-              "refId": "D"
-            }
-          ],
-          "title": "PM03 Particles / 100ml",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "description": "Total weight of particles with a diameter of 1.0 micrometers or smaller, in μg / m3",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "conμgm3"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 14,
-            "w": 12,
-            "x": 12,
-            "y": 57
-          },
-          "id": 27,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_pm1_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info",
-              "legendFormat": "PM 1.0 μg / m3",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "PM1 Particle Concentration in μg / m3",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "description": "Total weight of particles with a diameter of 2.5 micrometers or smaller, in μg / m3",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "conμgm3"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 14,
-            "w": 12,
-            "x": 0,
-            "y": 71
-          },
-          "id": 6,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_pm2d5_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info",
-              "hide": false,
-              "legendFormat": "PM 2.5 μg / m3",
-              "range": true,
-              "refId": "B"
-            }
-          ],
-          "title": "PM2.5 Particle Concentration in μg / m3",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "description": "Total weight of particles with a diameter of 10.0 micrometers or smaller, in μg / m3",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "conμgm3"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 14,
-            "w": 12,
-            "x": 12,
-            "y": 71
-          },
-          "id": 34,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_pm10_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info",
-              "hide": false,
-              "legendFormat": "PM 10.0 μg / m3",
-              "range": true,
-              "refId": "C"
-            }
-          ],
-          "title": "PM10 Particle Concentration in μg / m3",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "Particle Pollution",
       "type": "row"
     },
     {
-      "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "description": "Total number of particles with a diameter of 0.3 micrometers or smaller per 100ml air",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "particles/100ml"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 57
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_pm0d3_p100ml * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "hide": false,
+          "legendFormat": "{{ airgradient_serial_number }} PM 0.3 particles / 100ml",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "PM03 Particles / 100ml",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "description": "Total weight of particles with a diameter of 1.0 micrometers or smaller, in μg / m3",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 57
+      },
+      "id": 27,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_pm1_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info",
+          "legendFormat": "PM 1.0 μg / m3",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "PM1 Particle Concentration in μg / m3",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "description": "Total weight of particles with a diameter of 2.5 micrometers or smaller, in μg / m3",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 71
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_pm2d5_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info",
+          "hide": false,
+          "legendFormat": "PM 2.5 μg / m3",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "PM2.5 Particle Concentration in μg / m3",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "description": "Total weight of particles with a diameter of 10.0 micrometers or smaller, in μg / m3",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 71
+      },
+      "id": 34,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_pm10_ugm3 * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info",
+          "hide": false,
+          "legendFormat": "PM 10.0 μg / m3",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "PM10 Particle Concentration in μg / m3",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 85
       },
       "id": 10,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "line"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 100
-                  }
-                ]
-              },
-              "unit": "TVOC"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 14,
-            "w": 12,
-            "x": 0,
-            "y": 45
-          },
-          "id": 13,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_tvoc_index * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
-              "legendFormat": "{{sensor}} TVOC index",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "TVOC Index (100=24h average)",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS6}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "line"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "NOx"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 14,
-            "w": 12,
-            "x": 12,
-            "y": 45
-          },
-          "id": 17,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max",
-                "mean",
-                "variance",
-                "stdDev"
-              ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_PROMETHEUS6}"
-              },
-              "editorMode": "code",
-              "expr": "airgradient_nox_index * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
-              "interval": "",
-              "legendFormat": "{{sensor}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "NOx Index (1=24h average)",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "TVOC / NOx",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "TVOC"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 86
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_tvoc_index * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "legendFormat": "{{sensor}} TVOC index",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "TVOC Index (100=24h average)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS6}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "NOx"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 86
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max",
+            "mean",
+            "variance",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS6}"
+          },
+          "editorMode": "code",
+          "expr": "airgradient_nox_index * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=~\"$serial\"}",
+          "interval": "",
+          "legendFormat": "{{sensor}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "NOx Index (1=24h average)",
+      "type": "timeseries"
     }
   ],
   "preload": false,
-  "refresh": "",
+  "refresh": "10s",
   "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
       {
         "allValue": ".*",
-        "current": {},
+        "current": {
+          "text": [
+            "744dbdc77628"
+          ],
+          "value": [
+            "744dbdc77628"
+          ]
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS6}"
@@ -1748,7 +2244,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Airgradient Native",
+  "title": "Airgradient",
   "uid": "d11cb5b1-cb9b-47a9-98a6-94cc40fbc0a6",
   "version": 1
 }
