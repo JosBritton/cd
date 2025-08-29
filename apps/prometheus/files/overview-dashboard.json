@@ -159,6 +159,88 @@
         "x": 0,
         "y": 8
       },
+      "id": 51,
+      "panels": [],
+      "repeat": "airgradient_serial",
+      "title": "Air Status ($airgradient_serial)",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 0,
+        "y": 9
+      },
+      "id": 71,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "((airgradient_temperature_compensated_celsius * 9/5) + 32) * on (job,instance) group_left(airgradient_serial_number, airgradient_device_type, airgradient_library_version) airgradient_info{airgradient_serial_number=\"$airgradient_serial\"}",
+          "interval": "",
+          "legendFormat": "{{sensor}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Temperature",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
       "id": 23,
       "panels": [],
       "title": "Cluster",
@@ -229,7 +311,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 15
       },
       "id": 21,
       "interval": "1m",
@@ -333,7 +415,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 15
       },
       "id": 25,
       "interval": "1m",
@@ -441,7 +523,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 22
       },
       "id": 46,
       "options": {
@@ -549,7 +631,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 22
       },
       "id": 50,
       "options": {
@@ -596,7 +678,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 30
       },
       "id": 24,
       "panels": [],
@@ -727,7 +809,7 @@
         "h": 7,
         "w": 11,
         "x": 0,
-        "y": 25
+        "y": 31
       },
       "id": 2,
       "options": {
@@ -847,7 +929,7 @@
         "h": 7,
         "w": 13,
         "x": 11,
-        "y": 25
+        "y": 31
       },
       "id": 26,
       "options": {
@@ -1110,6 +1192,32 @@
         "refresh": 1,
         "regex": "",
         "sort": 1,
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "744dbdc77628",
+          "value": "744dbdc77628"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "definition": "label_values(airgradient_info,airgradient_serial_number)",
+        "description": "",
+        "includeAll": false,
+        "label": "Airgradient device",
+        "multi": true,
+        "name": "airgradient_serial",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(airgradient_info,airgradient_serial_number)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
         "type": "query"
       }
     ]
