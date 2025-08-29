@@ -54,8 +54,8 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -83,7 +83,7 @@
               "options": {
                 "0.01": {
                   "index": 0,
-                  "text": "HIGH"
+                  "text": "HI 10 ms"
                 }
               },
               "type": "value"
@@ -572,7 +572,7 @@
               },
               {
                 "color": "#1E93FC",
-                "value": 500
+                "value": 0
               },
               {
                 "color": "#2395F6",
@@ -1035,16 +1035,17 @@
         "x": 0,
         "y": 14
       },
-      "id": 23,
+      "id": 24,
       "panels": [],
-      "title": "Cluster",
+      "title": "Alertmanager",
       "type": "row"
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "prometheus",
+        "uid": "$datasource"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1069,6 +1070,330 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "warning"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Warning"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 15
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "editorMode": "code",
+          "expr": "sum by(severity) (ALERTS{severity!~\"info|none\",alertstate=\"firing\"})",
+          "intervalFactor": 2,
+          "legendFormat": "{{severity}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerts by Severity",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "critical": "Critical",
+              "info": "Info",
+              "none": "None",
+              "warning": "Warning"
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$datasource"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "Link rule",
+                    "url": "/alerting/list?search=rule:${__data.fields.Name}"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 316
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 15
+      },
+      "id": 26,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(last_over_time(ALERTS{severity!~\"info|none\", alertstate=\"firing\"}[$__interval])) by (alertname,severity)",
+          "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Alerts",
+      "transformations": [
+        {
+          "id": "timeSeriesTable",
+          "options": {
+            "A": {
+              "stat": "lastNotNull",
+              "timeField": "Time"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Trend #A": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "alertname": 0,
+              "severity": 1
+            },
+            "renameByName": {
+              "alertname": "Name",
+              "severity": "Severity"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 23,
+      "panels": [],
+      "title": "Cluster",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1261,7 +1586,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 23
       },
       "id": 21,
       "interval": "1m",
@@ -1319,8 +1644,8 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -1328,7 +1653,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1365,7 +1690,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 23
       },
       "id": 25,
       "interval": "1m",
@@ -1431,7 +1756,7 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
             },
@@ -1473,7 +1798,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 22
+        "y": 30
       },
       "id": 46,
       "options": {
@@ -1543,7 +1868,7 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
@@ -1581,7 +1906,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 22
+        "y": 30
       },
       "id": 74,
       "options": {
@@ -1623,200 +1948,10 @@
       "type": "timeseries"
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 30
-      },
-      "id": 24,
-      "panels": [],
-      "title": "Alertmanager",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "prometheus",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "critical"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "red",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "warning"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Critical"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-red",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Warning"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-yellow",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 31
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "$datasource"
-          },
-          "editorMode": "code",
-          "expr": "sum by(severity) (ALERTS{severity!~\"info|none\",alertstate=\"firing\"})",
-          "intervalFactor": 2,
-          "legendFormat": "{{severity}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Alerts by Severity",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": false
-            },
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "critical": "Critical",
-              "info": "Info",
-              "none": "None",
-              "warning": "Warning"
-            }
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "$datasource"
-      },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -1824,10 +1959,8 @@
             "cellOptions": {
               "type": "auto"
             },
-            "filterable": false,
             "inspect": false
           },
-          "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1835,6 +1968,10 @@
               {
                 "color": "green",
                 "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -1842,105 +1979,212 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "Name"
+              "id": "byRegexp",
+              "options": "/%/"
             },
             "properties": [
               {
-                "id": "links",
-                "value": [
-                  {
-                    "title": "Link rule",
-                    "url": "/alerting/list?search=rule:${__data.fields.Name}"
-                  }
-                ]
-              },
-              {
-                "id": "custom.width",
-                "value": 316
+                "id": "unit",
+                "value": "percentunit"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Severity"
+              "options": "Namespace"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "Drill down to pods",
+                    "url": "/d/85a562078cdf77779eaa1add43ccec1e/k8s-resources-namespace?${datasource:queryparam}&var-cluster=$cluster&var-namespace=${__data.fields.Namespace}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Pods"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 140
+                "value": 69
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workloads"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 107
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 7,
+        "h": 20,
         "w": 12,
-        "x": 12,
-        "y": 31
+        "x": 0,
+        "y": 38
       },
-      "id": 26,
+      "id": 8,
       "options": {
         "cellHeight": "sm",
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": [],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
-        "frameIndex": 0,
         "showHeader": true,
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "CPU Limits %"
+          }
+        ]
       },
       "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "$datasource"
+            "uid": "${datasource}"
           },
-          "disableTextWrap": false,
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(last_over_time(ALERTS{severity!~\"info|none\", alertstate=\"firing\"}[$__interval])) by (alertname,severity)",
-          "format": "time_series",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
+          "expr": "sum(kube_pod_owner{job=\"kube-state-metrics\", cluster=\"$cluster_kubelet\"}) by (namespace)",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "count(avg(namespace_workload_pod:kube_pod_owner:relabel{cluster=\"$cluster_kubelet\"}) by (workload, namespace)) by (namespace)",
+          "format": "table",
+          "instant": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate5m{cluster=\"$cluster_kubelet\"}) by (namespace)",
+          "format": "table",
+          "instant": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(namespace_cpu:kube_pod_container_resource_requests:sum{cluster=\"$cluster_kubelet\"}) by (namespace)",
+          "format": "table",
+          "instant": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate5m{cluster=\"$cluster_kubelet\"}) by (namespace) / sum(namespace_cpu:kube_pod_container_resource_requests:sum{cluster=\"$cluster_kubelet\"}) by (namespace)",
+          "format": "table",
+          "instant": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(namespace_cpu:kube_pod_container_resource_limits:sum{cluster=\"$cluster_kubelet\"}) by (namespace)",
+          "format": "table",
+          "instant": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate5m{cluster=\"$cluster_kubelet\"}) by (namespace) / sum(namespace_cpu:kube_pod_container_resource_limits:sum{cluster=\"$cluster_kubelet\"}) by (namespace)",
+          "format": "table",
+          "instant": true,
+          "refId": "G"
         }
       ],
-      "title": "Alerts",
+      "title": "CPU Quota",
       "transformations": [
         {
-          "id": "timeSeriesTable",
+          "id": "joinByField",
           "options": {
-            "A": {
-              "stat": "lastNotNull",
-              "timeField": "Time"
-            }
+            "byField": "namespace",
+            "mode": "outer"
           }
         },
         {
           "id": "organize",
           "options": {
             "excludeByName": {
-              "Trend #A": true
+              "Time": true,
+              "Time 1": true,
+              "Time 2": true,
+              "Time 3": true,
+              "Time 4": true,
+              "Time 5": true,
+              "Time 6": true,
+              "Time 7": true
             },
-            "includeByName": {},
             "indexByName": {
-              "alertname": 0,
-              "severity": 1
+              "Time 1": 0,
+              "Time 2": 1,
+              "Time 3": 2,
+              "Time 4": 3,
+              "Time 5": 4,
+              "Time 6": 5,
+              "Time 7": 6,
+              "Value #A": 8,
+              "Value #B": 9,
+              "Value #C": 10,
+              "Value #D": 11,
+              "Value #E": 12,
+              "Value #F": 13,
+              "Value #G": 14,
+              "namespace": 7
             },
             "renameByName": {
-              "alertname": "Name",
-              "severity": "Severity"
+              "Value #A": "Pods",
+              "Value #B": "Workloads",
+              "Value #C": "CPU Usage",
+              "Value #D": "CPU Requests",
+              "Value #E": "CPU Requests %",
+              "Value #F": "CPU Limits",
+              "Value #G": "CPU Limits %",
+              "namespace": "Namespace"
             }
           }
         }
@@ -2147,8 +2391,12 @@
       {
         "allowCustomValue": false,
         "current": {
-          "text": "744dbdc77628",
-          "value": "744dbdc77628"
+          "text": [
+            "744dbdc77628"
+          ],
+          "value": [
+            "744dbdc77628"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -2169,6 +2417,16 @@
         "refresh": 1,
         "regex": "",
         "type": "query"
+      },
+      {
+        "baseFilters": [],
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Mixed --"
+        },
+        "filters": [],
+        "name": "Filters",
+        "type": "adhoc"
       }
     ]
   },
