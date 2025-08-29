@@ -199,6 +199,12 @@
         "y": 9
       },
       "id": 71,
+      "links": [
+        {
+          "title": "Show details",
+          "url": "/d/d11cb5b1-cb9b-47a9-98a6-94cc40fbc0a6/airgradient-native?orgId=1&from=now-6h&to=now&timezone=browser&var-serial=${airgradient_serial}&var-DS_PROMETHEUS6=${datasource}&viewPanel=panel-69"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -433,6 +439,12 @@
         "y": 9
       },
       "id": 72,
+      "links": [
+        {
+          "title": "Show details",
+          "url": "/d/d11cb5b1-cb9b-47a9-98a6-94cc40fbc0a6/airgradient-native?orgId=1&from=now-6h&to=now&timezone=browser&var-serial=${airgradient_serial}&var-DS_PROMETHEUS6=${datasource}&viewPanel=panel-70"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -975,6 +987,12 @@
         "y": 9
       },
       "id": 73,
+      "links": [
+        {
+          "title": "Show details",
+          "url": "/d/d11cb5b1-cb9b-47a9-98a6-94cc40fbc0a6/airgradient-native?orgId=1&from=now-6h&to=now&timezone=browser&var-serial=${airgradient_serial}&var-DS_PROMETHEUS6=${datasource}&viewPanel=panel-50"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2683,5 +2701,5 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "681902f7-372c-448b-8b13-c297583eb7ca",
-  "version": 1
+  "version": 5
 }
