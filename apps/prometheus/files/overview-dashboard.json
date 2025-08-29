@@ -177,7 +177,8 @@
           },
           "decimals": 0,
           "mappings": [],
-          "max": 75,
+          "max": 76,
+          "min": 66,
           "thresholds": {
             "mode": "absolute",
             "steps": [
