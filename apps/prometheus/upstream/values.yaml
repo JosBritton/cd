@@ -1,3 +1,60 @@
+prometheus-blackbox-exporter:
+  fullnameOverride: blackbox-exporter
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      # add: [NET_RAW] # ICMP
+      drop: [ALL]
+  ## set to true to add the release label so scraping of the servicemonitor with kube-prometheus-stack works out of the box
+  releaseLabel: true
+  podSecurityContext:
+    fsGroup: 1000
+  config:
+    modules:
+      http_2xx:
+        prober: http
+        timeout: 5s
+        http:
+          valid_http_versions: [HTTP/1.1, HTTP/2.0]
+          method: GET
+          follow_redirects: true
+          fail_if_ssl: false
+          fail_if_not_ssl: false
+          tls_config:
+            insecure_skip_verify: false
+          preferred_ip_protocol: ip4  # defaults to ip6
+          ip_protocol_fallback: false  # no fallback to ip6
+  resources:
+    limits:
+      memory: 200Mi
+    requests:
+      memory: 50Mi
+  extraEnv:
+  - name: GOMAXPROCS
+    valueFrom:
+      resourceFieldRef:
+        resource: limits.cpu
+        divisor: "1"
+  serviceMonitor:
+    enabled: true
+    defaults:
+      interval: 1m
+      scrapeTimeout: 10s
+  prometheusRule:
+    enabled: true
+    rules:
+    - alert: BlackboxProbeFailed
+      expr: probe_success == 0
+      for: 15m
+      labels:
+        severity: critical
+      annotations:
+        summary: |-
+          The host {{ $labels.target }} is currently unreachable
 kube-prometheus-stack:
   kubeScheduler:
     enabled: true
@@ -61,6 +118,21 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 50Gi
+      additionalScrapeConfigs:
+      - job_name: blackbox-i9PSL
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+        - targets:
+          - http://esp32c3-c77628.fleet.private.swifthomelab.net/measures/current
+        relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: blackbox-exporter.prometheus-operator.svc.cluster.local:9115
   grafana:
     enabled: true
     defaultDashboardsEnabled: true
