@@ -13,3 +13,9 @@ spec:
   - services:
     - name: prometheus-operator-grafana
       port: 80
+  - conditions:
+    - prefix: /api/live/ws
+    enableWebsockets: true
+    services:
+    - name: prometheus-operator-grafana
+      port: 80
