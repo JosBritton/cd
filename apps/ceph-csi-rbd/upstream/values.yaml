@@ -75,7 +75,7 @@ ceph-csi-rbd:
     registrar:
       image:
         repository: registry.k8s.io/sig-storage/csi-node-driver-registrar
-        tag: v2.14.0
+        tag: v2.15.0
         pullPolicy: IfNotPresent
       resources: {}
 
@@ -176,7 +176,7 @@ ceph-csi-rbd:
       enabled: true
       image:
         repository: registry.k8s.io/sig-storage/csi-attacher
-        tag: v4.9.0
+        tag: v4.10.0
         pullPolicy: IfNotPresent
       resources: {}
       ## For further options, check

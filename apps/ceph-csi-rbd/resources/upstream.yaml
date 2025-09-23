@@ -480,7 +480,7 @@ spec:
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
-          image: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.14.0"
+          image: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.15.0"
           imagePullPolicy: IfNotPresent
           args:
             - "--v=1"
@@ -750,7 +750,7 @@ spec:
           resources:
             {}
         - name: csi-attacher
-          image: "registry.k8s.io/sig-storage/csi-attacher:v4.9.0"
+          image: "registry.k8s.io/sig-storage/csi-attacher:v4.10.0"
           imagePullPolicy: IfNotPresent
           args:
             - "--v=1"
