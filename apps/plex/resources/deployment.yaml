@@ -55,7 +55,7 @@ spec:
             drop:
             - ALL
           readOnlyRootFilesystem: true
-        image: envoyproxy/envoy:v1.35.1@sha256:522f4f88bdd741fe87b813bdca678a11c13e42e630cc4304a9e18193813c935d
+        image: envoyproxy/envoy:v1.36.0@sha256:d62f60a74cd9631b28bb3f538788ccff201b226975179de4265b0d75fc347e90
         ports:
         - name: https
           containerPort: 8443
