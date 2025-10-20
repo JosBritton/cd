@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: contour-envoy-headless
+  namespace: projectcontour
+  labels:
+    app.kubernetes.io/instance: contour
+    app.kubernetes.io/name: contour
+    app.kubernetes.io/component: envoy
+spec:
+  clusterIP: None
+  clusterIPs:
+  - None
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    app.kubernetes.io/component: envoy
+    app.kubernetes.io/instance: contour
+    app.kubernetes.io/name: contour
+  sessionAffinity: None
+  type: ClusterIP
