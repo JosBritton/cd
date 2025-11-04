@@ -19,3 +19,4 @@ spec:
   selector:
     app.kubernetes.io/name: jellyfin
     app.kubernetes.io/instance: jellyfin
+    statefulset.kubernetes.io/pod-name: jellyfin-0
