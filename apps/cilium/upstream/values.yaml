@@ -79,7 +79,7 @@ cilium:
       enabled: false
       image:
         repository: quay.io/cilium/hubble-relay
-        tag: v1.18.2
+        tag: v1.18.3
     ui:
       enabled: false
       backend:
