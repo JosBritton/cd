@@ -158,7 +158,7 @@ cilium:
   certgen:
     image:
       repository: quay.io/cilium/certgen
-      tag: v0.2.4
+      tag: v0.3.0
 
   envoy:
     image:
