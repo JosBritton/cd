@@ -17,4 +17,3 @@ spec:
   commonName: jellyfin.swifthomelab.net
   dnsNames:
   - jellyfin.swifthomelab.net
-  - music.swifthomelab.net
