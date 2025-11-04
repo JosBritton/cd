@@ -52,9 +52,6 @@ spec:
         ports:
         - containerPort: 8096
           name: http
-        env:
-        - name: JELLYFIN_PublishedServerUrl
-          value: https://jellyfin.swifthomelab.net
         resources:
           requests:
             cpu: 1500m
