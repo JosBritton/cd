@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: navidrome-swifthomelab-net
+  labels:
+    app.kubernetes.io/name: navidrome
+    app.kubernetes.io/instance: navidrome
+    app.kubernetes.io/component: music-server
+    app.kubernetes.io/part-of: navidrome
+  namespace: cert-manager
+spec:
+  secretName: navidrome-swifthomelab-net
+  issuerRef:
+    name: swifthomelab-net-issuer
+    kind: ClusterIssuer
+  commonName: navidrome.swifthomelab.net
+  dnsNames:
+  - navidrome.swifthomelab.net
+  - nd.swifthomelab.net

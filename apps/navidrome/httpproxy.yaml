@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/projectcontour.io/httpproxy_v1.json
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: navidrome-ingress
+  labels:
+    app.kubernetes.io/name: navidrome
+    app.kubernetes.io/instance: navidrome
+    app.kubernetes.io/component: music-server
+    app.kubernetes.io/part-of: navidrome
+  namespace: navidrome
+spec:
+  virtualhost:
+    fqdn: nd.swifthomelab.net
+    tls:
+      secretName: cert-manager/navidrome-swifthomelab-net
+  routes:
+  - services:
+    - name: navidrome
+      port: 4533

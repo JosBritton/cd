@@ -1,0 +1,104 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/statefulset.json
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: navidrome
+  labels:
+    app.kubernetes.io/name: navidrome
+    app.kubernetes.io/instance: navidrome
+    app.kubernetes.io/component: music-server
+    app.kubernetes.io/part-of: navidrome
+  namespace: navidrome
+spec:
+  serviceName: navidrome
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: navidrome
+      app.kubernetes.io/instance: navidrome
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: navidrome
+        app.kubernetes.io/instance: navidrome
+        app.kubernetes.io/component: music-server
+        app.kubernetes.io/part-of: navidrome
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+      volumes:
+      - name: logs
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+      - name: music
+        nfs:
+          path: /mnt/artemis/data/media/music
+          server: nas1.private.swifthomelab.net
+      terminationGracePeriodSeconds: 90
+      containers:
+      - name: navidrome
+        image: deluan/navidrome:0.58.0@sha256:2ae037d464de9f802d047165a13b1c9dc2bdbb14920a317ae4aef1233adc0a3c
+        ports:
+        - containerPort: 4533
+          name: http
+        env:
+        - name: ND_SCANSCHEDULE
+          value: 1h
+        - name: ND_LOGLEVEL
+          value: info
+        - name: ND_BASEURL
+          value: ""
+        # resources:
+        #   requests:
+        #     cpu: 1500m
+        #     memory: 1000Mi
+        #   limits:
+        #     cpu: 7000m
+        #     memory: 3500Mi
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: music
+          mountPath: /music
+        - name: logs
+          mountPath: /var/logs
+        - name: tmp
+          mountPath: /tmp
+        # livenessProbe:
+        #   failureThreshold: 3
+        #   httpGet:
+        #     path: /system/info/public
+        #     port: 8096
+        #   initialDelaySeconds: 0
+        #   periodSeconds: 10
+        #   timeoutSeconds: 1
+        # readinessProbe:
+        #   failureThreshold: 3
+        #   httpGet:
+        #     path: /system/info/public
+        #     port: 8096
+        #   initialDelaySeconds: 0
+        #   periodSeconds: 10
+        #   timeoutSeconds: 1
+        # startupProbe:
+        #   failureThreshold: 8
+        #   httpGet:
+        #     path: /system/info/public
+        #     port: 8096
+        #   initialDelaySeconds: 0
+        #   periodSeconds: 10
+        #   timeoutSeconds: 1
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: csi-rbd-sc
+      resources:
+        requests:
+          storage: 20Gi

@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/service-v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: navidrome
+  labels:
+    app.kubernetes.io/name: navidrome
+    app.kubernetes.io/instance: navidrome
+    app.kubernetes.io/component: music-server
+    app.kubernetes.io/part-of: navidrome
+  namespace: navidrome
+spec:
+  type: ClusterIP
+  ports:
+  - port: 4533
+    targetPort: 4533
+    protocol: TCP
+    name: http
+  selector:
+    app.kubernetes.io/name: navidrome
+    app.kubernetes.io/instance: navidrome
+    statefulset.kubernetes.io/pod-name: navidrome-0
