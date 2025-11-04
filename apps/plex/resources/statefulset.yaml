@@ -42,6 +42,10 @@ spec:
         nfs:
           path: /mnt/artemis/data/media/tv
           server: nas1.private.swifthomelab.net
+      - name: special
+        nfs:
+          path: /mnt/artemis/data/media/special
+          server: nas1.private.swifthomelab.net
       - name: music
         nfs:
           path: /mnt/artemis/data/media/music
@@ -83,6 +87,8 @@ spec:
           name: movies
         - mountPath: /tv
           name: tv
+        - mountPath: /special
+          name: special
         - mountPath: /config/Library/Application Support/Plex Media Server/Logs
           name: pms-logs
         - mountPath: /config/Library/Application Support/Plex Media Server/Cache
