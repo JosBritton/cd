@@ -128,7 +128,7 @@ cilium:
   operator:
     image:
       repository: quay.io/cilium/operator
-      tag: v1.18.2
+      tag: v1.18.3
     replicas: 2
     extraArgs:
       []
