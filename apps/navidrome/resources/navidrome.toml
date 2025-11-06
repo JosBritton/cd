@@ -1,5 +1,5 @@
 # https://www.navidrome.org/docs/usage/configuration-options/#available-options
-LogLevel = 'INFO'
+LogLevel = "INFO"
 
 [Backup]
 Path = "/backup"
