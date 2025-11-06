@@ -1,7 +1,12 @@
 # https://www.navidrome.org/docs/usage/configuration-options/#available-options
 LogLevel = "INFO"
+ArtistArtPriority = "artist.*, folder.*, album/artist.*, external"  # compatibility with Jellyfin convention
 
 [Backup]
 Path = "/backup"
 Count = 7
 Schedule =  "0 0 * * *"  # daily at midnight
+
+[Prometheus]
+Enabled = true
+MetricsPath = "/metrics"

@@ -54,16 +54,8 @@ spec:
           value: /config/navidrome.toml
         - name: ND_SCANSCHEDULE
           value: 1h
-        - name: ND_LOGLEVEL
-          value: info
         - name: ND_BASEURL
           value: ""
-        - name: ND_ARTISTARTPRIORITY
-          value: artist.*, folder.*, album/artist.*, external
-        - name: ND_PROMETHEUS_ENABLED
-          value: "true"
-        - name: ND_PROMETHEUS_METRICSPATH
-          value: /metrics
         - name: ND_LASTFM_APIKEY
           valueFrom:
             secretKeyRef:
