@@ -7,3 +7,9 @@ resources:
 - ./resources/httpproxy.yaml
 - ./resources/service.yaml
 - ./resources/statefulset.yaml
+configMapGenerator:
+- name: navidrome
+  files:
+  - ./resources/navidrome.toml
+generatorOptions:
+  disableNameSuffixHash: true

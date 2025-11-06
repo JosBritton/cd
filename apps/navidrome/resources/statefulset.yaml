@@ -39,6 +39,9 @@ spec:
         nfs:
           path: /mnt/artemis/data/media/music
           server: nas1.private.swifthomelab.net
+      - name: config
+        configMap:
+          name: navidrome
       terminationGracePeriodSeconds: 90
       containers:
       - name: navidrome
@@ -47,6 +50,8 @@ spec:
         - containerPort: 4533
           name: http
         env:
+        - name: ND_CONFIGFILE
+          value: /config/navidrome.toml
         - name: ND_SCANSCHEDULE
           value: 1h
         - name: ND_LOGLEVEL
@@ -75,6 +80,8 @@ spec:
           mountPath: /var/logs
         - name: tmp
           mountPath: /tmp
+        - name: config
+          mountPath: /config
         # livenessProbe:
         #   failureThreshold: 3
         #   httpGet:
