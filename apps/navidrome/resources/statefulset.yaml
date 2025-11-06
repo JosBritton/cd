@@ -86,6 +86,7 @@ spec:
           mountPath: /data
         - name: music
           mountPath: /music
+          readOnly: true  # https://www.navidrome.org/docs/usage/security/
         - name: logs
           mountPath: /var/logs
         - name: tmp
