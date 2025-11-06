@@ -100,7 +100,7 @@ spec:
         - name: backups
           mountPath: /backup
         - name: cache
-          mountPath: /var/cache/nd
+          mountPath: /cache
         # livenessProbe:
         #   failureThreshold: 3
         #   httpGet:

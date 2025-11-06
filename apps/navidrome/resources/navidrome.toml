@@ -1,10 +1,10 @@
-# https://www.navidrome.org/docs/usage/configuration-options/#available-options
 LogLevel = "INFO"
 ArtistArtPriority = "artist.*, folder.*, album/artist.*, external"  # compatibility with Jellyfin convention
 AutoImportPlaylists = false
-ImageCacheSize = "2048MB"
+ImageCacheSize = "1024MB"
 TranscodingCacheSize = "100MB"
-CacheFolder = "/var/cache/nd"
+CacheFolder = "/cache"
+CoverArtPriority = "cover.*"  # strict
 
 [Backup]
 Path = "/backup"
@@ -19,3 +19,4 @@ MetricsPath = "/metrics"
 Enabled = true
 Schedule = "0 * * * *"
 ScanOnStartup = false
+PurgeMissing = "always"
