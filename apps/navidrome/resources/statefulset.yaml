@@ -64,6 +64,16 @@ spec:
           value: "true"
         - name: ND_PROMETHEUS_METRICSPATH
           value: /metrics
+        - name: ND_LASTFM_APIKEY
+          valueFrom:
+            secretKeyRef:
+              key: apikey
+              name: lastfm-api
+        - name: ND_LASTFM_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: secret
+              name: lastfm-api
         # resources:
         #   requests:
         #     cpu: 1500m
