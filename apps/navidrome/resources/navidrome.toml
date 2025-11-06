@@ -20,3 +20,6 @@ Enabled = true
 Schedule = "0 * * * *"
 ScanOnStartup = false
 PurgeMissing = "always"
+
+[Subsonic]
+ArtistParticipations = true
