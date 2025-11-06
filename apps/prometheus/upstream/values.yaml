@@ -138,6 +138,11 @@ kube-prometheus-stack:
         scheme: http
         static_configs:
         - targets: [esp32c3-c77628.fleet.private.swifthomelab.net:80]
+      - job_name: navidrome
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+        - targets: [navidrome.navidrome.svc.cluster.local:4533]
   grafana:
     enabled: true
     defaultDashboardsEnabled: true
