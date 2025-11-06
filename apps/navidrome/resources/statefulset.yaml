@@ -55,6 +55,10 @@ spec:
           value: ""
         - name: ND_ARTISTARTPRIORITY
           value: artist.*, folder.*, album/artist.*, external
+        - name: ND_PROMETHEUS_ENABLED
+          value: "true"
+        - name: ND_PROMETHEUS_METRICSPATH
+          value: /metrics
         # resources:
         #   requests:
         #     cpu: 1500m
