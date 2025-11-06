@@ -103,6 +103,8 @@ spec:
           mountPath: /tmp
         - name: config
           mountPath: /config
+        - name: backups
+          mountPath: /backup
         # livenessProbe:
         #   failureThreshold: 3
         #   httpGet:
@@ -136,3 +138,11 @@ spec:
       resources:
         requests:
           storage: 20Gi
+  - metadata:
+      name: backups
+    spec:
+      accessModes: [ReadWriteOnce]
+      storageClassName: csi-rbd-sc
+      resources:
+        requests:
+          storage: 10Gi

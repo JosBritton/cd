@@ -1,2 +1,7 @@
 # https://www.navidrome.org/docs/usage/configuration-options/#available-options
 LogLevel = 'INFO'
+
+[Backup]
+Path = "/backup"
+Count = 7
+Schedule =  "0 0 * * *"  # daily at midnight
