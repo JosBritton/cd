@@ -2,6 +2,9 @@
 LogLevel = "INFO"
 ArtistArtPriority = "artist.*, folder.*, album/artist.*, external"  # compatibility with Jellyfin convention
 AutoImportPlaylists = false
+ImageCacheSize = "2048MB"
+TranscodingCacheSize = "100MB"
+CacheFolder = "/var/cache/nd"
 
 [Backup]
 Path = "/backup"
