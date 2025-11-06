@@ -1,6 +1,7 @@
 # https://www.navidrome.org/docs/usage/configuration-options/#available-options
 LogLevel = "INFO"
 ArtistArtPriority = "artist.*, folder.*, album/artist.*, external"  # compatibility with Jellyfin convention
+AutoImportPlaylists = false
 
 [Backup]
 Path = "/backup"
