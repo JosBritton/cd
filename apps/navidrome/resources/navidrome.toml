@@ -11,3 +11,8 @@ Schedule =  "0 0 * * *"  # daily at midnight
 [Prometheus]
 Enabled = true
 MetricsPath = "/metrics"
+
+[Scanner]
+Enabled = true
+Schedule = "0 * * * *"
+ScanOnStartup = false
