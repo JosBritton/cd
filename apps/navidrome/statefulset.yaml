@@ -53,6 +53,8 @@ spec:
           value: info
         - name: ND_BASEURL
           value: ""
+        - name: ND_ARTISTARTPRIORITY
+          value: artist.*, folder.*, album/artist.*, external
         # resources:
         #   requests:
         #     cpu: 1500m
