@@ -74,6 +74,16 @@ spec:
             secretKeyRef:
               key: secret
               name: lastfm-api
+        - name: ND_SPOTIFY_ID
+          valueFrom:
+            secretKeyRef:
+              key: id
+              name: spotify-api
+        - name: ND_SPOTIFY_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: secret
+              name: spotify-api
         # resources:
         #   requests:
         #     cpu: 1500m
