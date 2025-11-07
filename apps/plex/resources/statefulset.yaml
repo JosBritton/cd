@@ -46,10 +46,6 @@ spec:
         nfs:
           path: /mnt/artemis/data/media/special
           server: nas1.private.swifthomelab.net
-      - name: music
-        nfs:
-          path: /mnt/artemis/data/media/music
-          server: nas1.private.swifthomelab.net
       terminationGracePeriodSeconds: 120
       containers:
       - name: plex-media-server-pms
@@ -81,8 +77,6 @@ spec:
           mountPath: /config
         - name: pms-transcode
           mountPath: /transcode
-        - mountPath: /music
-          name: music
         - mountPath: /movies
           name: movies
         - mountPath: /tv
