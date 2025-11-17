@@ -7,7 +7,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -20,7 +20,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -33,7 +33,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -61,7 +61,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -79,7 +79,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -96,7 +96,7 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     release: ceph-csi-rbd
     heritage: Helm
 provisioner: rbd.csi.ceph.com
@@ -111,6 +111,8 @@ parameters:
   csi.storage.k8s.io/controller-expand-secret-name: csi-rbd-secret
   csi.storage.k8s.io/controller-expand-secret-namespace: ceph-csi-rbd
 
+  csi.storage.k8s.io/controller-publish-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/controller-publish-secret-namespace: ceph-csi-rbd
   csi.storage.k8s.io/node-stage-secret-name: csi-rbd-secret
   csi.storage.k8s.io/node-stage-secret-namespace: ceph-csi-rbd
 
@@ -127,7 +129,7 @@ metadata:
   name: ceph-csi-rbd-nodeplugin
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -162,7 +164,7 @@ metadata:
   name: ceph-csi-rbd-provisioner
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -238,7 +240,7 @@ metadata:
   name: ceph-csi-rbd-nodeplugin
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -258,7 +260,7 @@ metadata:
   name: ceph-csi-rbd-provisioner
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -279,7 +281,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -299,7 +301,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -323,7 +325,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -349,7 +351,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -372,7 +374,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: nodeplugin
     release: ceph-csi-rbd
     heritage: Helm
@@ -388,7 +390,7 @@ spec:
     metadata:
       labels:
         app: ceph-csi-rbd
-        chart: ceph-csi-rbd-3.15.0
+        chart: ceph-csi-rbd-3.15.1
         component: nodeplugin
         release: ceph-csi-rbd
         heritage: Helm
@@ -589,7 +591,7 @@ metadata:
   namespace: ceph-csi-rbd
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     component: provisioner
     release: ceph-csi-rbd
     heritage: Helm
@@ -608,7 +610,7 @@ spec:
     metadata:
       labels:
         app: ceph-csi-rbd
-        chart: ceph-csi-rbd-3.15.0
+        chart: ceph-csi-rbd-3.15.1
         component: provisioner
         release: ceph-csi-rbd
         heritage: Helm
@@ -859,7 +861,7 @@ metadata:
   name: rbd.csi.ceph.com
   labels:
     app: ceph-csi-rbd
-    chart: ceph-csi-rbd-3.15.0
+    chart: ceph-csi-rbd-3.15.1
     release: ceph-csi-rbd
     heritage: Helm
 spec:
