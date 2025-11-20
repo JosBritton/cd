@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/master/service-v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: jellyfin
+  labels:
+    app.kubernetes.io/name: jellyfin
+    app.kubernetes.io/instance: jellyfin
+    app.kubernetes.io/component: media-server
+    app.kubernetes.io/part-of: jellyfin
+  namespace: jellyfin
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8096
+    targetPort: 8096
+    protocol: TCP
+    name: http
+  selector:
+    app.kubernetes.io/name: jellyfin
+    app.kubernetes.io/instance: jellyfin
+    statefulset.kubernetes.io/pod-name: jellyfin-0
