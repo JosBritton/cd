@@ -41,7 +41,7 @@ spec:
           value: tdarr-server.tdarr.svc.cluster.local
         - name: serverPort
           value: "8266"
-        image: ghcr.io/haveagitgat/tdarr_node:2.50.02@sha256:bbffd8b41bd40109dcfbbac004f78fa84230376aaf21e97951d0f6f3973343ad
+        image: ghcr.io/haveagitgat/tdarr_node:2.58.02@sha256:6303c7307ae841ea1ef4822382202796c2f8a65bded02842f942f6ae3d5b62f1
         imagePullPolicy: IfNotPresent
         name: tdarr-node
         command: [sh, -c, ln -s /usr/local/bin/ffmpeg /usr/bin/ffmpeg && exec /init]
