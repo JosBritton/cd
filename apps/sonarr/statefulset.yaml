@@ -77,10 +77,10 @@ spec:
           periodSeconds: 5
         resources:
           requests:
-            cpu: 10m
+            cpu: 100m
             memory: 50Mi
           limits:
-            cpu: 500m
+            cpu: 800m
             memory: 700Mi
         env:
         - name: UMASK
